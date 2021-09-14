@@ -1,0 +1,64 @@
+#!/bin/bash
+
+        for referenceid in `cat referenceid.txt`;
+
+        do
+             CASEID=`psql -t -h ccd-data-store-performance.postgres.database.azure.com -U ccd@ccd-data-store-performance -d ccd_data_store -c "SELECT id FROM case_data WHERE reference=$referenceid"`
+
+
+  BEGIN;
+ INSERT INTO case_event
+ (id  ,
+ created_date ,
+ event_id ,
+ summary ,
+ description ,
+ user_id      ,
+ case_data_id ,
+ case_type_id ,
+ case_type_version,
+ state_id     ,
+ data   ,
+ user_first_name,
+ user_last_name ,
+ event_name   ,
+ state_name   ,
+ data_classification,
+ security_classification 
+ )
+
+ SELECT 
+"nextval('case_event_id_seq'::regclass)", -- case_event_id 
+" now()",  -- created_date
+"'boHistoryCorrection'", --event_id
+'Revert to Issue Grant state for incorrect chars in generated Grant', --summary
+'Revert to Issue Grant state for incorrect chars in generated Grant', --description
+'cfad5bcc-a943-4106-bd0c-0e31fdd1c68c', --user_id
+cd.id , -- case_data_id
+cd.case_type_id, -- case_type_id
+114, --case_type_version
+ 'BOCaseMatchingIssueGrant', --state_id   
+cd.data, 
+'probate.system@hmcts.net', --user_first_name
+'BOT', --user_last_name
+'History Correction', --event_name
+'Case Matching (Issue grant)', --state_name
+ cd.data_classification, 
+ cd.security_classification
+ FROM case_data cd
+ WHERE cd.reference = '$referenceid';
+ 
+ -- Insert case_users insert
+
+" INSERT INTO public.case_users (case_data_id, user_id) VALUES ($CASEID, 'cfad5bcc-a943-4106-bd0c-0e31fdd1c68c')";
+ 
+
+ -- case_users_audit script insert ----
+ 
+ "INSERT INTO public.case_users_audit (case_data_id, user_id, changed_by_id, action) VALUES ($CASEID, 'cfad5bcc-a943-4106-bd0c-0e31fdd1c68c', 'cfad5bcc-a943-4106-bd0c-0e31fdd1c68c', 'GRANT')";
+  
+COMMIT;	
+
+      done
+	  
+	  echo $CASEID $referenceid

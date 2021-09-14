@@ -1,0 +1,62 @@
+
+name: Postgres DB Daily Reports
+schedules:
+- cron: "0 2 * * *"
+  displayName: Daily reports
+  branches:
+    include:
+    - master
+  always: true
+
+trigger: none
+pr: none
+variables:
+  serviceConnection: 'Prod-Database-Reporting'
+  FROM_ADDRESS: 'db-reporting@mail-db-reporting-prod.platform.hmcts.net'
+  FAILURE_ADDRESS: 'dcd-devops-support@hmcts.net' # to be verified
+
+
+jobs:
+  - job:
+    pool:
+      name: 'hmcts-ss-prod'
+      #vmImage: 'ubuntu-18.04'
+    strategy:
+      maxParallel: 1
+      matrix:
+        pcq-backend-prod:
+          QUERY: ./scripts/pcq-backend-prod.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
+          CC_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
+          AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
+          AZURE_DB: 'pcq'
+
+    steps:
+      - task: AzureCLI@1
+        displayName: 'Get access token'
+        name: gettoken
+        inputs:
+          azureSubscription: $(serviceConnection)
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            #!/bin/bash
+            set -ex
+            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
+            echo $output
+            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
+      - task: AzureKeyVault@1
+        inputs:
+          azureSubscription: $(serviceConnection)
+          KeyVaultName: 'sendgridprod'
+          SecretsFilter: 'hmcts-db-reporting-api-key'
+          RunAsPreJob: false
+      - bash: |
+          echo "Secret Found! $MY_MAPPED_ENV_VAR"
+        env:
+          MY_MAPPED_ENV_VAR: $(hmcts-db-reporting-api-key)
+      - task: Bash@3
+        inputs:
+          filePath: 'email_report.sh'
+        env:
+          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
