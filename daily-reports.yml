@@ -51,10 +51,6 @@ jobs:
           KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
-      - bash: |
-          echo "Secret Found! $MY_MAPPED_ENV_VAR"
-        env:
-          MY_MAPPED_ENV_VAR: $(hmcts-db-reporting-api-key)
       - task: Bash@3
         inputs:
           filePath: 'email_report.sh'

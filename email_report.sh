@@ -35,6 +35,6 @@ psql -U "${AZURE_DB_USERNAME}"  -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "$(eval 
 cat ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 log "Finished dumping PCQ Dump Report on ${DEFAULT_DATE}"
 log "Sending email with PCQ Dump Report results to: ${TO_ADDRESS} ${CC_LOG_MESSAGE}"
-echo curl -v --request POST --url https://api.sendgrid.com/v3/mail/send --header 'Authorization: Bearer '$SENDGRID_APIKEY'' --header 'Content-Type: application/json' --data '{"personalizations":[{"to":[{"email":"'$TO_ADDRESS'","name":"MO"}],"subject":"Hello, World!"}],"content": [{"type": "text/plain", "value": "Heya!"}],"attachments": [{  "content": "'$(cat ${OUTPUT_DIR}/${OUTPUT_FILE_NAME} | base64)'", "filename": "'${OUTPUT_DIR}/${OUTPUT_FILE_NAME}'", "disposition": "attachment", "content_id": "File"}],"from":{"email":"'$FROM_ADDRESS'","name":""}}'
-#curl -v --request POST --url https://api.sendgrid.com/v3/mail/send --header 'Authorization: Bearer '$SENDGRID_APIKEY'' --header 'Content-Type: application/json' --data '{"personalizations":[{"to":[{"email":"'$TO_ADDRESS'","name":"MO"}],"subject":"Hello, World!"}],"content": [{"type": "text/plain", "value": "Heya!"}],"attachments": [{  "content": "'$(cat ${OUTPUT_DIR}/${OUTPUT_FILE_NAME} | base64)'", "filename": "'${OUTPUT_DIR}/${OUTPUT_FILE_NAME}'", "disposition": "attachment", "content_id": "File"}],"from":{"email":"'$FROM_ADDRESS'","name":""}}'
+swaks -f $FROM_ADDRESS -t $TO_ADDRESS --server smtp.sendgrid.net:587   --auth PLAIN -au apikey -ap $SENDGRID_APIKEY -attach ${OUTPUT_DIR}/${OUTPUT_FILE_NAME} --header "Subject: ${AZURE_HOSTNAME}/${AZURE_DB} "
+
 log "PCQ Dump Report Complete"
