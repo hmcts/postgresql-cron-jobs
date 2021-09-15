@@ -27,7 +27,7 @@ jobs:
         pcq-backend-prod:
           QUERY: ./scripts/pcq-backend-prod.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
           AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
           AZURE_DB: 'pcq'
@@ -35,7 +35,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-pcq-divorce:
           QUERY: ./scripts/ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-pcq-divorce.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
