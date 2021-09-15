@@ -1,3 +1,4 @@
+#!/bin/bash
 cat <<EOF
 COPY (SELECT to_char(current_timestamp, 'YYYYMMDD-HH24MI') AS extraction_date,
 CE.id AS ce_id,

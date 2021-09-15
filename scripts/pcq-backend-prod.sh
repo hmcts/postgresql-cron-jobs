@@ -1,3 +1,4 @@
+#!/bin/bash
 DAYSAGO=$(date -d "7 days ago" '+%Y%m%d 00:00:00')
 cat <<EOF
         COPY (
