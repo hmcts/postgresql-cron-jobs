@@ -27,10 +27,12 @@ jobs:
         pcq-backend-prod:
           QUERY: ./scripts/pcq-backend-prod.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          CC_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
           AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
           AZURE_DB: 'pcq'
+          SUBJECT: 'audit report'
+
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'

@@ -1,9 +1,59 @@
 
-name: Postgres DB Weekly Reports
+name: Postgres DB Daily Reports
 schedules:
-  - cron: "0 2 * * 0"
-    displayName: Weekly reports
-    branches:
-      include:
-        - master
-    always: true
+- cron: "0 2 * * *"
+  displayName: Daily reports
+  branches:
+    include:
+    - master
+  always: true
+
+trigger: none
+pr: none
+variables:
+  serviceConnection: 'Prod-Database-Reporting'
+  FROM_ADDRESS: 'db-reporting@mail-db-reporting-prod.platform.hmcts.net'
+  FAILURE_ADDRESS: 'dcd-devops-support@hmcts.net' # to be verified
+
+
+jobs:
+  - job:
+    pool:
+      name: 'hmcts-ss-prod'
+      #vmImage: 'ubuntu-18.04'
+    strategy:
+      maxParallel: 1
+      matrix:
+        ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-weekly-metadata:
+          QUERY: ./scripts/ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-weekly-metadata.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'Weekly Metadata'
+
+    steps:
+      - task: AzureCLI@1
+        displayName: 'Get access token'
+        name: gettoken
+        inputs:
+          azureSubscription: $(serviceConnection)
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            #!/bin/bash
+            set -ex
+            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
+            echo $output
+            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
+      - task: AzureKeyVault@1
+        inputs:
+          azureSubscription: $(serviceConnection)
+          KeyVaultName: 'sendgridprod'
+          SecretsFilter: 'hmcts-db-reporting-api-key'
+          RunAsPreJob: false
+      - task: Bash@3
+        inputs:
+          filePath: 'email_report.sh'
+        env:
+          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
