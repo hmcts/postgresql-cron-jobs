@@ -18,7 +18,7 @@ trim(CE.user_first_name) AS ce_user_first_name,
 trim(CE.user_last_name)  AS ce_user_last_name
 FROM case_data CD, case_event CE
 WHERE CD.id=CE.case_data_id
-AND CE.created_date >= (current_date-7 + time '00:00')
+AND CE.created_date >= (current_date-1 + time '00:00')
 AND CE.created_date < (current_date + time '00:00')
 ORDER BY CE.created_date ASC) TO STDOUT WITH CSV HEADER ;
 EOF
