@@ -31,13 +31,6 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
           AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
           AZURE_DB: 'pcq'
-        pcq-backend-prod-copy:
-          QUERY: ./scripts/pcq-backend-prod-copy.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          CC_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
-          AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
-          AZURE_DB: 'pcq'
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'
