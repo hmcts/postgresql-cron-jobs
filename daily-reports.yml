@@ -21,29 +21,36 @@ jobs:
     pool:
       name: 'hmcts-ss-prod'
     strategy:
-      maxParallel: 1
+      maxParallel: 3
       matrix:
         ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-pcq-divorce:
           QUERY: ./scripts/ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-pcq-divorce.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'PCQ Divorce'
         rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount:
           QUERY: ./scripts/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_HOSTNAME: 'rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'dbrdlocationref'
           SUBJECT: 'LOCATION-REF-DATA Row Count'
         rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount:
           QUERY: ./scripts/rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_HOSTNAME: 'rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'dbjuddata'
           SUBJECT: 'dbjuddata Row Count'
+        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
+          QUERY: ./scripts/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=Lucy.Astle-fletcher@justice.gov.uk
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'Grants Issued Yesterday Extract'
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'
