@@ -14,32 +14,36 @@ variables:
   serviceConnection: 'Prod-Database-Reporting'
   FROM_ADDRESS: 'db-reporting@mail-db-reporting-prod.platform.hmcts.net'
   FAILURE_ADDRESS: 'dcd-devops-support@hmcts.net' # to be verified
-
+  AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
 
 jobs:
   - job:
     pool:
       name: 'hmcts-ss-prod'
-      #vmImage: 'ubuntu-18.04'
     strategy:
       maxParallel: 1
       matrix:
-        pcq-backend-prod:
-          QUERY: ./scripts/pcq-backend-prod.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
-          AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
-          AZURE_DB: 'pcq'
-          SUBJECT: 'audit report'
         ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-pcq-divorce:
           QUERY: ./scripts/ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-pcq-divorce.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
           CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'PCQ Divorce'
+        rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount:
+          QUERY: ./scripts/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
+          AZURE_HOSTNAME: 'rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'dbrdlocationref'
+          SUBJECT: 'LOCATION-REF-DATA Row Count'
+        rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount:
+          QUERY: ./scripts/rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
+          AZURE_HOSTNAME: 'rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'dbjuddata'
+          SUBJECT: 'dbjuddata Row Count'
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'
