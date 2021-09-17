@@ -1,5 +1,5 @@
 
-name: Postgres DB Daily Reports
+name: Postgres DB Weekly Reports
 schedules:
 - cron: "0 3 * * 1"
   displayName: Daily reports
@@ -23,14 +23,86 @@ jobs:
     strategy:
       maxParallel: 1
       matrix:
-        ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-weekly-metadata:
-          QUERY: ./scripts/ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-weekly-metadata.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-weeklypcqdump:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-weeklypcqdump.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
           CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'Weekly Metadata'
+          SUBJECT: 'Weekly PCQ Dump'
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'PCQ Probate Applications created in last 7 days'
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'PCQ CMC Applications created in the last 7 days'
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqsscsapplicationscreatedinlast7days:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqsscsapplicationscreatedinlast7days.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'PCQ SSCS Applications created in the last 7 days'
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqdivorceapplicationscreatedinlast7days:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqdivorceapplicationscreatedinlast7days.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'PCQ Divorce Applications created in the last 7 days'
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-employmentcasetypeidcountreport:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-employmentcasetypeidcountreport.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'EMPLOYMENT CaseType ID Count Report'
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccddatareporting:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccddatareporting.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'CCD Data Reporting'
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccddivorceweeklydatareporting:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccddivorceweeklydatareporting.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'CCD Divorce-Weekly Data Reporting'
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobategorreporting:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobategorreporting.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'CCD Probate GOR Reporting'
+        ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobatewllldgmntweeklyreporting:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobatewllldgmntweeklyreporting.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'CCD-Probate-WllLdgmnt-Weekly Reporting'
 
     steps:
       - task: AzureCLI@1

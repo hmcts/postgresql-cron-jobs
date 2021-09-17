@@ -1,5 +1,5 @@
 
-name: Postgres DB Daily Reports
+name: Postgres DB Monthly Reports
 schedules:
 - cron: "0 1 1 * *"
   displayName: Daily reports
