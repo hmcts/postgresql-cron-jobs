@@ -42,9 +42,9 @@ jobs:
           QUERY: ./scripts/daily/rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
           CC_ADDRESS: 'alliu.balogun@hmcts.net'
-          AZURE_HOSTNAME: 'rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
+          AZURE_HOSTNAME: 'rd-judicial-api-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'dbjuddata'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-location-ref-api-postgres-db-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-prod"
           SUBJECT: 'dbjuddata Row Count'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
