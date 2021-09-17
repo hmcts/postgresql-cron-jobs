@@ -23,14 +23,38 @@ jobs:
     strategy:
       maxParallel: 1
       matrix:
-        ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-weekly-metadata:
-          QUERY: ./scripts/ccd-data-store-api-postgres-db-v11-prod-ccd-data-store-weekly-metadata.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #to be replaced
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
-          AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'Weekly Metadata'
+        dm-store-postgres-db-prod-evidence-monthly-documentttlcheckreport:
+          QUERY: ./scripts/dm-store-postgres-db-prod-evidence-monthly-documentttlcheckreport.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
+          AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'evidence'
+          SUBJECT: 'Documents TTL Check Monthly Report'
+        dm-store-postgres-db-prod-evidence-monthly-docstorefilesizereport:
+          QUERY: ./scripts/dm-store-postgres-db-prod-evidence-monthly-docstorefilesizereport.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
+          AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'evidence'
+          SUBJECT: 'Doc Store File Size Report Reporting'
+        dm-store-postgres-db-prod-evidence-monthly-docstorefiletypereport:
+          QUERY: ./scripts/dm-store-postgres-db-prod-evidence-monthly-docstorefiletypereport.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
+          AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'evidence'
+          SUBJECT: 'Doc Store File Type Report'
+        dm-store-postgres-db-prod-evidence-monthly-auditofservicereport:
+          QUERY: ./scripts/dm-store-postgres-db-prod-evidence-monthly-auditofservicereport.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
+          AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'evidence'
+          SUBJECT: 'Audit of Service Report'
 
     steps:
       - task: AzureCLI@1

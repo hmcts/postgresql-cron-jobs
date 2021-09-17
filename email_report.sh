@@ -10,7 +10,7 @@ YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 DEFAULT_DATE=$(date +%Y%m%d)
 DAYSAGO=$(date -d "7 days ago" '+%Y%m%d 00:00:00')
 OUTPUT_DIR=/tmp
-OUTPUT_FILE_NAME=${DEFAULT_DATE}_pcqDump.txt
+OUTPUT_FILE_NAME=${DEFAULT_DATE}_${AZURE_DB}.csv
 
 function errorHandler() {
   local dump_failed_error="${AZURE_HOSTNAME} ${AZURE_DB} Dump extract for ${DEFAULT_DATE}"
