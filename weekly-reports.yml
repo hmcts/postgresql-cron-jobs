@@ -26,7 +26,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-weeklypcqdump:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-weeklypcqdump.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -34,7 +34,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -42,7 +42,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -50,7 +50,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqsscsapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqsscsapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -58,7 +58,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqdivorceapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqdivorceapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -66,7 +66,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-employmentcasetypeidcountreport:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-employmentcasetypeidcountreport.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -74,7 +74,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccddatareporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccddatareporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -82,7 +82,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccddivorceweeklydatareporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccddivorceweeklydatareporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -90,7 +90,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobategorreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobategorreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -98,7 +98,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobatewllldgmntweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobatewllldgmntweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -106,7 +106,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobatestsearchreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobatestsearchreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -114,7 +114,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdetssingleweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdetssingleweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -122,7 +122,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdsscsweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdsscsweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -130,7 +130,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfinremweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfinremweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -138,7 +138,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdasylumweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdasylumweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -146,7 +146,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdetjurweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdetjurweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -154,7 +154,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdcmcweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdcmcweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -162,7 +162,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdssdsexceptionrecordweeklyreportcomplete:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdssdsexceptionrecordweeklyreportcomplete.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -170,7 +170,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfplweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfplweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -178,7 +178,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfinremcontestedweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfinremcontestedweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -186,7 +186,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfinremexceptionsweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfinremexceptionsweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -194,7 +194,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -202,7 +202,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdcivilweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdcivilweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -210,7 +210,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobateexceptionweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobateexceptionweeklyreporting.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -218,7 +218,7 @@ jobs:
         pcq-backend-prod-pcq-weekly-pcqweeklydump:
           QUERY: ./scripts/weekly/pcq-backend-prod-pcq-weekly-pcqweeklydump.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net'
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
           AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
           AZURE_DB: 'pcq'
@@ -226,7 +226,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-failedqa:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-failedqa.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -234,7 +234,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'

@@ -26,7 +26,7 @@ jobs:
         dm-store-postgres-db-prod-evidence-monthly-documentttlcheckreport:
           QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-documentttlcheckreport.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
           AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'evidence'
@@ -34,7 +34,7 @@ jobs:
         dm-store-postgres-db-prod-evidence-monthly-docstorefilesizereport:
           QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-docstorefilesizereport.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
           AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'evidence'
@@ -42,7 +42,7 @@ jobs:
         dm-store-postgres-db-prod-evidence-monthly-docstorefiletypereport:
           QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-docstorefiletypereport.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
           AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'evidence'
@@ -50,7 +50,7 @@ jobs:
         dm-store-postgres-db-prod-evidence-monthly-auditofservicereport:
           QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-auditofservicereport.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@reform.hmcts.net'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
           AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'evidence'
