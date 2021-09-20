@@ -221,7 +221,7 @@ jobs:
           CC_ADDRESS: 'alliu.balogun@reform.hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
           AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
-          AZURE_DB: 'ccd_data_store'
+          AZURE_DB: 'pcq'
           SUBJECT: 'PCQ Weekly Dump'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-failedqa:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-failedqa.sh
