@@ -1,4 +1,5 @@
 #!/bin/bash
+YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 cat <<EOF
 COPY (
 SELECT

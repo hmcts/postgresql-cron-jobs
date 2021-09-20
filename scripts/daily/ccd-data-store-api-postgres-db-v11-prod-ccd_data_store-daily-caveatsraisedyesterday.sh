@@ -1,4 +1,5 @@
 #!/bin/bash
+YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 cat <<EOF
 COPY (SELECT cd.reference AS ccd_reference,
 ce.created_date AS caveat_raised_date_time,

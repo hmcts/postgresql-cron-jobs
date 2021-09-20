@@ -1,4 +1,5 @@
 #!/bin/bash
+YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 cat <<EOF
 COPY (
 SELECT to_char(CAST (last_modified AS DATE), 'DD/MM/YYYY')  AS date_of_stop,
