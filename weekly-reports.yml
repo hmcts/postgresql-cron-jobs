@@ -23,14 +23,6 @@ jobs:
     strategy:
       maxParallel: 1
       matrix:
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-weeklypcqdump:
-          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-weeklypcqdump.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
-          AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'Weekly PCQ Dump'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #stuart.hooper@hmcts.net
