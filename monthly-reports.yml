@@ -38,7 +38,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
           AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'evidence'
-          SUBJECT: 'Doc Store File Size Report Reporting'
+          SUBJECT: 'Doc Store File Size Monthly Report'
         dm-store-postgres-db-prod-evidence-monthly-docstorefiletypereport:
           QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-docstorefiletypereport.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
@@ -46,7 +46,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
           AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'evidence'
-          SUBJECT: 'Doc Store File Type Report'
+          SUBJECT: 'Doc Store File Type Monthly Report'
         dm-store-postgres-db-prod-evidence-monthly-auditofservicereport:
           QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-auditofservicereport.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
@@ -54,7 +54,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
           AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'evidence'
-          SUBJECT: 'Audit of Service Report'
+          SUBJECT: 'Audit of Service Monthly Report'
 
     steps:
       - task: AzureCLI@1
