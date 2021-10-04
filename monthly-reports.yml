@@ -1,0 +1,82 @@
+
+name: Postgres DB Monthly Reports
+schedules:
+- cron: "0 1 1 * *"
+  displayName: Monthly reports
+  branches:
+    include:
+    - master
+  always: true
+
+trigger: none
+pr: none
+variables:
+  serviceConnection: 'Prod-Database-Reporting'
+  FROM_ADDRESS: 'db-reporting@mail-db-reporting-prod.platform.hmcts.net'
+  FAILURE_ADDRESS: 'dcd-devops-support@hmcts.net' # to be verified
+
+
+jobs:
+  - job:
+    pool:
+      name: 'hmcts-ss-prod'
+    strategy:
+      maxParallel: 1
+      matrix:
+        dm-store-postgres-db-prod-evidence-monthly-documentttlcheckreport:
+          QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-documentttlcheckreport.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
+          AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'evidence'
+          SUBJECT: 'Documents TTL Check Monthly Report'
+        dm-store-postgres-db-prod-evidence-monthly-docstorefilesizereport:
+          QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-docstorefilesizereport.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
+          AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'evidence'
+          SUBJECT: 'Doc Store File Size Monthly Report'
+        dm-store-postgres-db-prod-evidence-monthly-docstorefiletypereport:
+          QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-docstorefiletypereport.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
+          AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'evidence'
+          SUBJECT: 'Doc Store File Type Monthly Report'
+        dm-store-postgres-db-prod-evidence-monthly-auditofservicereport:
+          QUERY: ./scripts/monthly/dm-store-postgres-db-prod-evidence-monthly-auditofservicereport.sh
+          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=lawrie.baber-scovell1@hmcts.net
+          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@dm-store-postgres-db-prod"
+          AZURE_HOSTNAME: 'dm-store-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'evidence'
+          SUBJECT: 'Audit of Service Monthly Report'
+
+    steps:
+      - task: AzureCLI@1
+        displayName: 'Get access token'
+        name: gettoken
+        inputs:
+          azureSubscription: $(serviceConnection)
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            #!/bin/bash
+            set -ex
+            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
+            echo $output
+            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
+      - task: AzureKeyVault@1
+        inputs:
+          azureSubscription: $(serviceConnection)
+          KeyVaultName: 'sendgridprod'
+          SecretsFilter: 'hmcts-db-reporting-api-key'
+          RunAsPreJob: false
+      - task: Bash@3
+        inputs:
+          filePath: 'email_report.sh'
+        env:
+          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)

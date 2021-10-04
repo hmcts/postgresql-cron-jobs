@@ -1,0 +1,18 @@
+#date;time parallel --jobs 16 < case_event_dump_script.txt
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  1 AND 2000000) TO STDOUT" > ce1.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  2000001 AND 4000000) TO STDOUT" > ce2.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  4000001 AND 6000000) TO STDOUT" > ce3.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  6000001 AND 8000000) TO STDOUT" > ce4.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  8000001 AND 10000000) TO STDOUT" > ce5.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  10000001 AND 12000000) TO STDOUT" > ce6.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  12000001 AND 14000000) TO STDOUT" > ce7.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  14000001 AND 16000000) TO STDOUT" > ce8.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  16000001 AND 18000000) TO STDOUT" > ce9.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  18000001 AND 20000000) TO STDOUT" > ce10.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  20000001 AND 22000000) TO STDOUT" > ce11.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  22000001 AND 24000000) TO STDOUT" > ce12.sql  
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  24000001 AND 26000000) TO STDOUT" > ce13.sql  
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  26000001 AND 28000000) TO STDOUT" > ce14.sql  
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  28000001 AND 30000000) TO STDOUT" > ce15.sql  
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id BETWEEN  30000001 AND 32000000) TO STDOUT" > ce16.sql
+psql  -h 51.140.184.11 -U ccd@ccd-data-store-performance -d ccd_data_store  -c "COPY (select * FROM case_event WHERE id >= 32000001) TO STDOUT" > ce17.sql

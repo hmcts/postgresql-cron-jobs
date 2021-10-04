@@ -1,0 +1,2 @@
+/var/lib/pgsql/scripts/sscs_one_off_dumps.sh
+/var/lib/pgsql/scripts/divorce_one_off_dumps.sh
