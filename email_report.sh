@@ -24,7 +24,9 @@ trap errorHandler ERR
 psql -t -U "${AZURE_DB_USERNAME}"  -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "$(eval "${QUERY}")"  > ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 log "Finished dumping Report on ${DEFAULT_DATE}"
 cat ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
+cat ${ATTACHMENT}
 log "Sending email with  Report results to: ${TO_ADDRESS} ${CC_ADDRESS}"
+
 filesize=$(wc -c ${ATTACHMENT} | awk '{print $1}')
 if [[ $filesize -gt 1000000 ]]
 then
