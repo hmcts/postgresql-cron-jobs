@@ -69,7 +69,7 @@ jobs:
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Welsh Language Issued Daily Report'
+          SUBJECT: 'Welsh Language SSCS Issued Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-caveatsraisedyesterday:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-caveatsraisedyesterday.sh
           TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=Lucy.Astle-fletcher@justice.gov.uk
