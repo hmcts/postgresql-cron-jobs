@@ -36,10 +36,12 @@ TRIM(ce.data ->> 'HWFNumber') AS ce_hwf_number,
 TRIM(ce.data ->> 'hearingDate') AS ce_hearing_date,
 TRIM(ce.data ->> 'hearingType') AS ce_hearing_type,
 TRIM(ce.data ->> 'generalApplicationOutcome') AS ce_general_application_outcome,
-ce.data ->> 'draftDirectionDetailsCollectionRO' AS ce_draft_directions_coll
+ce.data ->> 'draftDirectionDetailsCollectionRO' AS ce_draft_directions_coll,
+TRIM(ce.data ->> 'orderApprovedDate') AS ce_order_approved_date,
+TRIM(ce.data ->> 'consentDateOfOrder') AS ce_consent_date_of_order
 FROM case_event CE
 WHERE CE.case_type_id = 'FinancialRemedyContested'
-AND CE.created_date >= (current_date-7 + time '00:00')
+AND CE.created_date >= (current_date-8 + time '00:00')
 AND CE.created_date < (current_date + time '00:00')
 ORDER BY CE.created_date ASC
 ) TO STDOUT WITH CSV HEADER

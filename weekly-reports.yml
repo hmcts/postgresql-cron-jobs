@@ -217,8 +217,8 @@ jobs:
           SUBJECT: 'Failed QA'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net'
-          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
+          TO_ADDRESS: 'sean.riley@hmcts.net'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net alan.webster@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
