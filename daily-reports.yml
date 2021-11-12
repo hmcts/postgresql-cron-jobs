@@ -22,62 +22,54 @@ jobs:
     strategy:
       maxParallel: 1
       matrix:
-        rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount:
-          QUERY: ./scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@hmcts.net'
-          AZURE_HOSTNAME: 'rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
-          AZURE_DB: 'dbrdlocationref'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-location-ref-api-postgres-db-prod"
-          SUBJECT: 'LOCATION-REF-DATA Row Count Daily Report'
-        rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount:
-          QUERY: ./scripts/daily/rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@hmcts.net'
-          AZURE_HOSTNAME: 'rd-judicial-api-postgres-db-prod.postgres.database.azure.com'
-          AZURE_DB: 'dbjuddata'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-prod"
-          SUBJECT: 'dbjuddata Row Count Daily Report'
-#        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
-#          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
-#          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=Lucy.Astle-fletcher@justice.gov.uk
+#        rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount:
+#          QUERY: ./scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh
+#          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
 #          CC_ADDRESS: 'alliu.balogun@hmcts.net'
-#          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
-#          AZURE_DB: 'ccd_data_store'
-#          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-#          SUBJECT: 'Grants Issued Yesterday Extract Daily Report'
+#          AZURE_HOSTNAME: 'rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
+#          AZURE_DB: 'dbrdlocationref'
+#          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-location-ref-api-postgres-db-prod"
+#          SUBJECT: 'LOCATION-REF-DATA Row Count Daily Report'
+#        rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount:
+#          QUERY: ./scripts/daily/rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount.sh
+#          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
+#          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+#          AZURE_HOSTNAME: 'rd-judicial-api-postgres-db-prod.postgres.database.azure.com'
+#          AZURE_DB: 'dbjuddata'
+#          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-prod"
+#          SUBJECT: 'dbjuddata Row Count Daily Report'
+        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
+          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
+          TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net Alison.ljones@justice.gov.uk Robert.walker3@justice.gov.uk probatefeedback@justice.gov.uk'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          SUBJECT: 'Grants Issued Yesterday Extract Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=Lucy.Astle-fletcher@justice.gov.uk
-          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+          TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net Alison.ljones@justice.gov.uk Robert.walker3@justice.gov.uk probatefeedback@justice.gov.uk'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           SUBJECT: 'Stops applied to Grants Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=Lucy.Astle-fletcher@justice.gov.uk
-          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+          TO_ADDRESS: 'sean.riley@hmcts.net'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net Isabel.syred@justice.gov.uk'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           SUBJECT: 'Welsh Language Divorce Issued Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=Lucy.Astle-fletcher@justice.gov.uk
-          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+          TO_ADDRESS: 'sean.riley@hmcts.net'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net helen.smith6@justice.gov.uk Rosie.Clarke@HMCTS.NET'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           SUBJECT: 'Welsh Language SSCS Issued Daily Report'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-caveatsraisedyesterday:
-          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-caveatsraisedyesterday.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=Lucy.Astle-fletcher@justice.gov.uk
-          CC_ADDRESS: 'alliu.balogun@hmcts.net'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
-          AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Caveats Raised Yesterday Daily Report'
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'

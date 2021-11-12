@@ -50,10 +50,15 @@ trim(CE.data ->> 'D8MarriagePetitionerName') AS ce_marriage_petitioner_name,
 trim(CE.data ->> 'D8MarriageRespondentName') AS ce_marriage_respondent_name,
 CE.data ->> 'GeneralReferrals' AS ce_general_refrrl_coll,
 trim(CE.data -> 'PreviousCaseId' ->> 'CaseReference') AS ce_previous_case_ref,
-trim(CE.data ->> 'respondentSolicitorRepresented') AS ce_respondent_solicitor_repr
+trim(CE.data ->> 'respondentSolicitorRepresented') AS ce_respondent_solicitor_repr,
+trim(CE.data -> 'LastServiceApplication' ->> 'Type') AS ce_last_service_applctn_type,
+trim(CE.data -> 'LastServiceApplication' ->> 'ReceivedDate') AS ce_last_service_applctn_date,
+trim(CE.data -> 'LastServiceApplication' ->> 'AddedDate') AS ce_last_service_added_date,
+trim(CE.data -> 'LastServiceApplication' ->> 'ApplicationGranted') AS ce_service_applctn_granted,
+trim(CE.data -> 'LastServiceApplication' ->> 'DecisionDate') AS ce_last_service_decsn_date
 FROM case_event CE
 WHERE CE.case_type_id = 'DIVORCE'
-AND CE.created_date >= (current_date-7 + time '00:00')
+AND CE.created_date >= (current_date-8 + time '00:00')
 AND CE.created_date < (current_date + time '00:00')
 ORDER BY CE.created_date ASC
 ) TO STDOUT WITH CSV HEADER
