@@ -22,22 +22,22 @@ jobs:
     strategy:
       maxParallel: 1
       matrix:
-        rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount:
-          QUERY: ./scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@hmcts.net'
-          AZURE_HOSTNAME: 'rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
-          AZURE_DB: 'dbrdlocationref'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-location-ref-api-postgres-db-prod"
-          SUBJECT: 'LOCATION-REF-DATA Row Count Daily Report'
-        rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount:
-          QUERY: ./scripts/daily/rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
-          CC_ADDRESS: 'alliu.balogun@hmcts.net'
-          AZURE_HOSTNAME: 'rd-judicial-api-postgres-db-prod.postgres.database.azure.com'
-          AZURE_DB: 'dbjuddata'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-prod"
-          SUBJECT: 'dbjuddata Row Count Daily Report'
+#        rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount:
+#          QUERY: ./scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh
+#          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
+#          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+#          AZURE_HOSTNAME: 'rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
+#          AZURE_DB: 'dbrdlocationref'
+#          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-location-ref-api-postgres-db-prod"
+#          SUBJECT: 'LOCATION-REF-DATA Row Count Daily Report'
+#        rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount:
+#          QUERY: ./scripts/daily/rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount.sh
+#          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=DLRefDataSupport@hmcts.net
+#          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+#          AZURE_HOSTNAME: 'rd-judicial-api-postgres-db-prod.postgres.database.azure.com'
+#          AZURE_DB: 'dbjuddata'
+#          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-prod"
+#          SUBJECT: 'dbjuddata Row Count Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
           TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
@@ -48,8 +48,8 @@ jobs:
           SUBJECT: 'Grants Issued Yesterday Extract Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants.sh
-          TO_ADDRESS: 'mohana.yalamanchi@hmcts.net' #TO_ADDRESS=Lucy.Astle-fletcher@justice.gov.uk
-          CC_ADDRESS: 'alliu.balogun@hmcts.net'
+          TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net Alison.ljones@justice.gov.uk Robert.walker3@justice.gov.uk probatefeedback@justice.gov.uk'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
