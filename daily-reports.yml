@@ -45,7 +45,7 @@ jobs:
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Grants Issued Yesterday Extract Daily Report'
+          SUBJECT: 'Grants-Issued-Yesterday-Extract Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants.sh
           TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
@@ -53,7 +53,7 @@ jobs:
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Stops applied to Grants Daily Report'
+          SUBJECT: 'Stops-applied-to-Grants Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued.sh
           TO_ADDRESS: 'sean.riley@hmcts.net'
@@ -61,7 +61,7 @@ jobs:
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Welsh Language Divorce Issued Daily Report'
+          SUBJECT: 'Welsh-Language-Divorce-Issued Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued.sh
           TO_ADDRESS: 'sean.riley@hmcts.net'
@@ -69,7 +69,7 @@ jobs:
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Welsh Language SSCS Issued Daily Report'
+          SUBJECT: 'Welsh-Language-SSCS-Issued Daily Report'
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'
