@@ -191,22 +191,22 @@ jobs:
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-Metadata Weekly Reporting'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting:
-          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting.sh
+        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdethearing:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdethearing.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-ETHearingDate Weekly Reporting'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting:
-          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting.sh
+          SUBJECT: 'CCD-ETHearing Weekly Reporting'
+        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobatecaveat:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobatecaveat.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-ETHearingDate Weekly Reporting'
+          SUBJECT: 'CCD-Probate-Caveat Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdcivilweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdcivilweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
