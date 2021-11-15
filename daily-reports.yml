@@ -16,7 +16,7 @@ variables:
   FAILURE_ADDRESS: 'dcd-devops-support@hmcts.net' # to be verified
 
 jobs:
-  - job: rd-daily
+  - job: rd_daily
     pool:
       name: 'hmcts-ss-prod'
     steps:
@@ -48,7 +48,7 @@ jobs:
           filePath: '/scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-  - job: ccd-daily
+  - job: ccd_daily
     pool:
       name: 'hmcts-ss-prod'
     strategy:
