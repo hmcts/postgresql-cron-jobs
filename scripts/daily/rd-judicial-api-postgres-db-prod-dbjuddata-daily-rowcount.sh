@@ -9,6 +9,7 @@ function log() {
 AZURE_HOSTNAME="rd-location-ref-api-postgres-db-prod.postgres.database.azure.com"
 AZURE_DB_USERNAME="dbrdlocationref@rd-location-ref-api-postgres-db-prod"
 AZURE_DB="dbrdlocationref"
+SUBJECT='LOCATION-REF-DATA Daily Report'
 
 YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 DEFAULT_DATE=$(date +%Y%m%d)
