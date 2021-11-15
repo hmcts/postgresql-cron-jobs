@@ -40,12 +40,12 @@ jobs:
           RunAsPreJob: false
       - task: Bash@3
         inputs:
-          filePath: '/scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh'
+          filePath: './scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
       - task: Bash@3
         inputs:
-          filePath: '/scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh'
+          filePath: './scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
   - job: ccd_daily
