@@ -30,7 +30,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'PCQ Probate Applications created in last 7 days'
+          SUBJECT: 'PCQ-Probate-Applications Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'sean.riley@hmcts.net'
@@ -38,7 +38,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'PCQ CMC Applications created in the last 7 days'
+          SUBJECT: 'PCQ-CMC-Applications Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqsscsapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqsscsapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'sean.riley@hmcts.net'
@@ -46,7 +46,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'PCQ SSCS Applications created in the last 7 days'
+          SUBJECT: 'PCQ-SSCS-Applications Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqdivorceapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqdivorceapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'sean.riley@hmcts.net'
@@ -54,7 +54,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'PCQ Divorce Applications created in the last 7 days'
+          SUBJECT: 'PCQ-Divorce-Applications Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-employmentcasetypeidcountreport:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-employmentcasetypeidcountreport.sh
           TO_ADDRESS:  'dan.thompson@digital.justice.gov.uk'
@@ -62,7 +62,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'EMPLOYMENT CaseType ID Count Report'
+          SUBJECT: 'EMPLOYMENT-CaseType-Count Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccddivorceweeklydatareporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccddivorceweeklydatareporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -70,7 +70,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD Divorce-Weekly Data Reporting'
+          SUBJECT: 'CCD-Divorce Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobategorreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobategorreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -78,7 +78,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD Probate GOR Reporting'
+          SUBJECT: 'CCD-Probate-GOR Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobatewilldgmntweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobatewilldgmntweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -86,7 +86,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-Probate-WllLdgmnt-Weekly Reporting'
+          SUBJECT: 'CCD-Probate-Willodgement Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobatestsearchreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobatestsearchreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -94,7 +94,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-Probate-StSearch Reporting'
+          SUBJECT: 'CCD-Probate-StSearch Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdetssingleweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdetssingleweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -102,7 +102,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-ETSingle-Weekly Reporting'
+          SUBJECT: 'CCD-ETSingle Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdsscsweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdsscsweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -110,7 +110,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-SSCS-Weekly Reporting'
+          SUBJECT: 'CCD-SSCS Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfinremweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdfinremweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -118,7 +118,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-FinRem-Weekly Reporting'
+          SUBJECT: 'CCD-FinRem Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdasylumweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdasylumweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -126,7 +126,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-Asylum-Weekly Reporting'
+          SUBJECT: 'CCD-Asylum Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdetjurweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdetjurweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -134,7 +134,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-ET-JUR-Weekly Reporting'
+          SUBJECT: 'CCD-ET-JUR Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdcmcweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdcmcweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -142,7 +142,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-CMC-Weekly Reporting'
+          SUBJECT: 'CCD-CMC Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdssdsexceptionrecordweeklyreportcomplete:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdssdsexceptionrecordweeklyreportcomplete.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -150,7 +150,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-SSCS_ExceptionRecord-Weekly report Complete'
+          SUBJECT: 'CCD-SSCS_ExceptionRecord Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfplweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdfplweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -158,7 +158,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-FPL-Weekly Reporting'
+          SUBJECT: 'CCD-FPL Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfinremcontestedweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdfinremcontestedweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -166,7 +166,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-FinRemContested-Weekly Reporting'
+          SUBJECT: 'CCD-FinRemContested Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdfinremexceptionsweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdfinremexceptionsweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -174,7 +174,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-FinRemExceptions-Weekly Reporting'
+          SUBJECT: 'CCD-FinRemExceptions Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -182,7 +182,31 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-ETHearingDate-Weekly Reporting'
+          SUBJECT: 'CCD-ETHearingDate Weekly Reporting'
+        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdmetadatareporting:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdmetadatareporting.sh
+          TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'CCD-Metadata Weekly Reporting'
+        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting.sh
+          TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'CCD-ETHearingDate Weekly Reporting'
+        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting.sh
+          TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
+          CC_ADDRESS: 'alliu.balogun@hmcts.net' #to be replaced
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          SUBJECT: 'CCD-ETHearingDate Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdcivilweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdcivilweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -190,7 +214,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-CIVIL-Weekly Reporting'
+          SUBJECT: 'CCD-CIVIL Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdprobateexceptionweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobateexceptionweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -198,7 +222,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'CCD-PROBATE-Exceptions-Weekly Reporting'
+          SUBJECT: 'CCD-PROBATE-Exceptions Weekly Reporting'
         pcq-backend-prod-pcq-weekly-pcqweeklydump:
           QUERY: ./scripts/weekly/pcq-backend-prod-pcq-weekly-pcqweeklydump.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
@@ -206,7 +230,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
           AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
           AZURE_DB: 'pcq'
-          SUBJECT: 'PCQ Weekly Dump'
+          SUBJECT: 'PCQ-Dump Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
           TO_ADDRESS: 'sean.riley@hmcts.net'
@@ -214,7 +238,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'Weekly Welsh Language Grants Issued'
+          SUBJECT: 'Welsh-Language-Grants-Issued Weekly Reporting'
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'
