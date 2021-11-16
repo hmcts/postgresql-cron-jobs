@@ -10,7 +10,8 @@ AZURE_HOSTNAME='rd-location-ref-api-postgres-db-prod.postgres.database.azure.com
 AZURE_DB='dbrdlocationref'
 AZURE_DB_USERNAME="DTS\ Platform\ Operations\ SC@rd-location-ref-api-postgres-db-prod"
 SUBJECT='LOCATION-REF-DATA-DB Daily Report'
-
+TO_ADDRESS=
+CC_ADDRESS=alliu.balogun@hmcts.net
 YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 DEFAULT_DATE=$(date +%Y%m%d)
 DAYSAGO=$(date -d "7 days ago" '+%Y%m%d 00:00:00')
