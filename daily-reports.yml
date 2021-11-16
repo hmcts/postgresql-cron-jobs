@@ -16,7 +16,7 @@ variables:
   FAILURE_ADDRESS: 'dcd-devops-support@hmcts.net' # to be verified
 
 jobs:
-  - job: rd-judicial
+  - job: rd_judicial
     pool:
       name: 'hmcts-ss-prod'
     steps:
@@ -43,7 +43,7 @@ jobs:
           filePath: './scripts/daily/rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-  - job: rd-location
+  - job: rd_location
     pool:
       name: 'hmcts-ss-prod'
     steps:
