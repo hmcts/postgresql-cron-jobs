@@ -8,7 +8,7 @@ function log() {
 # Set VArs
 AZURE_HOSTNAME='rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
 AZURE_DB='dbrdlocationref'
-AZURE_DB_USERNAME="DTS Platform Operations SC@rd-location-ref-api-postgres-db-prod"
+AZURE_DB_USERNAME="DTS\ Platform\ Operations\ SC@rd-location-ref-api-postgres-db-prod"
 SUBJECT='LOCATION-REF-DATA-DB Daily Report'
 
 YESTERDAY=$(date -d "yesterday" '+%Y%m%d')

@@ -7,7 +7,7 @@ function log() {
 
 # Set VArs
 AZURE_HOSTNAME='rd-judicial-api-postgres-db-prod.postgres.database.azure.com'
-AZURE_DB_USERNAME="DTS Platform Operations SC@rd-judicial-api-postgres-db-prod"
+AZURE_DB_USERNAME="DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-prod"
 AZURE_DB='dbjuddata'
 SUBJECT='rd-judicial-Record-Count Daily Report'
 
