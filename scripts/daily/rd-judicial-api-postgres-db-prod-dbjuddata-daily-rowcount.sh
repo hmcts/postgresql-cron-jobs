@@ -6,10 +6,10 @@ function log() {
 }
 
 # Set VArs
-AZURE_HOSTNAME="rd-location-ref-api-postgres-db-prod.postgres.database.azure.com"
-AZURE_DB_USERNAME="dbrdlocationref@rd-location-ref-api-postgres-db-prod"
-AZURE_DB="dbrdlocationref"
-SUBJECT='LOCATION-REF-DATA Daily Report'
+AZURE_HOSTNAME="rd-judicial-api-postgres-db-v11-prod.postgres.database.azure.com"
+AZURE_DB_USERNAME="DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-v11-prod"
+AZURE_DB="dbjuddata"
+SUBJECT='rd-judicial-Record-Count Daily Report'
 
 YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 DEFAULT_DATE=$(date +%Y%m%d)
@@ -24,24 +24,22 @@ function errorHandler() {
   log "${dump_failed_error}"
   echo ""
 }
-
 trap errorHandler ERR
+#psql query
 echo ""  >> ${ATTACHMENT}
 echo "judicial_user_profile Count :"  >> ${ATTACHMENT}
 psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count (*) from dbjuddata.judicial_user_profile;"  >> ${ATTACHMENT}
-
+#psql query
 echo ""  >> ${ATTACHMENT}
 echo "dbjuddata.judicial_office_appointment Count"  >> ${ATTACHMENT}
 psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count (*) from dbjuddata.judicial_office_appointment;"  >> ${ATTACHMENT}
 
-
 echo ""  >> ${ATTACHMENT}
-
-
 
 log "Finished dumping Report on ${DEFAULT_DATE}"
 log "Sending email with  Report results to: ${TO_ADDRESS} ${CC_ADDRESS}"
 
+#compress the file if it's large
 filesize=$(wc -c ${ATTACHMENT} | awk '{print $1}')
 if [[ $filesize -gt 1000000 ]]
 then
