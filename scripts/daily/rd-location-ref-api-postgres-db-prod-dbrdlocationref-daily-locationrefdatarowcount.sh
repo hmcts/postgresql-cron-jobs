@@ -8,7 +8,7 @@ function log() {
 # Set VArs
 AZURE_HOSTNAME='rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
 AZURE_DB='dbrdlocationref'
-AZURE_DB_USERNAME="dbrdlocationref@rd-location-ref-api-postgres-db-prod"
+AZURE_DB_USERNAME="DTS\ Platform\ Operations\ SC@rd-location-ref-api-postgres-db-prod"
 SUBJECT='LOCATION-REF-DATA-DB Daily Report'
 
 YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
@@ -33,19 +33,19 @@ echo ""  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo "SERVICE_TO_CCD_CASE_TYPE_ASSOC Count :"  >> ${ATTACHMENT}
-psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.SERVICE_TO_CCD_CASE_TYPE_ASSOC;"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.SERVICE_TO_CCD_CASE_TYPE_ASSOC;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo "dataload_exception_records total Count :"  >> ${ATTACHMENT}
-psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exception  from locrefdata.dataload_exception_records;"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exception  from locrefdata.dataload_exception_records;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo "dataload_schedular_audit today's Count :"  >> ${ATTACHMENT}
-psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select * from locrefdata.dataload_schedular_audit where scheduler_end_time::DATE = current_date;"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select * from locrefdata.dataload_schedular_audit where scheduler_end_time::DATE = current_date;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo "dataload_exception_records Count :"  >> ${ATTACHMENT}
-psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select  * from locrefdata.dataload_exception_records;"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select  * from locrefdata.dataload_exception_records;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
