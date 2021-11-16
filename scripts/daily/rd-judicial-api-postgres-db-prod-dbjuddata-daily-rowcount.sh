@@ -6,9 +6,9 @@ function log() {
 }
 
 # Set VArs
-AZURE_HOSTNAME="rd-judicial-api-postgres-db-v11-prod.postgres.database.azure.com"
-AZURE_DB_USERNAME="DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-v11-prod"
-AZURE_DB="dbjuddata"
+AZURE_HOSTNAME='rd-judicial-api-postgres-db-v11-prod.postgres.database.azure.com'
+AZURE_DB_USERNAME='DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-v11-prod'
+AZURE_DB='dbjuddata'
 SUBJECT='rd-judicial-Record-Count Daily Report'
 
 YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
@@ -26,14 +26,45 @@ function errorHandler() {
 }
 trap errorHandler ERR
 #psql query
+echo " =====  rd-judicial database Table Counts ===== " > ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo "judicial_user_profile Count :"  >> ${ATTACHMENT}
 psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count (*) from dbjuddata.judicial_user_profile;"  >> ${ATTACHMENT}
-#psql query
-echo ""  >> ${ATTACHMENT}
-echo "dbjuddata.judicial_office_appointment Count"  >> ${ATTACHMENT}
-psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count (*) from dbjuddata.judicial_office_appointment;"  >> ${ATTACHMENT}
 
+echo "judicial_office_appointment Count :"  >> ${ATTACHMENT}
+psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count (*) from dbjuddata.judicial_office_appointment;"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "judicial_office_authorisation Count :"  >> ${ATTACHMENT}
+psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) from judicial_office_authorisation;"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "base_location_type Count :"  >> ${ATTACHMENT}
+psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) from dbjuddata.base_location_type;"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "region_type Count :"  >> ${ATTACHMENT}
+psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) from dbjuddata.region_type;"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "dataload_schedular_audit total Count :"  >> ${ATTACHMENT}
+psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_audits from dbjuddata.dataload_schedular_audit;"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "dataload_exception_records total Count :"  >> ${ATTACHMENT}
+psql -t -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exception  from dataload_exception_records;"  >> ${ATTACHMENT}
+echo ""  >> ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
+echo "dataload_schedular_audit today's Count :"  >> ${ATTACHMENT}
+psql -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select * from dataload_schedular_audit where scheduler_end_time::DATE = current_date;"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "dataload_exception_records today's Count :"  >> ${ATTACHMENT}
+psql  -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select * from dataload_exception_records  where updated_timestamp::DATE = current_date;"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "judicial_user_profile exceptions records today's Count :"  >> ${ATTACHMENT}
+psql  -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_personal_today from dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'judicial_user_profile';"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "judicial_office_appointment exceptions records today's Count :"  >> ${ATTACHMENT}
+psql  -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_appointments_today from dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'judicial_office_appointment';"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "judicial_office_authorisation exceptions records today's Count :"  >> ${ATTACHMENT}
+psql  -U ${AZURE_DB_USERNAME} -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_authorizations_today from dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'judicial_office_authorisation';"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 
 log "Finished dumping Report on ${DEFAULT_DATE}"
