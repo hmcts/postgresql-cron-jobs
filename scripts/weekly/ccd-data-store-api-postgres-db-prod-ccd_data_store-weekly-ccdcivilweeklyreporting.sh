@@ -40,7 +40,8 @@ TRIM(CE.data ->> 'claimDismissedDate') AS ce_claim_dismissed_date,
 TRIM(CE.data ->> 'applicant1ProceedWithClaim') AS ce_applicant_proceed_with_claim,
 TRIM(CE.data ->> 'respondent1ClaimResponseType') AS ce_respondent_response_type,
 TRIM(CE.data -> 'respondent1DQRequestedCourt' ->> 'responseCourtCode') AS ce_respondent_requested_court,
-TRIM(CE.data ->> 'respondentSolicitor1AgreedDeadlineExtension') AS ce_resp_solr_deadline_extsn
+TRIM(CE.data ->> 'respondentSolicitor1AgreedDeadlineExtension') AS ce_resp_solr_deadline_extsn,
+TRIM(CE.data ->> 'takenOfflineByStaffDate') AS ce_takn_offln_by_staff_date
 FROM case_event ce
 WHERE ce.case_type_id = 'CIVIL'
 AND ce.created_date >= (current_date-8 + time '00:00')
