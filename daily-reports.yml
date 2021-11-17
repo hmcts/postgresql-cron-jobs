@@ -156,6 +156,6 @@ jobs:
           RunAsPreJob: false
       - task: Bash@3
         inputs:
-          filePath: #'email_report.sh'
+          filePath: 'email_report.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
