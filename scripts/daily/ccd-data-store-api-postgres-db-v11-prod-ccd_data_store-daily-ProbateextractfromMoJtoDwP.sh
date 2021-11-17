@@ -309,7 +309,7 @@ WHERE grant_issue_date::date BETWEEN '${DWPSEVENDAYSAGO}' AND '${DWPYESTERDAY}' 
 
 EOF
 )
-
+set -ex
  # Connect to DB and pass QUERY above but use -t switch to disable tuples
 
 psql -t -U ccdro@ccd-data-store-api-postgres-db-v11-prod -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "${QUERY}" -P format=u > ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME}
