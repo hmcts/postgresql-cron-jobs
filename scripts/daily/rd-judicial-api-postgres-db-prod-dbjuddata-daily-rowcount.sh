@@ -6,11 +6,11 @@ function log() {
 }
 
 # Set VArs
-AZURE_HOSTNAME='rd-judicial-api-postgres-db-prod.postgres.database.azure.com'
 AZURE_DB_USERNAME="DTS\ Platform\ Operations\ SC@rd-judicial-api-postgres-db-prod"
+AZURE_HOSTNAME='rd-judicial-api-postgres-db-prod.postgres.database.azure.com'
 AZURE_DB='dbjuddata'
 SUBJECT='rd-judicial-Record-Count Daily Report'
-TO_ADDRESS=
+TO_ADDRESS=alliu.balogun@hmcts.net
 CC_ADDRESS=alliu.balogun@hmcts.net
 YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 DEFAULT_DATE=$(date +%Y%m%d)
