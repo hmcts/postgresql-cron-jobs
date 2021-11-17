@@ -97,65 +97,65 @@ jobs:
           filePath: './scripts/daily/rd-location-ref-api-postgres-db-prod-dbrdlocationref-daily-locationrefdatarowcount.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-  - job: ccd_daily
-    pool:
-      name: 'hmcts-ss-prod'
-    strategy:
-      maxParallel: 1
-      matrix:
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
-          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
-          TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
-          CC_ADDRESS: 'alliu.balogun@hmcts.net Alison.ljones@justice.gov.uk Robert.walker3@justice.gov.uk probatefeedback@justice.gov.uk'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
-          AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Grants-Issued-Yesterday-Extract Daily Report'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants:
-          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants.sh
-          TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
-          CC_ADDRESS: 'alliu.balogun@hmcts.net Alison.ljones@justice.gov.uk Robert.walker3@justice.gov.uk probatefeedback@justice.gov.uk'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
-          AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Stops-applied-to-Grants Daily Report'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued:
-          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued.sh
-          TO_ADDRESS: 'sean.riley@hmcts.net'
-          CC_ADDRESS: 'alliu.balogun@hmcts.net Isabel.syred@justice.gov.uk'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
-          AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Welsh-Language-Divorce-Issued Daily Report'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued:
-          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued.sh
-          TO_ADDRESS: 'sean.riley@hmcts.net'
-          CC_ADDRESS: 'alliu.balogun@hmcts.net helen.smith6@justice.gov.uk Rosie.Clarke@HMCTS.NET'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
-          AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          SUBJECT: 'Welsh-Language-SSCS-Issued Daily Report'
-    steps:
-      - task: AzureCLI@1
-        displayName: 'Get access token'
-        name: gettoken
-        inputs:
-          azureSubscription: $(serviceConnection)
-          scriptLocation: 'inlineScript'
-          inlineScript: |
-            #!/bin/bash
-            set -ex
-            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $output
-            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
-      - task: AzureKeyVault@1
-        inputs:
-          azureSubscription: $(serviceConnection)
-          KeyVaultName: 'sendgridprod'
-          SecretsFilter: 'hmcts-db-reporting-api-key'
-          RunAsPreJob: false
-      - task: Bash@3
-        inputs:
-          filePath: 'email_report.sh'
-        env:
-          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
+#  - job: ccd_daily
+#    pool:
+#      name: 'hmcts-ss-prod'
+#    strategy:
+#      maxParallel: 1
+#      matrix:
+#        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
+#          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
+#          TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
+#          CC_ADDRESS: 'alliu.balogun@hmcts.net Alison.ljones@justice.gov.uk Robert.walker3@justice.gov.uk probatefeedback@justice.gov.uk'
+#          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+#          AZURE_DB: 'ccd_data_store'
+#          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+#          SUBJECT: 'Grants-Issued-Yesterday-Extract Daily Report'
+#        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants:
+#          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants.sh
+#          TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
+#          CC_ADDRESS: 'alliu.balogun@hmcts.net Alison.ljones@justice.gov.uk Robert.walker3@justice.gov.uk probatefeedback@justice.gov.uk'
+#          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+#          AZURE_DB: 'ccd_data_store'
+#          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+#          SUBJECT: 'Stops-applied-to-Grants Daily Report'
+#        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued:
+#          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued.sh
+#          TO_ADDRESS: 'sean.riley@hmcts.net'
+#          CC_ADDRESS: 'alliu.balogun@hmcts.net Isabel.syred@justice.gov.uk'
+#          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+#          AZURE_DB: 'ccd_data_store'
+#          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+#          SUBJECT: 'Welsh-Language-Divorce-Issued Daily Report'
+#        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued:
+#          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued.sh
+#          TO_ADDRESS: 'sean.riley@hmcts.net'
+#          CC_ADDRESS: 'alliu.balogun@hmcts.net helen.smith6@justice.gov.uk Rosie.Clarke@HMCTS.NET'
+#          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+#          AZURE_DB: 'ccd_data_store'
+#          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+#          SUBJECT: 'Welsh-Language-SSCS-Issued Daily Report'
+#    steps:
+#      - task: AzureCLI@1
+#        displayName: 'Get access token'
+#        name: gettoken
+#        inputs:
+#          azureSubscription: $(serviceConnection)
+#          scriptLocation: 'inlineScript'
+#          inlineScript: |
+#            #!/bin/bash
+#            set -ex
+#            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
+#            echo $output
+#            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
+#      - task: AzureKeyVault@1
+#        inputs:
+#          azureSubscription: $(serviceConnection)
+#          KeyVaultName: 'sendgridprod'
+#          SecretsFilter: 'hmcts-db-reporting-api-key'
+#          RunAsPreJob: false
+#      - task: Bash@3
+#        inputs:
+#          filePath: 'email_report.sh'
+#        env:
+#          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
