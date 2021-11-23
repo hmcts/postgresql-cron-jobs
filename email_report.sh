@@ -29,7 +29,7 @@ log "Sending email with  Report results to: ${TO_ADDRESS} ${CC_ADDRESS}"
 
 filesize=$(wc -c ${ATTACHMENT} | awk '{print $1}')
 echo "${ATTACHMENT} is $filesize bytes in size"
-if [[ $filesize -gt 100000 ]]
+if [[ $filesize -gt 9000000 ]]
 then
   az storage blob upload --account-name "timdaexedata"  --account-key $STORAGE_KEY  --container-name "weeklies"  --name ${OUTPUT_FILE_NAME} --file ${ATTACHMENT}
   log "upload file to storage account"
