@@ -31,7 +31,7 @@ filesize=$(wc -c ${ATTACHMENT} | awk '{print $1}')
 echo "${ATTACHMENT} is $filesize bytes in size"
 if [[ $filesize -gt 9000000 ]]
 then
-  az storage blob upload --account-name "timdaexedata"  --account-key "$STORAGE_KEY"  --container-name "${CONTAINER_NAME}"  --name "${OUTPUT_FILE_NAME}" --file "${ATTACHMENT}"
+  az storage blob upload --account-name "timdaexedata"  --account-key "$STORAGE_KEY"  --container-name "weeklies"  --name "${OUTPUT_FILE_NAME}" --file "${ATTACHMENT}"
   log "upload file to storage account"
 else
   swaks -f $FROM_ADDRESS -t $TO_ADDRESS,$CC_ADDRESS --server smtp.sendgrid.net:587   --auth PLAIN -au apikey -ap $SENDGRID_APIKEY -attach ${ATTACHMENT} --header "Subject: ${SUBJECT}" --body "Please find attached report from ${AZURE_HOSTNAME}/${AZURE_DB}"
