@@ -26,14 +26,15 @@ psql -t -U "${AZURE_DB_USERNAME}"  -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "$(ev
 log "Finished dumping Report on ${DEFAULT_DATE}"
 log "Sending email with  Report results to: ${TO_ADDRESS} ${CC_ADDRESS}"
 
-filesize=$(wc -c ${ATTACHMENT} | awk '{print $1}')
-if [[ $filesize -gt 1000000 ]]
-then
-  gzip ${ATTACHMENT}
-  ATTACHMENT=${ATTACHMENT}.gz
-fi
-echo ${ATTACHMENT}
 
-swaks -f $FROM_ADDRESS -t $TO_ADDRESS,$CC_ADDRESS --server smtp.sendgrid.net:587   --auth PLAIN -au apikey -ap $SENDGRID_APIKEY -attach ${ATTACHMENT} --header "Subject: ${SUBJECT}" --body "Please find attached report from ${AZURE_HOSTNAME}/${AZURE_DB}"
-log "email sent"
+filesize=$(wc -c ${ATTACHMENT} | awk '{print $1}')
+echo "${ATTACHMENT} is $filesize bytes in size"
+if [[ $filesize -gt 100000 ]]
+then
+  az storage blob upload --account-name "timdaexedata"  --account-key $STORAGE_KEY  --container-name "weeklies"  --name ${OUTPUT_FILE_NAME} --file ${ATTACHMENT}
+  log "upload file to storage account"
+else
+  swaks -f $FROM_ADDRESS -t $TO_ADDRESS,$CC_ADDRESS --server smtp.sendgrid.net:587   --auth PLAIN -au apikey -ap $SENDGRID_APIKEY -attach ${ATTACHMENT} --header "Subject: ${SUBJECT}" --body "Please find attached report from ${AZURE_HOSTNAME}/${AZURE_DB}"
+  log "email sent"
+fi
 rm ${ATTACHMENT}
