@@ -298,3 +298,4 @@ jobs:
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
           STORAGE_KEY: $(timdaexedata-storageaccount)
+          CONTAINER_NAME: "Weeklies"
