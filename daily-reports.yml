@@ -38,19 +38,12 @@ jobs:
           KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
-      - task: AzureKeyVault@1
-        inputs:
-          azureSubscription: $(serviceConnection)
-          KeyVaultName: 'ccd-prod'
-          SecretsFilter: 'timdaexedata-storageaccount'
-          RunAsPreJob: false
       - task: Bash@3
         inputs:
           filePath: './scripts/daily/rd-judicial-api-postgres-db-prod-dbjuddata-daily-rowcount.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-          STORAGE_KEY: $(timdaexedata-storageaccount)
-          CONTAINER_NAME: 'daily'
+
   - job: rd_locationgit
     pool:
       name: 'hmcts-ss-prod'
@@ -135,8 +128,16 @@ jobs:
           KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
+      - task: AzureKeyVault@1
+        inputs:
+          azureSubscription: $(serviceConnection)
+          KeyVaultName: 'ccd-prod'
+          SecretsFilter: 'timdaexedata-storageaccount'
+          RunAsPreJob: false
       - task: Bash@3
         inputs:
           filePath: 'email_report.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
+          STORAGE_KEY: $(timdaexedata-storageaccount)
+          CONTAINER_NAME: 'daily'

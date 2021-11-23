@@ -39,19 +39,11 @@ jobs:
           KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
-      - task: AzureKeyVault@1
-        inputs:
-          azureSubscription: $(serviceConnection)
-          KeyVaultName: 'ccd-prod'
-          SecretsFilter: 'timdaexedata-storageaccount'
-          RunAsPreJob: false
       - task: Bash@3
         inputs:
           filePath: './scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh'
         env:
-          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-          STORAGE_KEY: $(timdaexedata-storageaccount)
-          CONTAINER_NAME: 'weeklies'
+          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)'
   - job:
     timeoutInMinutes: 180
     pool:
