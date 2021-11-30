@@ -1,6 +1,9 @@
 #!/bin/bash
 set -ex
 
+function log() {
+  echo $(date --rfc-3339=seconds)" ${1}"
+}
 
 DEFAULT_DATE=$(date +%Y%m%d)
 #DEFAULT_DATE=20190101
