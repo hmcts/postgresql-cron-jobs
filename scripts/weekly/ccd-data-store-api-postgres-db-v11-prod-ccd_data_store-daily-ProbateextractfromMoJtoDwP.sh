@@ -26,10 +26,7 @@ SUBJECT="Probate extract from MoJ to the DwP"
 AZURE_DB_USERNAME='DTS Platform Operations SC@ccd-data-store-api-postgres-db-v11-prod'
 function errorHandler() {
   local dump_failed_error="DwP Weekly extract for ${DEFAULT_DATE}"
-
   log "${dump_failed_error}"
-
-  echo -e "Hi\n${dump_failed_error} today" | mail -s "DwP Weekly extract ${DEFAULT_DATE} failed in ${environment}" -r "noreply@reform.hmcts.net (DevOps)" ${FAILURE_ADDRESS}
 }
 
 trap errorHandler ERR
@@ -312,7 +309,7 @@ WHERE grant_issue_date::date BETWEEN '${DWPSEVENDAYSAGO}' AND '${DWPYESTERDAY}' 
 DROP TABLE IF EXISTS dwp_data;
 EOF
 )
-set -ex
+
  # Connect to DB and pass QUERY above but use -t switch to disable tuples
 
 psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "${QUERY}" -P format=u > ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME}
