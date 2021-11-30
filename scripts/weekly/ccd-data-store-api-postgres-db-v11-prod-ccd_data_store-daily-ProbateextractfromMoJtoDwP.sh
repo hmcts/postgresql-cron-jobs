@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 
+
 DEFAULT_DATE=$(date +%Y%m%d)
 #DEFAULT_DATE=20190101
 OUTPUT_DIR=/tmp
@@ -10,12 +11,11 @@ YESTERDAY=$(date -d "yesterday" '+%Y-%m-%d')
 SEVENDAYSAGO=$(date -d "7 days ago" '+%Y-%m-%d')
 DWPYESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 DWPSEVENDAYSAGO=$(date -d "7 days ago" '+%Y%m%d')
-#YESTERDAY=2019-05-26
-#SEVENDAYSAGO=2019-05-20
-#DWPYESTERDAY=20190526
-#DWPSEVENDAYSAGO=20190520
+CREATEDYESTERDAY=$(date -d "yesterday" '+%Y-%m-%d 00:00:00.00000')
+CREATEDSEVENDAYSAGO=$(date -d "7 days ago" '+%Y-%m-%d 23:59:59.99999')
+
 TO_ADDRESS=dm.interfaces@dwp.gov.uk
-CC_ADDRESS=alliu.balogun@hmcts.net
+CC_ADDRESS='alliu.balogun@hmcts.net ALAN.J.BARKER@DWP.GOV.UK'
 FROM_ADDRESS=alliu.balogun@reform.hmcts.net
 FAILURE_ADDRESS=alliu.balogun@hmcts.net
 environment=`uname -n`
@@ -42,13 +42,15 @@ fi
  # The QUERY 1 - Output data into a temp table called DWP
 
 QUERY=$(cat <<EOF
+CREATE TABLE IF NOT EXISTS dwp_data AS
+        SELECT
+         cd.reference, ce.data
+         FROM case_data cd  JOIN case_event ce ON cd.id = ce.case_data_id
+        WHERE ce.created_date BETWEEN '${CREATEDSEVENDAYSAGO}' AND '${CREATEDYESTERDAY}' AND ce.case_type_id='GrantOfRepresentation' AND ce.state_id = 'BOGrantIssued';
 WITH sub AS (
-    SELECT cd.reference, cd.data
-    FROM case_data cd, jsonb_array_elements(cd.data -> 'probateDocumentsGenerated') as doc, case_event ce
-    WHERE jurisdiction = 'PROBATE' AND doc -> 'value' ->> 'DocumentDateAdded' BETWEEN '${SEVENDAYSAGO}' AND '${YESTERDAY}'
-and ce.id IN (SELECT MAX(ce2.id) FROM case_event ce2 WHERE ce2.case_data_id=ce.case_data_id)
-AND cd.id=ce.case_data_id AND cd.state = 'BOGrantIssued' AND ce.case_type_id = 'GrantOfRepresentation'
-        --WHERE (doc -> 'value' ->> 'DocumentDateAdded'  between '2019-04-01' and '2019-04-13')
+   SELECT cd.reference, cd.data
+    FROM dwp_data cd, jsonb_array_elements(cd.data -> 'probateDocumentsGenerated') as doc
+    WHERE doc -> 'value' ->> 'DocumentDateAdded' BETWEEN '${SEVENDAYSAGO}' AND '${YESTERDAY}'
 )
 
 SELECT DISTINCT
@@ -280,11 +282,8 @@ EOF
 QUERY2=$(cat <<EOF
 WITH sub2 AS (
     SELECT cd.reference, cd.data
-    FROM case_data cd, jsonb_array_elements(cd.data -> 'probateDocumentsGenerated') as doc, case_event ce
-    WHERE jurisdiction = 'PROBATE' AND doc -> 'value' ->> 'DocumentDateAdded' BETWEEN '${SEVENDAYSAGO}' AND '${YESTERDAY}'
-and ce.id IN (SELECT MAX(ce2.id) FROM case_event ce2 WHERE ce2.case_data_id=ce.case_data_id)
-AND cd.id=ce.case_data_id AND cd.state = 'BOGrantIssued' AND ce.case_type_id = 'GrantOfRepresentation'
-        --WHERE (doc -> 'value' ->> 'DocumentDateAdded'  between '2019-04-01' and '2019-04-13')
+    FROM dwp_data cd, jsonb_array_elements(cd.data -> 'probateDocumentsGenerated') as doc
+    WHERE doc -> 'value' ->> 'DocumentDateAdded' BETWEEN '${SEVENDAYSAGO}' AND '${YESTERDAY}'
 )
 
 SELECT DISTINCT
@@ -307,7 +306,7 @@ deceased_alias_surname,
 deceased_alias_honours
 FROM dwp2
 WHERE grant_issue_date::date BETWEEN '${DWPSEVENDAYSAGO}' AND '${DWPYESTERDAY}'  ORDER BY probate_number;
-
+DROP TABLE IF EXISTS dwp_data;
 EOF
 )
 set -ex
