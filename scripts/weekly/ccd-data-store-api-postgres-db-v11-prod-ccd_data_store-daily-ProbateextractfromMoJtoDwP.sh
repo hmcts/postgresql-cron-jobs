@@ -1,6 +1,10 @@
 #!/bin/bash
 set -ex
 
+function log() {
+  echo $(date --rfc-3339=seconds)" ${1}"
+}
+
 DEFAULT_DATE=$(date +%Y%m%d)
 #DEFAULT_DATE=20190101
 OUTPUT_DIR=/tmp
@@ -10,23 +14,18 @@ YESTERDAY=$(date -d "yesterday" '+%Y-%m-%d')
 SEVENDAYSAGO=$(date -d "7 days ago" '+%Y-%m-%d')
 DWPYESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 DWPSEVENDAYSAGO=$(date -d "7 days ago" '+%Y%m%d')
-#YESTERDAY=2019-05-26
-#SEVENDAYSAGO=2019-05-20
-#DWPYESTERDAY=20190526
-#DWPSEVENDAYSAGO=20190520
+CREATEDYESTERDAY=$(date -d "yesterday" '+%Y-%m-%d 00:00:00.00000')
+CREATEDSEVENDAYSAGO=$(date -d "7 days ago" '+%Y-%m-%d 23:59:59.99999')
+
 TO_ADDRESS=dm.interfaces@dwp.gov.uk
-CC_ADDRESS=alliu.balogun@hmcts.net
-FROM_ADDRESS=alliu.balogun@reform.hmcts.net
-FAILURE_ADDRESS=alliu.balogun@hmcts.net
+CC_ADDRESS='alliu.balogun@hmcts.net ALAN.J.BARKER@DWP.GOV.UK'
+FAILURE_ADDRESS='alliu.balogun@hmcts.net'
 environment=`uname -n`
 SUBJECT="Probate extract from MoJ to the DwP"
 AZURE_DB_USERNAME='DTS Platform Operations SC@ccd-data-store-api-postgres-db-v11-prod'
 function errorHandler() {
   local dump_failed_error="DwP Weekly extract for ${DEFAULT_DATE}"
-
   log "${dump_failed_error}"
-
-  echo -e "Hi\n${dump_failed_error} today" | mail -s "DwP Weekly extract ${DEFAULT_DATE} failed in ${environment}" -r "noreply@reform.hmcts.net (DevOps)" ${FAILURE_ADDRESS}
 }
 
 trap errorHandler ERR
@@ -42,13 +41,15 @@ fi
  # The QUERY 1 - Output data into a temp table called DWP
 
 QUERY=$(cat <<EOF
+CREATE TABLE IF NOT EXISTS dwp_data AS
+        SELECT
+         cd.reference, ce.data
+         FROM case_data cd  JOIN case_event ce ON cd.id = ce.case_data_id
+        WHERE ce.created_date BETWEEN '${CREATEDSEVENDAYSAGO}' AND '${CREATEDYESTERDAY}' AND ce.case_type_id='GrantOfRepresentation' AND ce.state_id = 'BOGrantIssued';
 WITH sub AS (
-    SELECT cd.reference, cd.data
-    FROM case_data cd, jsonb_array_elements(cd.data -> 'probateDocumentsGenerated') as doc, case_event ce
-    WHERE jurisdiction = 'PROBATE' AND doc -> 'value' ->> 'DocumentDateAdded' BETWEEN '${SEVENDAYSAGO}' AND '${YESTERDAY}'
-and ce.id IN (SELECT MAX(ce2.id) FROM case_event ce2 WHERE ce2.case_data_id=ce.case_data_id)
-AND cd.id=ce.case_data_id AND cd.state = 'BOGrantIssued' AND ce.case_type_id = 'GrantOfRepresentation'
-        --WHERE (doc -> 'value' ->> 'DocumentDateAdded'  between '2019-04-01' and '2019-04-13')
+   SELECT cd.reference, cd.data
+    FROM dwp_data cd, jsonb_array_elements(cd.data -> 'probateDocumentsGenerated') as doc
+    WHERE doc -> 'value' ->> 'DocumentDateAdded' BETWEEN '${SEVENDAYSAGO}' AND '${YESTERDAY}'
 )
 
 SELECT DISTINCT
@@ -280,11 +281,8 @@ EOF
 QUERY2=$(cat <<EOF
 WITH sub2 AS (
     SELECT cd.reference, cd.data
-    FROM case_data cd, jsonb_array_elements(cd.data -> 'probateDocumentsGenerated') as doc, case_event ce
-    WHERE jurisdiction = 'PROBATE' AND doc -> 'value' ->> 'DocumentDateAdded' BETWEEN '${SEVENDAYSAGO}' AND '${YESTERDAY}'
-and ce.id IN (SELECT MAX(ce2.id) FROM case_event ce2 WHERE ce2.case_data_id=ce.case_data_id)
-AND cd.id=ce.case_data_id AND cd.state = 'BOGrantIssued' AND ce.case_type_id = 'GrantOfRepresentation'
-        --WHERE (doc -> 'value' ->> 'DocumentDateAdded'  between '2019-04-01' and '2019-04-13')
+    FROM dwp_data cd, jsonb_array_elements(cd.data -> 'probateDocumentsGenerated') as doc
+    WHERE doc -> 'value' ->> 'DocumentDateAdded' BETWEEN '${SEVENDAYSAGO}' AND '${YESTERDAY}'
 )
 
 SELECT DISTINCT
@@ -307,10 +305,9 @@ deceased_alias_surname,
 deceased_alias_honours
 FROM dwp2
 WHERE grant_issue_date::date BETWEEN '${DWPSEVENDAYSAGO}' AND '${DWPYESTERDAY}'  ORDER BY probate_number;
-
 EOF
 )
-set -ex
+
  # Connect to DB and pass QUERY above but use -t switch to disable tuples
 
 psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "${QUERY}" -P format=u > ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME}
@@ -320,7 +317,7 @@ psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.po
 
 psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "${QUERY2}" -P format=u >> ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME}
 
-
+psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "DROP TABLE IF EXISTS dwp_data;"
 # SED to clean out \N (NULLS) and replace "|" with "~" as per column separator requirement
 sed -e 's/\\N//' -e 's/|/~/g' ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME} > ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 
@@ -341,4 +338,3 @@ zip -m ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}.zip ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 log "Sending zip file extract to DwP: ${TO_ADDRESS} ${CC_LOG_MESSAGE}"
 swaks -f $FROM_ADDRESS -t $TO_ADDRESS,$CC_ADDRESS --server smtp.sendgrid.net:587   --auth PLAIN -au apikey -ap $SENDGRID_APIKEY -attach ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}.zip --header "Subject: ${SUBJECT}" --body "Please find attached report from ${AZURE_HOSTNAME}/${AZURE_DB}"
 log "email sent"
-rm ${ATTACHMENT}
