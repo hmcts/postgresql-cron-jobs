@@ -305,7 +305,6 @@ deceased_alias_surname,
 deceased_alias_honours
 FROM dwp2
 WHERE grant_issue_date::date BETWEEN '${DWPSEVENDAYSAGO}' AND '${DWPYESTERDAY}'  ORDER BY probate_number;
-DROP TABLE IF EXISTS dwp_data;
 EOF
 )
 
@@ -318,7 +317,7 @@ psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.po
 
 psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "${QUERY2}" -P format=u >> ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME}
 
-
+psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "DROP TABLE IF EXISTS dwp_data;"
 # SED to clean out \N (NULLS) and replace "|" with "~" as per column separator requirement
 sed -e 's/\\N//' -e 's/|/~/g' ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME} > ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 
