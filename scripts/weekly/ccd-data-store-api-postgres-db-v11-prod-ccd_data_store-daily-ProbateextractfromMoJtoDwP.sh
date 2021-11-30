@@ -339,4 +339,3 @@ zip -m ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}.zip ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 log "Sending zip file extract to DwP: ${TO_ADDRESS} ${CC_LOG_MESSAGE}"
 swaks -f $FROM_ADDRESS -t $TO_ADDRESS,$CC_ADDRESS --server smtp.sendgrid.net:587   --auth PLAIN -au apikey -ap $SENDGRID_APIKEY -attach ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}.zip --header "Subject: ${SUBJECT}" --body "Please find attached report from ${AZURE_HOSTNAME}/${AZURE_DB}"
 log "email sent"
-rm ${ATTACHMENT}
