@@ -19,8 +19,7 @@ CREATEDSEVENDAYSAGO=$(date -d "7 days ago" '+%Y-%m-%d 23:59:59.99999')
 
 TO_ADDRESS=dm.interfaces@dwp.gov.uk
 CC_ADDRESS='alliu.balogun@hmcts.net ALAN.J.BARKER@DWP.GOV.UK'
-FROM_ADDRESS=alliu.balogun@hmcts.net
-FAILURE_ADDRESS=alliu.balogun@hmcts.net
+FAILURE_ADDRESS='alliu.balogun@hmcts.net'
 environment=`uname -n`
 SUBJECT="Probate extract from MoJ to the DwP"
 AZURE_DB_USERNAME='DTS Platform Operations SC@ccd-data-store-api-postgres-db-v11-prod'
