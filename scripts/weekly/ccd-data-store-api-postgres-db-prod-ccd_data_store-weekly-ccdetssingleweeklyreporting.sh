@@ -24,7 +24,10 @@ TRIM(ce.data ->> 'conciliationTrack') AS ce_conciliation_track,
 TRIM(ce.data ->> 'dateToPosition') AS ce_date_to_position,
 trim(CE.data -> 'representativeClaimantType' ->> 'representative_occupation') AS ce_claimant_repr_occuptn,
 trim(CE.data #>> '{repCollection, 0, value, representative_occupation}') AS ce_first_resp_repr_occuptn,
-trim(CE.data ->> 'bfActions') AS ce_bf_actions_coll
+trim(CE.data ->> 'bfActions') AS ce_bf_actions_coll,
+trim(CE.data -> 'preAcceptCase' ->>'caseAccepted') AS ce_case_accepted,
+trim(CE.data -> 'preAcceptCase' ->>'dateRejected') AS ce_date_rejected,
+trim(CE.data ->> 'caseSource') AS ce_case_source
 FROM case_event CE
 WHERE CE.case_type_id IN ( 'Bristol','Leeds','LondonCentral','LondonEast','LondonSouth','Manchester','MidlandsEast','MidlandsWest','Newcastle','Scotland','Wales','Watford' )
 AND CE.created_date >= (current_date-8 + time '00:00')

@@ -25,7 +25,10 @@ trim(CE.data ->> 'dateSentToDwp') AS CE_DATE_SENT_TO_DWP,
 trim(CE.data ->> 'reinstatementRegistered') AS CE_REINSTMNT_REGSTRD_DATE,
 trim(CE.data ->> 'reinstatementOutcome') AS CE_REINSTMNT_OUTCOME,
 trim(CE.data ->> 'urgentHearingRegistered') AS CE_URGNT_HRNG_REGSTRD_DATE,
-trim(CE.data ->> 'urgentHearingOutcome') AS CE_URGNT_HRNG_OUTCOME
+trim(CE.data ->> 'urgentHearingOutcome') AS CE_URGNT_HRNG_OUTCOME,
+trim(CE.data ->> 'ccd_id') AS CE_CCD_ID,
+trim(CE.data ->> 'NotListableProvideReasons') AS CE_Not_Listable_Provide_Reasons,
+trim(CE.data ->> 'IsAppellantDeceased') AS CE_Is_Appellant_Deceased
 FROM case_event CE
 WHERE CE.case_type_id = 'Benefit'
 AND CE.created_date >= (current_date-7 + time '00:00')
