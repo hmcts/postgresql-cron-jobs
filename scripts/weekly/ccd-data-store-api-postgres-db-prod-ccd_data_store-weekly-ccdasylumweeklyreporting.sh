@@ -59,10 +59,15 @@ TRIM(CE.data ->> 'ftpaAppellantSubmissionOutOfTime') AS CE_APPELLANT_FTPA_SUBMSN
 TRIM(CE.data ->> 'ftpaRespondentSubmissionOutOfTime') AS CE_RESPONDENT_FTPA_SUBMSN_OOT,
 TRIM(CE.data -> 'actualCaseHearingLength' ->> 'hours') AS CE_ACTUAL_HEARING_LENGTH_HRS,
 TRIM(CE.data -> 'actualCaseHearingLength' ->> 'minutes') AS CE_ACTUAL_HEARING_LENGTH_MINS,
-TRIM(CE.data ->> 'appealOutOfCountry') AS CE_OUT_OF_COUNTRY
+TRIM(CE.data ->> 'appealOutOfCountry') AS CE_OUT_OF_COUNTRY,
+TRIM(CE.data ->> 'paidDate') AS CE_PAID_DATE,
+CE.data ->> 'makeAnApplications' AS CE_MAKE_AN_APPLICATIONS,
+TRIM(CE.data ->> 'remissionType') AS ce_remission_type,
+TRIM(CE.data ->> 'remissionClaim') AS ce_remission_claim,
+TRIM(CE.data ->> 'remissionDecision') AS ce_remission_decision
 FROM case_event CE
 WHERE CE.case_type_id = 'Asylum'
-AND CE.created_date >= (current_date-7 + time '00:00')
+AND CE.created_date >= (current_date-8 + time '00:00')
 AND CE.created_date < (current_date + time '00:00')
 ORDER BY CE.created_date
 ) TO STDOUT WITH CSV HEADER
