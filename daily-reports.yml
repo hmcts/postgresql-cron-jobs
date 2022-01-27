@@ -95,7 +95,7 @@ jobs:
           SUBJECT: 'Stops-applied-to-Grants Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued.sh
-          TO_ADDRESS: 'sean.riley@hmcts.net'
+          TO_ADDRESS: 'steven.silverwood@justice.gov.uk'
           CC_ADDRESS: 'alliu.balogun@hmcts.net Isabel.syred@justice.gov.uk'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -103,7 +103,7 @@ jobs:
           SUBJECT: 'Welsh-Language-Divorce-Issued Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued.sh
-          TO_ADDRESS: 'sean.riley@hmcts.net'
+          TO_ADDRESS: 'steven.silverwood@justice.gov.uk'
           CC_ADDRESS: 'alliu.balogun@hmcts.net helen.smith6@justice.gov.uk Rosie.Clarke@HMCTS.NET'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'

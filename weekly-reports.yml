@@ -53,7 +53,7 @@ jobs:
       matrix:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days.sh
-          TO_ADDRESS: 'sean.riley@hmcts.net'
+          TO_ADDRESS: 'steven.silverwood@justice.gov.uk'
           CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
@@ -61,7 +61,7 @@ jobs:
           SUBJECT: 'PCQ-Probate-Applications Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days.sh
-          TO_ADDRESS: 'sean.riley@hmcts.net'
+          TO_ADDRESS: 'steven.silverwood@justice.gov.uk'
           CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
@@ -69,7 +69,7 @@ jobs:
           SUBJECT: 'PCQ-CMC-Applications Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqsscsapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqsscsapplicationscreatedinlast7days.sh
-          TO_ADDRESS: 'sean.riley@hmcts.net'
+          TO_ADDRESS: 'steven.silverwood@justice.gov.uk'
           CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
@@ -77,7 +77,7 @@ jobs:
           SUBJECT: 'PCQ-SSCS-Applications Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqdivorceapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqdivorceapplicationscreatedinlast7days.sh
-          TO_ADDRESS: 'sean.riley@hmcts.net'
+          TO_ADDRESS: 'steven.silverwood@justice.gov.uk'
           CC_ADDRESS: 'alliu.balogun@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
@@ -254,14 +254,14 @@ jobs:
         pcq-backend-prod-pcq-weekly-pcqweeklydump:
           QUERY: ./scripts/weekly/pcq-backend-prod-pcq-weekly-pcqweeklydump.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
-          CC_ADDRESS: 'sean.riley@hmcts.net'
+          CC_ADDRESS: 'steven.silverwood@justice.gov.uk'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
           AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
           AZURE_DB: 'pcq'
           SUBJECT: 'PCQ-Dump Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
-          TO_ADDRESS: 'sean.riley@hmcts.net'
+          TO_ADDRESS: 'steven.silverwood@justice.gov.uk'
           CC_ADDRESS: 'alan.webster@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
