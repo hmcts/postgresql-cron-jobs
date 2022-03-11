@@ -50,13 +50,13 @@ echo "dataload_schedular_audit total Count :"  >> ${ATTACHMENT}
 psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_audits from dbjuddata.dataload_schedular_audit;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo "dataload_exception_records total Count :"  >> ${ATTACHMENT}
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exception  from dbjuddata.dataload_exception_records;"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exception from dbjuddata.dataload_exception_records;"  >> ${ATTACHMENT}
 echo ""  >> ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 echo "dataload_schedular_audit today's Count :"  >> ${ATTACHMENT}
 psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select * from dbjuddata.dataload_schedular_audit where scheduler_end_time::DATE = current_date;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo "dataload_exception_records today's Count :"  >> ${ATTACHMENT}
-psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select * from dbjuddata.dataload_exception_records  where updated_timestamp::DATE = current_date;"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select der.table_name,  der.error_description, der.field_in_error, count(der.error_description) from dbjuddata.dataload_exception_records der where der.updated_timestamp::DATE = current_date group by der.table_name, der.error_description, der.field_in_error;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo "judicial_user_profile exceptions records today's Count :"  >> ${ATTACHMENT}
 psql  -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_personal_today from dbjuddata.dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'judicial_user_profile';"  >> ${ATTACHMENT}
