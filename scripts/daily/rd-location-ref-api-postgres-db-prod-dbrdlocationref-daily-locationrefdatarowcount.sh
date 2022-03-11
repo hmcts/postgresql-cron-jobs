@@ -37,16 +37,40 @@ echo "SERVICE_TO_CCD_CASE_TYPE_ASSOC Count :"  >> ${ATTACHMENT}
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.SERVICE_TO_CCD_CASE_TYPE_ASSOC;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
+echo "building_location Count :"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.building_location;"  >> ${ATTACHMENT}
+
+echo ""  >> ${ATTACHMENT}
+echo "court_venue Count :"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.court_venue;"  >> ${ATTACHMENT}
+
+echo ""  >> ${ATTACHMENT}
+echo "region Count :"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.region;"  >> ${ATTACHMENT}
+
+echo ""  >> ${ATTACHMENT}
+echo "cluster Count :"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.cluster;"  >> ${ATTACHMENT}
+
+echo ""  >> ${ATTACHMENT}
+echo "court_type Count :"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.court_type;"  >> ${ATTACHMENT}
+
+echo ""  >> ${ATTACHMENT}
+echo "court_type_service_assoc Count :"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.court_type_service_assoc;"  >> ${ATTACHMENT}
+
+echo ""  >> ${ATTACHMENT}
 echo "dataload_exception_records total Count :"  >> ${ATTACHMENT}
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exception  from locrefdata.dataload_exception_records;"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) AS total_exception FROM locrefdata.dataload_exception_records;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo "dataload_schedular_audit today's Count :"  >> ${ATTACHMENT}
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select * from locrefdata.dataload_schedular_audit where scheduler_end_time::DATE = current_date;"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT * FROM locrefdata.dataload_schedular_audit WHERE scheduler_end_time::DATE = current_date;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo "dataload_exception_records Count :"  >> ${ATTACHMENT}
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select  * from locrefdata.dataload_exception_records;"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT der.table_name, der.error_description, der.field_in_error, count(der.error_description) FROM locrefdata.dataload_exception_records der WHERE der.updated_timestamp::DATE = current_date GROUP BY der.table_name, der.error_description, der.field_in_error;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
