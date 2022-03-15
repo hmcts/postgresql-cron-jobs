@@ -65,12 +65,12 @@ echo "dataload_exception_records total Count :"  >> ${ATTACHMENT}
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) AS total_exception FROM locrefdata.dataload_exception_records;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
-echo "dataload_schedular_audit today's Count :"  >> ${ATTACHMENT}
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT * FROM locrefdata.dataload_schedular_audit WHERE scheduler_end_time::DATE = current_date;"  >> ${ATTACHMENT}
+echo "dataload_schedular_audit last batch records:"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT * FROM locrefdata.dataload_schedular_audit WHERE scheduler_end_time::DATE = current_date-1;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
-echo "dataload_exception_records Count :"  >> ${ATTACHMENT}
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT der.table_name, der.error_description, der.field_in_error, count(der.error_description) FROM locrefdata.dataload_exception_records der WHERE der.updated_timestamp::DATE = current_date GROUP BY der.table_name, der.error_description, der.field_in_error;"  >> ${ATTACHMENT}
+echo "dataload_exception_records last batch records:"  >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT der.table_name, der.error_description, der.field_in_error, count(der.error_description) FROM locrefdata.dataload_exception_records der WHERE der.updated_timestamp::DATE = current_date-1 GROUP BY der.table_name, der.error_description, der.field_in_error;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
