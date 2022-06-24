@@ -1,0 +1,58 @@
+
+name: Postgres DB Monthly Report
+schedules:
+- cron: "0 1 1 * *"
+  displayName: Monthly reports
+  branches:
+    include:
+    - master
+  always: true
+
+trigger: none
+pr: none
+variables:
+  serviceConnection: 'Prod-Database-Reporting'
+  FROM_ADDRESS: 'db-reporting@mail-db-reporting-prod.platform.hmcts.net'
+  FAILURE_ADDRESS: 'dcd-devops-support@hmcts.net' # to be verified
+
+jobs:
+  - job: pet_claimants
+    pool:
+      name: 'hmcts-ss-prod'
+    strategy:
+      maxParallel: 1
+      matrix:
+        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-monthly-claimants:
+          QUERY: ./scripts/monthly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-monthly-claimants.sh
+          TO_ADDRESS: 'alliu.balogun@hmcts.net'
+          CC_ADDRESS: 'mohana.yalamanchi@HMCTS.NET'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          SUBJECT: 'Monthly Claimants Report from CCD Data Store'
+    steps:
+      - task: AzureCLI@1
+        displayName: 'Get access token'
+        name: gettoken
+        inputs:
+          azureSubscription: $(serviceConnection)
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            #!/bin/bash
+            set -ex
+            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
+            echo $output
+            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
+      - task: AzureKeyVault@1
+        inputs:
+          azureSubscription: $(serviceConnection)
+          KeyVaultName: 'sendgridprod'
+          SecretsFilter: 'hmcts-db-reporting-api-key'
+          RunAsPreJob: false
+      - task: Bash@3
+        inputs:
+          filePath: 'email_report.sh'
+        env:
+          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
+          STORAGE_KEY: $(timdaexedata-storageaccount)
+          CONTAINER_NAME: 'daily'

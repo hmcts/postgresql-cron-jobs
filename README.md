@@ -1,7 +1,7 @@
 
 #Summary
 
-This repo contains database extracts from various databases to fulfil business requirements. Reports are either sent as an email attachment or uploaded to an Azure storage based on their size. Two separate Azure pipelines are created to cover **daily** and **Weekly** reports which run on a cron schedule.
+This repo contains database extracts from various databases to fulfil business requirements. Reports are either sent as an email attachment or uploaded to an Azure storage based on their size. Three separate Azure pipelines are created to cover **daily**, **Weekly** and **monthly** reports which run on a cron schedule.
 
 ## Service Connection
 Service connections enable you to connect to Azure tenant(s) to execute tasks in a job. It uses service Principal to authenticate to the tenant.
