@@ -1,5 +1,5 @@
 #!/bin/bash
-YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
+YESTERDAY=$(date -d "yesterday" '+%Y-%m-%d')
 cat <<EOF
 COPY (
 SELECT
@@ -9,5 +9,5 @@ trim(data->>'deceasedForenames') AS deceasedForenames,
 trim(data->>'deceasedSurname') AS deceasedSurname,
 trim(data->>'registryLocation') AS registryLocation
 FROM case_data
-WHERE jurisdiction='PROBATE' AND case_type_id='GrantOfRepresentation' AND (data->>'grantIssuedDate')::date = '$YESTERDAY' ORDER BY 4) to stdout with csv header;
+WHERE (data->>'grantIssuedDate') = '$YESTERDAY') to stdout with csv header;
 EOF

@@ -261,8 +261,8 @@ jobs:
           SUBJECT: 'PCQ-Dump Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
-          TO_ADDRESS: 'steven.silverwood@justice.gov.uk'
-          CC_ADDRESS: 'alan.webster@hmcts.net michael.adams@hmcts.net hywel.hughes@justice.gov.uk'
+          TO_ADDRESS: 'steven.silverwood@justice.gov.uk hywel.hughes@justice.gov.uk'
+          CC_ADDRESS: 'alan.webster@hmcts.net michael.adams@hmcts.net alliu.balogun@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
