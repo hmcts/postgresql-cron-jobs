@@ -24,7 +24,7 @@ jobs:
       matrix:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-monthly-claimants:
           QUERY: ./scripts/monthly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-monthly-claimants.sh
-          TO_ADDRESS: 'contactocmc@justice.gov.uk'
+          TO_ADDRESS: 'ocmcteamleader@justice.gov.uk'
           CC_ADDRESS: 'alliu.balogun@HMCTS.NET'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
