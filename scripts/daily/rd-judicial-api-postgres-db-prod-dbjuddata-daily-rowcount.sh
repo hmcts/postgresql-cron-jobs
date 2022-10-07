@@ -40,6 +40,12 @@ echo ""  >> ${ATTACHMENT}
 echo "judicial_office_authorisation Count :"  >> ${ATTACHMENT}
 psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) from dbjuddata.judicial_office_authorisation;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
+echo "dataload_schedular_job Publishing status :"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select dsj.publishing_status,dsj.job_start_time,dsj.job_end_time from dbjuddata.dataload_schedular_job dsj where dsj.job_end_time::DATE = current_date;"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "judicial_office_appointment  Extracted Date :"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select distinct(extracted_date) from dbjuddata.judicial_office_appointment;"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
 echo "base_location_type Count :"  >> ${ATTACHMENT}
 psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) from dbjuddata.base_location_type;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
