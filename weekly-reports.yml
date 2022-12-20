@@ -59,6 +59,14 @@ jobs:
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'PCQ-Probate-Applications Weekly Reporting'
+        cft-task-postgres-db-prod-cft_task_tasks-weekly-createdtasks:
+          QUERY: ./scripts/weekly/cft-task-postgres-db-prod-cft_task_tasks-weekly-createdtasks.sh
+          TO_ADDRESS: 'brian.mccann@HMCTS.NET'
+          CC_ADDRESS: 'Samson.Oyebade@HMCTS.NET Mohammed.Ali@HMCTS.NET'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@cft-task-postgres-db-prod"
+          AZURE_HOSTNAME: 'cft-task-postgres-db-prod.postgres.database.azure.com'
+          AZURE_DB: 'cft_task_db'
+          SUBJECT: 'WA Created Tasks Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'steven.silverwood@justice.gov.uk'
