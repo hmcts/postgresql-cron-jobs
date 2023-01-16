@@ -41,7 +41,7 @@ jobs:
           RunAsPreJob: false
       - task: Bash@3
         inputs:
-          filePath: './scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh'
+          filePath: ''
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
   - job:
@@ -61,8 +61,8 @@ jobs:
           SUBJECT: 'PCQ-Probate-Applications Weekly Reporting'
         cft-task-postgres-db-prod-cft_task_tasks-weekly-createdtasks:
           QUERY: ./scripts/weekly/cft-task-postgres-db-prod-cft_task_tasks-weekly-createdtasks.sh
-          TO_ADDRESS: 'brian.mccann@HMCTS.NET'
-          CC_ADDRESS: 'Samson.Oyebade@HMCTS.NET Mohammed.Ali@HMCTS.NET alliu.balogun@justice.gov.uk'
+          TO_ADDRESS: 'alliu.balogun@justice.gov.uk brian.mccann@HMCTS.NET'
+          CC_ADDRESS: 'Samson.Oyebade@HMCTS.NET Mohammed.Ali@HMCTS.NET'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@cft-task-postgres-db-prod"
           AZURE_HOSTNAME: 'cft-task-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'cft_task_db'
