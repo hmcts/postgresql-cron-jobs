@@ -61,8 +61,8 @@ jobs:
           SUBJECT: 'PCQ-Probate-Applications Weekly Reporting'
         cft-task-postgres-db-prod-cft_task_tasks-weekly-createdtasks:
           QUERY: ./scripts/weekly/cft-task-postgres-db-prod-cft_task_tasks-weekly-createdtasks.sh
-          TO_ADDRESS: 'khaled.siddat@justice.gov.uk'
-          CC_ADDRESS: 'ozzy.ibrahim@justice.gov.uk, alliu.balogun@justice.gov.uk, brian.mccann@HMCTS.NET'
+          TO_ADDRESS: 'Samson.Oyebade@HMCTS.NET'
+          CC_ADDRESS: 'brian.mccann@HMCTS.NET'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@cft-task-postgres-db-prod"
           AZURE_HOSTNAME: 'cft-task-postgres-db-prod.postgres.database.azure.com'
           AZURE_DB: 'cft_task_db'
