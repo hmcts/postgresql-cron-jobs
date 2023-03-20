@@ -7,7 +7,7 @@ function log() {
 
 # Set VArs
 AZURE_DB_USERNAME='DTS Platform Operations SC@rd-commondata-api-postgres-db-prod'
-AZURE_HOSTNAME='rd-commondata-api-postgres-db-prod.postgres.database.azure.com'
+AZURE_HOSTNAME='rd-commondata-api-postgres-db-v11-prod.postgres.database.azure.com'
 AZURE_DB='dbcommondata'
 SUBJECT='rd-commondata-Record-Count Daily Report'
 TO_ADDRESS='dlrefdatasupport@hmcts.net'
