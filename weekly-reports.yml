@@ -63,7 +63,7 @@ jobs:
           QUERY: ./scripts/weekly/cft-task-postgres-db-prod-cft_task_tasks-weekly-createdtasks.sh
           TO_ADDRESS: 'charlotte.beveridge@hmcts.net'
           CC_ADDRESS: 'jen.bottrill@hmcts.net'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@cft-task-postgres-db-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'cft-task-postgres-db-flexible-prod.postgres.database.azure.com'
           AZURE_DB: 'cft_task_db'
           SUBJECT: 'WA Created Tasks Weekly Reporting'
