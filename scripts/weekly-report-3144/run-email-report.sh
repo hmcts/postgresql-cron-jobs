@@ -52,7 +52,7 @@ export PLATFORM="nonprod"
 
 export DB_HOST="ccd-data-store-api-postgres-db-v11-${ENV}.postgres.database.azure.com"
 export DB_NAME=ccd_data_store
-export DB_USER="DTS\ JIT\ Access\ ccd\ DB\ Reader\ SC@ccd-data-store-api-postgres-db-v11-${ENV}"
+export DB_USER="DTS\ CFT\ DB\ Access\ Reader@ccd-data-store-api-postgres-db-v11-${ENV}"
 export DEFAULT_DATE=$(date +%Y%m%d)
 export OUTPUT_FILE_NAME=${DEFAULT_DATE}-weekly-cases.csv
 
