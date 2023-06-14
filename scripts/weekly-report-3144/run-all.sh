@@ -1,8 +1,8 @@
 #!/bin/bash
 
-set -x
+set -eu
 
 . ./prepare-variables.sh
-. ./run-email-report.sh
+. ./run-report-query.sh
 . ./run-sort-csv-by-date.sh
 . ./run-send-results-to-email.sh

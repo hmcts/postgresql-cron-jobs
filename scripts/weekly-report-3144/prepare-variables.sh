@@ -1,6 +1,5 @@
 #!/bin/bash
-
-set -xeu
+set -eu
 
 DB_HOST="ccd-data-store-api-postgres-db-v11-${ENV}.postgres.database.azure.com"
 DB_NAME=ccd_data_store
@@ -20,10 +19,12 @@ export FROM_ADDRESS=""
 export TO_ADDRESS=""
 export CC_ADDRESS=""
 
+# Database
 export DB_HOST
 export DB_NAME
 export DB_USER
 
+# Internal variables
 export DEFAULT_DATE
 export OUTPUT_FILE_NAME
 export ATTACHMENT
