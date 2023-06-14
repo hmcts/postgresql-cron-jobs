@@ -1,54 +1,42 @@
 #!/bin/bash
+set -eu
 
-set -x
+source 'function-declarations.sh'
 
-echo $(date --rfc-3339=seconds)" ${1}"
+log $(date --rfc-3339=seconds)" ${1}"
 
 # Set access token
-echo "Creating Certificate"
+log "Creating Certificate"
 
 trap "y" INT
-
 az ssh config --ip \*.platform.hmcts.net --file ~/.ssh/prod
 
-echo "Certificate created"
-echo "Setting PGPASSWORD with current access token"
+log "Certificate created"
+log "Setting PGPASSWORD with current access token"
 
 PGPASSWORD=$(az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv)
 
 if [ -z "$PGPASSWORD" ];
 then
-    echo "Problem setting PGPASSWORD! Check that you have azure authentication."
+    log "Problem setting PGPASSWORD! Check that you have azure authentication."
     exit 1
 fi
 
 export PGPASSWORD
 
-echo "Token generated"
-echo "Setting required variables"
-
-export ENV="demo"
-export PLATFORM="nonprod"
-
-export DB_HOST="ccd-data-store-api-postgres-db-v11-${ENV}.postgres.database.azure.com"
-export DB_NAME=ccd_data_store
-export DB_USER="DTS\ CFT\ DB\ Access\ Reader@ccd-data-store-api-postgres-db-v11-${ENV}"
-DEFAULT_DATE=$(date +%Y%m%d)
-OUTPUT_FILE_NAME=${DEFAULT_DATE}-weekly-cases.csv
-
-echo "Connecting to the bastion on port 5432"
+log "Token generated"
+log "Connecting to bastion"
 
 BASTION="ccd-data-store-api-postgres-db-v11-${ENV}.postgres.database.azure.com:5432 bastion-${PLATFORM}.platform.hmcts.net"
 
+log "DB_HOST: ${DB_HOST}"
+log "DB_NAME: ${DB_NAME}"
+log "DB_USER: ${DB_USER}"
+
+log "Logging into psql and running query"
+
 # shellcheck disable=SC2087
 ssh -L 5440:${BASTION} -F ~/.ssh/prod <<EOF
-
-echo "DB_HOST: ${DB_HOST}"
-echo "DB_NAME: ${DB_NAME}"
-echo "DB_USER: ${DB_USER}"
-echo "PGPASSWORD: **************"
-echo "Logging into psql"
-echo "Running query"
 
 psql "sslmode=require host=${DB_HOST} dbname=${DB_NAME} user=${DB_USER} port=5432 password=${PGPASSWORD}"
 
@@ -57,16 +45,8 @@ psql "sslmode=require host=${DB_HOST} dbname=${DB_NAME} user=${DB_USER} port=543
 
 EOF
 
-echo "Finished running query. Connection to bastion closed."
+log "Finished running query. Connection to bastion closed."
 
-echo "Copying ${OUTPUT_FILE_NAME} from vm to local"
-scp -F ~/.ssh/prod ${BASTION}:${OUTPUT_FILE_NAME} ${OUTPUT_FILE_NAME}
-
-
-FILE_SIZE=$(stat -c %s "${OUTPUT_FILE_NAME}")
-
-echo "Output file name: ${OUTPUT_FILE_NAME}. Size: ${FILE_SIZE}"
-
-
-export DEFAULT_DATE
-export OUTPUT_FILE_NAME
+log "Copying ${OUTPUT_FILE_NAME} from vm to local using scp"
+AZ_HOST=""
+scp -F ~/.ssh/config ${AZ_HOST}:${OUTPUT_FILE_NAME} ${OUTPUT_FILE_NAME}
