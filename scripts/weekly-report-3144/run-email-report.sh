@@ -59,5 +59,14 @@ EOF
 
 echo "Finished running query. Connection to bastion closed."
 
+echo "Copying ${OUTPUT_FILE_NAME} from vm to local"
+scp -F ~/.ssh/prod ${BASTION}:${OUTPUT_FILE_NAME} ${OUTPUT_FILE_NAME}
+
+
+FILE_SIZE=$(stat -c %s "${OUTPUT_FILE_NAME}")
+
+echo "Output file name: ${OUTPUT_FILE_NAME}. Size: ${FILE_SIZE}"
+
+
 export DEFAULT_DATE
 export OUTPUT_FILE_NAME

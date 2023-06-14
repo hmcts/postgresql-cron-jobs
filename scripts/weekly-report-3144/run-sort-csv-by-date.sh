@@ -8,7 +8,7 @@ ATTACHMENT="${DESTINATION}/${OUTPUT_FILE_NAME}"
 
 if ! [[ -e "${ATTACHMENT}" ]];
 then
-    echo "There was an error creating the file, check connection to bastion"
+    echo "There was an error reading the file create in the previous step."
     exit 1
 fi
 

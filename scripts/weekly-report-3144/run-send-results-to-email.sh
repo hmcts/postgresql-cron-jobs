@@ -2,9 +2,6 @@
 
 set -x
 
-. ./run-email-report.sh
-. ./run-sort-csv-by-date.sh
-
 # Send the results to an email address
 FROM_ADDRESS=""
 TO_ADDRESS=""
