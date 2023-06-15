@@ -6,3 +6,5 @@ set -eu
 . ./run-report-query.sh
 . ./run-sort-csv-by-date.sh
 . ./run-send-results-to-email.sh
+. ./run-cleanup.sh
+

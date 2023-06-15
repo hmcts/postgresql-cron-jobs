@@ -1,9 +1,10 @@
 #!/bin/bash
 
 ## load the environment variables if not already loaded
-if [ -z ${ENVIRONMENT_IS_SET+x} ];
+if [ -z ${VARIABLES_SET+x} ];
 then
-  log "Environment variables are not present. Loading them."
+  log "Variables are not present. Loading them."
+  echo "Hint: are you running the script locally?"
   source 'prepare-variables.sh'
 fi
 
