@@ -66,7 +66,7 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'Weekly CCD Query'
+          SUBJECT: 'Immigration Asylum Weekly CCD Query'
         cft-task-postgres-db-prod-cft_task_tasks-weekly-createdtasks:
           QUERY: ./scripts/weekly/cft-task-postgres-db-prod-cft_task_tasks-weekly-createdtasks.sh
           TO_ADDRESS: 'charlotte.beveridge@hmcts.net'
