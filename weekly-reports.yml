@@ -60,7 +60,7 @@ jobs:
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'PCQ-Probate-Applications Weekly Reporting'
         ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-cases-moved-to-decided-state:
-          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-cases-moved-to-decided-state.sh
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdcases-moved-to-decided-state.sh
           TO_ADDRESS: 'ImmigrationJurisdictionalSupportTeamInbox@Justice.gov.uk'
           CC_ADDRESS: 'ifeanyi.ezenwaka@hmcts.net'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
