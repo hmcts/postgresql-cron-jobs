@@ -108,16 +108,16 @@ jobs:
       matrix:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
-          TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
-          CC_ADDRESS: 'Alison.ljones@justice.gov.uk Robert.walker3@justice.gov.uk probatefeedback@justice.gov.uk'
+          TO_ADDRESS: 'probatefeedback@justice.gov.uk'
+          CC_ADDRESS: 'Probate.Docs@justice.gov.uk'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           SUBJECT: 'Grants-Issued-Yesterday-Extract Daily Report'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants.sh
-          TO_ADDRESS: 'Kevin.bunn@justice.gov.uk'
-          CC_ADDRESS: 'Alison.ljones@justice.gov.uk Robert.walker3@justice.gov.uk probatefeedback@justice.gov.uk'
+          TO_ADDRESS: 'probatefeedback@justice.gov.uk'
+          CC_ADDRESS: 'Probate.Docs@justice.gov.uk'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
