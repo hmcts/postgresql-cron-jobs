@@ -18,7 +18,7 @@ CREATEDYESTERDAY=$(date -d "yesterday" '+%Y-%m-%d 00:00:00.00000')
 CREATEDSEVENDAYSAGO=$(date -d "7 days ago" '+%Y-%m-%d 23:59:59.99999')
 
 TO_ADDRESS=dm.interfaces@dwp.gov.uk
-CC_ADDRESS='alliu.balogun@hmcts.net ALAN.J.BARKER@DWP.GOV.UK'
+CC_ADDRESS='ALAN.J.BARKER@DWP.GOV.UK'
 FAILURE_ADDRESS='alliu.balogun@hmcts.net'
 environment=`uname -n`
 SUBJECT="Probate extract from MoJ to the DwP"

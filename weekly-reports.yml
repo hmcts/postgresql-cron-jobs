@@ -222,7 +222,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdmetadatareporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdmetadatareporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
-          CC_ADDRESS: 'alliu.balogun@justice.gov.uk' #to be replaced
+          CC_ADDRESS: '' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -246,7 +246,7 @@ jobs:
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-ccdcivilweeklyreporting:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdcivilweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
-          CC_ADDRESS: 'alliu.balogun@justice.gov.uk' #to be replaced
+          CC_ADDRESS: '' #to be replaced
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
@@ -269,8 +269,8 @@ jobs:
           SUBJECT: 'PCQ-Dump Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
-          TO_ADDRESS: 'Kate.Pearce@justice.gov.uk hywel.hughes@justice.gov.uk'
-          CC_ADDRESS: 'alan.webster@hmcts.net michael.adams@hmcts.net'
+          TO_ADDRESS: 'Kate.Pearce@justice.gov.uk'
+          CC_ADDRESS: 'hywel.hughes@justice.gov.uk'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
