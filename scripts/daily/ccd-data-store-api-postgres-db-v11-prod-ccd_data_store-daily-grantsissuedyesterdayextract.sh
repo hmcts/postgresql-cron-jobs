@@ -13,6 +13,6 @@ FROM case_data as cd , case_event as ce
 WHERE cd.id = ce.case_data_id
 AND cd.jurisdiction = 'PROBATE'
 AND ce.event_id in( 'boCancelReissueForExaminingReissue','boCancelReissueForCaseMatchingReissue','boCancelReissueForCaseStopped','boFindMatchedCaseForGrantIssued','boIssueGrantForCaseMatching','boGrantReissue','boResolvePostGrantIssue')
-AND (data->>'grantIssuedDate') = '$YESTERDAY'
+AND (cd.data->>'grantIssuedDate') = '$YESTERDAY'
 AND ce.created_date::date = '$YESTERDAY' ) to stdout with csv header;
 EOF
