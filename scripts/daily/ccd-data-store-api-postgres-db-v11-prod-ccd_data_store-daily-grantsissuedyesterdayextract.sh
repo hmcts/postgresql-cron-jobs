@@ -12,7 +12,7 @@ ce.user_first_name || ' ' || ce.user_last_name as author
 FROM case_data as cd , case_event as ce
 WHERE cd.id = ce.case_data_id
 AND cd.jurisdiction = 'PROBATE'
-AND ce.event_id in( 'boCancelReissueForExaminingReissue','boCancelReissueForCaseMatchingReissue','boCancelReissueForCaseStopped','boFindMatchedCaseForGrantIssued','boIssueGrantForCaseMatching','boGrantReissue','boResolvePostGrantIssue')
+AND ce.event_id ='boIssueGrantForCaseMatching'
 AND (cd.data->>'grantIssuedDate') = '$YESTERDAY'
 AND ce.created_date::date = '$YESTERDAY' ) to stdout with csv header;
 EOF
