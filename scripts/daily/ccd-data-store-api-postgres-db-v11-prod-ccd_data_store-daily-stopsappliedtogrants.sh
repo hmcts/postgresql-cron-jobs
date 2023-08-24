@@ -1,5 +1,5 @@
 #!/bin/bash
-YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
+YESTERDAY='2020-04-14'
 cat <<EOF
 COPY (
 SELECT to_char(CAST (cd.data ->> 'grantStoppedDate' AS DATE), 'DD/MM/YYYY')  AS date_of_stop,
@@ -13,5 +13,6 @@ WHERE cd.jurisdiction = 'PROBATE' AND cd.state='BOCaseStopped'
 AND cd.id = ce.case_data_id
 AND cd.data #>> '{boCaseStopReasonList}' IS NOT NULL
 AND CAST (cd.data ->> 'grantStoppedDate' AS DATE) = '${YESTERDAY}'
-AND ce.created_date::date = '${YESTERDAY}'  ORDER BY 3 ) to stdout with csv header;
+AND ce.created_date::date = '${YESTERDAY}'
+AND ce.event_id = 'boStopCase' ORDER BY 3) to stdout with csv header;
 EOF
