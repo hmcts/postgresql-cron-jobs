@@ -2,7 +2,7 @@
 YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
 cat <<EOF
 COPY (
-SELECT to_char(CAST (cd.last_modified AS DATE), 'DD/MM/YYYY')  AS date_of_stop,
+SELECT to_char(CAST (cd.data ->> 'grantStoppedDate' AS DATE), 'DD/MM/YYYY')  AS date_of_stop,
 trim(cd.data->>'registryLocation') AS registry,
 cd.reference AS case_number,
 CONCAT(cd.data ->> 'deceasedSurname', ' ',cd.data ->> 'deceasedForenames') AS full_name,
@@ -12,6 +12,6 @@ FROM case_data as cd , case_event as ce
 WHERE cd.jurisdiction = 'PROBATE' AND cd.state='BOCaseStopped'
 AND cd.id = ce.case_data_id
 AND cd.data #>> '{boCaseStopReasonList}' IS NOT NULL
-AND cd.last_modified::date = '${YESTERDAY}'
+AND CAST (cd.data ->> 'grantStoppedDate' AS DATE) = '${YESTERDAY}'
 AND ce.created_date::date = '${YESTERDAY}'  ORDER BY 3 ) to stdout with csv header;
 EOF
