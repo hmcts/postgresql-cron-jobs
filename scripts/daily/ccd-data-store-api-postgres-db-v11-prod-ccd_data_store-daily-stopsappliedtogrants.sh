@@ -14,5 +14,6 @@ AND cd.id = ce.case_data_id
 AND cd.data #>> '{boCaseStopReasonList}' IS NOT NULL
 AND CAST (cd.data ->> 'grantStoppedDate' AS DATE) = '${YESTERDAY}'
 AND ce.created_date::date = '${YESTERDAY}'
-AND ce.event_id = 'boStopCase' ORDER BY 3) to stdout with csv header;
+AND ce.event_id in ( 'boFailQA', 'boStopCaseForCaseMatchingForExamining', 'boStopCaseForRegistrarEscalations', 'boStopCaseForCasePrinted', 'boStopCaseForCaseMatching', 'boStopCaseForCaseCreated', 'boStopCaseForGrantReissueExamining', 'boStopCaseForGrantReissueMatching' )
+ORDER BY 3) to stdout with csv header;
 EOF
