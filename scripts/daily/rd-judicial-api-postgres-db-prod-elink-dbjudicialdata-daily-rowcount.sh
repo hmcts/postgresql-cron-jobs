@@ -9,7 +9,7 @@ function log() {
 AZURE_DB_USERNAME='DTS Platform Operations SC@rd-judicial-api-postgres-db-prod'
 AZURE_HOSTNAME='rd-judicial-api-postgres-db-prod.postgres.database.azure.com'
 AZURE_DB='dbjuddata'
-SUBJECT='rd-judicial-Record-Count Daily Report'
+SUBJECT='rd-judicial-elinks-Record-Count Daily Report'
 TO_ADDRESS='dlrefdatasupport@hmcts.net'
 CC_ADDRESS='dts-refdata-team@hmcts.net'
 YESTERDAY=$(date -d "yesterday" '+%Y%m%d')
@@ -27,7 +27,7 @@ function errorHandler() {
 }
 trap errorHandler ERR
 #psql query
-echo " =====  rd-judicial database Table Counts ===== " > ${ATTACHMENT}
+echo " =====  rd-judicial elinks database Table Counts ===== " > ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
