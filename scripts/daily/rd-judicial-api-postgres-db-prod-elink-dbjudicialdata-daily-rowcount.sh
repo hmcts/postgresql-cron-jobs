@@ -21,7 +21,7 @@ OUTPUT_FILE_NAME=${DEFAULT_DATE}_${AZURE_DB}_${FILESUB}.csv
 ATTACHMENT=${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 
 function errorHandler() {
-  local dump_failed_error="${AZURE_HOSTNAME} ${AZURE_DB} Dump extract for ${DEFAULT_DATE}"
+  local dump_failed_error="${AZURE_HOSTNAME} ${AZURE_DB} Dump elinks extract for ${DEFAULT_DATE}"
   log "${dump_failed_error}"
   echo ""
 }
