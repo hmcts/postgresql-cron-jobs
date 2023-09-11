@@ -11,7 +11,7 @@ schedules:
 trigger: none
 pr: none
 variables:
-  serviceConnection: 'Prod-Database-Reporting'
+  serviceConnection: 'Prod-DB-Reporting'
   FROM_ADDRESS: 'db-reporting@mail-db-reporting-prod.platform.hmcts.net'
   FAILURE_ADDRESS: 'dcd-devops-support@hmcts.net' # to be verified
 
