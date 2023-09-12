@@ -43,14 +43,14 @@ echo ""  >> ${ATTACHMENT}
 echo "dataload_schedular_job Publishing status :"  >> ${ATTACHMENT}
 psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select dsj.publishing_status,dsj.job_start_time,dsj.job_end_time from dbjudicialdata.dataload_schedular_job dsj where dsj.job_end_time::DATE = current_date;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
-echo "judicial_office_appointment  Extracted Date :"  >> ${ATTACHMENT}
-psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select distinct(extracted_date) from dbjudicialdata.judicial_office_appointment;"  >> ${ATTACHMENT}
+echo "eLinks Last Loaded Date :"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select max(last_loaded_date) from dbjudicialdata.judicial_user_profile jup;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
-echo "base_location_type Count :"  >> ${ATTACHMENT}
-psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) from dbjudicialdata.base_location_type;"  >> ${ATTACHMENT}
+echo "location_type Count :"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) from dbjudicialdata.location_type;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
-echo "region_type Count :"  >> ${ATTACHMENT}
-psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) from dbjudicialdata.region_type;"  >> ${ATTACHMENT}
+echo "hmcts_region_type Count :"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) from dbjudicialdata.hmcts_region_type hrt"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo "dataload_schedular_audit total Count :"  >> ${ATTACHMENT}
 psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_audits from dbjudicialdata.dataload_schedular_audit;"  >> ${ATTACHMENT}
@@ -62,16 +62,19 @@ echo "dataload_schedular_audit today's Count :"  >> ${ATTACHMENT}
 psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select * from dbjudicialdata.dataload_schedular_audit where scheduler_end_time::DATE = current_date;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo "dataload_exception_records today's Count :"  >> ${ATTACHMENT}
-psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select der.table_name,  der.error_description, der.field_in_error, count(der.error_description) from dbjudicialdata.dataload_exception_records der where der.updated_timestamp::DATE = current_date group by der.table_name, der.error_description, der.field_in_error;"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select der.table_name,  der.field_in_error, count(der.error_description) from dbjudicialdata.dataload_exception_records der where der.updated_timestamp::DATE = current_date group by der.table_name, der.field_in_error;"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo "judicial_user_profile exceptions records today's Count :"  >> ${ATTACHMENT}
-psql  -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_personal_today from dbjudicialdata.dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'dbjudicialdata.judicial_user_profile';"  >> ${ATTACHMENT}
+psql  -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_personal_today from dbjudicialdata.dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'judicial_user_profile';"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo "judicial_office_appointment exceptions records today's Count :"  >> ${ATTACHMENT}
-psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_appointments_today from dbjudicialdata.dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'dbjudicialdata.judicial_office_appointment';"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_appointments_today from dbjudicialdata.dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'judicial_office_appointment';"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo "judicial_office_authorisation exceptions records today's Count :"  >> ${ATTACHMENT}
-psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_authorizations_today from dbjudicialdata.dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'dbjudicialdata.judicial_office_authorisation';"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_authorizations_today from dbjudicialdata.dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'judicial_office_authorisation';"  >> ${ATTACHMENT}
+echo ""  >> ${ATTACHMENT}
+echo "judicial_additional_roles exceptions records today's Count :"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select count(*) as total_exceptions_additional_roles_today from dbjudicialdata.dataload_exception_records where updated_timestamp::DATE = current_date and table_name = 'judicial_additional_roles';"  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 
 log "Finished dumping Report on ${DEFAULT_DATE}"
