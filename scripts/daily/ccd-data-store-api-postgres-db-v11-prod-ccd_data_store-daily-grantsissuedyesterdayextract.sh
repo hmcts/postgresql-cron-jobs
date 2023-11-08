@@ -4,7 +4,7 @@ cat <<EOF
 COPY (
 SELECT
 cd.reference AS ccd_reference,
-to_char(CAST (cd.data ->> 'grantIssuedDate' AS DATE), 'DD/MM/YYYY') AS grant_issued_date,
+to_char(CAST (cd.data ->> 'grantIssuedDate' AS DATE), 'DD/MM/YYYY') AS grant_issued_date, (now() AS created_date ),
 trim(cd.data->>'deceasedForenames') AS deceasedForenames,
 trim(cd.data->>'deceasedSurname') AS deceasedSurname,
 trim(cd.data->>'registryLocation') AS registryLocation,
