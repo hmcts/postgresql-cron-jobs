@@ -5,6 +5,7 @@ COPY (
 SELECT
 cd.reference AS ccd_reference,
 to_char(CAST (cd.data ->> 'grantIssuedDate' AS DATE), 'DD/MM/YYYY') AS grant_issued_date,
+ce.created_date AS event_timestamp,
 trim(cd.data->>'deceasedForenames') AS deceasedForenames,
 trim(cd.data->>'deceasedSurname') AS deceasedSurname,
 trim(cd.data->>'registryLocation') AS registryLocation,
