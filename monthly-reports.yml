@@ -54,5 +54,4 @@ jobs:
           filePath: 'email_report.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-          STORAGE_KEY: $(timdaexedata-storageaccount)
           CONTAINER_NAME: 'daily'
