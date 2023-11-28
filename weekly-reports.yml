@@ -20,7 +20,9 @@ jobs:
     timeoutInMinutes: 180
     pool:
       name: 'hmcts-ss-prod'
-    steps:
+    strategy:
+      maxParallel: 1
+      matrix:
       - task: Bash@3
         inputs:
           filePath: 'email_report.sh'
