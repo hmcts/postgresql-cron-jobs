@@ -31,6 +31,7 @@ filesize=$(wc -c ${ATTACHMENT} | awk '{print $1}')
 echo "${ATTACHMENT} is $filesize bytes in size"
 if [[ $filesize -gt 9000000 ]]
 then
+  az login --identity
   az storage blob upload --account-name "miapintegrationprod"  --auth-mode login  --container-name "${CONTAINER_NAME}"  --name "${OUTPUT_FILE_NAME}" --file "${ATTACHMENT}"
   log "upload file to storage account"
 else
