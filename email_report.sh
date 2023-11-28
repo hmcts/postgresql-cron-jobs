@@ -22,22 +22,20 @@ function errorHandler() {
 
 trap errorHandler ERR
 
-# psql -t -U "${AZURE_DB_USERNAME}"  -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "$(eval "${QUERY}")"  > ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
-# log "Finished dumping Report on ${DEFAULT_DATE}"
-# log "Sending email with  Report results to: ${TO_ADDRESS} ${CC_ADDRESS}"
-echo "testrecord" >  testfile.txt
+psql -t -U "${AZURE_DB_USERNAME}"  -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "$(eval "${QUERY}")"  > ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
+log "Finished dumping Report on ${DEFAULT_DATE}"
+log "Sending email with  Report results to: ${TO_ADDRESS} ${CC_ADDRESS}"
 
-ATTACHMENT=testfile.txt
 
 filesize=$(wc -c ${ATTACHMENT} | awk '{print $1}')
 echo "${ATTACHMENT} is $filesize bytes in size"
-# if [[ $filesize -gt 9000000 ]]
-# then
-az login --identity
-az storage blob upload --account-name "miapintegrationprod"  --auth-mode login  --container-name "${CONTAINER_NAME}"  --name "${OUTPUT_FILE_NAME}" --file "${ATTACHMENT}"
-log "upload file to storage account"
-# else
-#   swaks -f $FROM_ADDRESS -t $TO_ADDRESS,$CC_ADDRESS --server smtp.sendgrid.net:587   --auth PLAIN -au apikey -ap $SENDGRID_APIKEY -attach ${ATTACHMENT} --header "Subject: ${SUBJECT}" --body "Please find attached report from ${AZURE_HOSTNAME}/${AZURE_DB}"
-#   log "email sent"
-# fi
+if [[ $filesize -gt 9000000 ]]
+then
+  az login --identity
+  az storage blob upload --account-name "miapintegrationprod"  --auth-mode login  --container-name "${CONTAINER_NAME}"  --name "${OUTPUT_FILE_NAME}" --file "${ATTACHMENT}"
+  log "upload file to storage account"
+else
+  swaks -f $FROM_ADDRESS -t $TO_ADDRESS,$CC_ADDRESS --server smtp.sendgrid.net:587   --auth PLAIN -au apikey -ap $SENDGRID_APIKEY -attach ${ATTACHMENT} --header "Subject: ${SUBJECT}" --body "Please find attached report from ${AZURE_HOSTNAME}/${AZURE_DB}"
+  log "email sent"
+fi
 rm ${ATTACHMENT}
