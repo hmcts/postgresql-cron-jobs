@@ -263,8 +263,8 @@ jobs:
           QUERY: ./scripts/weekly/pcq-backend-prod-pcq-weekly-pcqweeklydump.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: 'Kate.Pearce@justice.gov.uk'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@pcq-backend-prod"
-          AZURE_HOSTNAME: 'pcq-backend-prod.postgres.database.azure.com'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
+          AZURE_HOSTNAME: 'pcq-backend-flexible-prod.postgres.database.azure.com'
           AZURE_DB: 'pcq'
           SUBJECT: 'PCQ-Dump Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
