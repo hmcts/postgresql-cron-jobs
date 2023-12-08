@@ -41,7 +41,7 @@ jobs:
           RunAsPreJob: false
       - task: Bash@3
         inputs:
-          filePath: './scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh ${{}}'
+          filePath: './scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
 #  - job:
@@ -283,7 +283,7 @@ jobs:
 #          azureSubscription: $(serviceConnection)
 #          scriptLocation: 'inlineScript'
 #          inlineScript: |
-            !/bin/bash
+#            !/bin/bash
 #            set -ex
 #            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
 #            echo $output
