@@ -17,9 +17,9 @@ DWPSEVENDAYSAGO=$(date -d "7 days ago" '+%Y%m%d')
 CREATEDYESTERDAY=$(date -d "yesterday" '+%Y-%m-%d 00:00:00.00000')
 CREATEDSEVENDAYSAGO=$(date -d "7 days ago" '+%Y-%m-%d 23:59:59.99999')
 
-TO_ADDRESS=dm.interfaces@dwp.gov.uk
-CC_ADDRESS='ALAN.J.BARKER@DWP.GOV.UK'
-FAILURE_ADDRESS='alliu.balogun@hmcts.net'
+TO_ADDRESS=charles.luo1@justice.gov.uk
+CC_ADDRESS=charles.luo1@justice.gov.uk
+FAILURE_ADDRESS=charles.luo1@justice.gov.uk
 environment=`uname -n`
 SUBJECT="Probate extract from MoJ to the DwP"
 AZURE_DB_USERNAME='DTS Platform Operations SC@ccd-data-store-api-postgres-db-v11-prod'
