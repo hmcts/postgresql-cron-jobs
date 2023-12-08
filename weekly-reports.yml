@@ -44,7 +44,7 @@ jobs:
 #          filePath: './scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh'
 #        env:
 #          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-  - job: dtspo-16120_weekly_welshlanguagegrantsissued
+  - job: dtspo_16120_weekly_welshlanguagegrantsissued
     timeoutInMinutes: 180
     pool:
       name: 'hmcts-ss-prod'
