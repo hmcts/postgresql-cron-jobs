@@ -269,8 +269,8 @@ jobs:
 #          SUBJECT: 'PCQ-Dump Weekly Reporting'
         ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
-          TO_ADDRESS: 'charles.luo1@justice.gov.uk'
-          CC_ADDRESS: 'charles.luo1@justice.gov.uk'
+          TO_ADDRESS: 'jake.moorhead@justice.gov.uk'
+          CC_ADDRESS: 'jake.moorhead@justice.gov.uk'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
