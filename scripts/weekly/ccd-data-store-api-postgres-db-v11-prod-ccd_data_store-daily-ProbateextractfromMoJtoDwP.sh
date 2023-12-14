@@ -10,18 +10,18 @@ DEFAULT_DATE=$(date +%Y%m%d)
 OUTPUT_DIR=/tmp
 OUTPUT_FILE_NAME=LCDI${DEFAULT_DATE}A.dat
 OUTPUT_SED_FILE_NAME=LCDI${DEFAULT_DATE}.dat
-YESTERDAY=$(date -d "yesterday" '+%Y-%m-%d')
-SEVENDAYSAGO=$(date -d "8 days ago" '+%Y-%m-%d')
-DWPYESTERDAY=$(date -d "yesterday" '+%Y%m%d')
-DWPSEVENDAYSAGO=$(date -d "8 days ago" '+%Y%m%d')
-CREATEDYESTERDAY=$(date -d "yesterday" '+%Y-%m-%d 00:00:00.00000')
-CREATEDSEVENDAYSAGO=$(date -d "8 days ago" '+%Y-%m-%d 23:59:59.99999')
+YESTERDAY=$(date -d "9 days ago" '+%Y-%m-%d')
+SEVENDAYSAGO=$(date -d "16 days ago" '+%Y-%m-%d')
+DWPYESTERDAY=$(date -d "9 days ago" '+%Y%m%d')
+DWPSEVENDAYSAGO=$(date -d "16 days ago" '+%Y%m%d')
+CREATEDYESTERDAY=$(date -d "9 days ago" '+%Y-%m-%d 00:00:00.00000')
+CREATEDSEVENDAYSAGO=$(date -d "16 days ago" '+%Y-%m-%d 23:59:59.99999')
 
 TO_ADDRESS=jake.moorhead@justice.gov.uk
 CC_ADDRESS=jake.moorhead@justice.gov.uk
 FAILURE_ADDRESS=jake.moorhead@justice.gov.uk
 environment=`uname -n`
-SUBJECT="Probate extract from MoJ to the DwP"
+SUBJECT="Probate extract from MoJ to the DwP for 28th Nov to 5th Dec"
 AZURE_DB_USERNAME='DTS Platform Operations SC@ccd-data-store-api-postgres-db-v11-prod'
 function errorHandler() {
   local dump_failed_error="DwP Weekly extract for ${DEFAULT_DATE}"
