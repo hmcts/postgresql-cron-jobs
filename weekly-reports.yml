@@ -267,14 +267,14 @@ jobs:
 #          AZURE_HOSTNAME: 'pcq-backend-flexible-prod.postgres.database.azure.com'
 #          AZURE_DB: 'pcq'
 #          SUBJECT: 'PCQ-Dump Weekly Reporting'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
-          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
-          TO_ADDRESS: 'jake.moorhead@justice.gov.uk'
-          CC_ADDRESS: 'jake.moorhead@justice.gov.uk'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
-          AZURE_DB: 'ccd_data_store'
-          SUBJECT: 'Welsh-Language-Grants-Issued Weekly Reporting'
+        # ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-welshlanguagegrantsissued:
+        #   QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
+        #   TO_ADDRESS: 'jake.moorhead@justice.gov.uk'
+        #   CC_ADDRESS: 'jake.moorhead@justice.gov.uk'
+        #   AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+        #   AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+        #   AZURE_DB: 'ccd_data_store'
+        #   SUBJECT: 'Welsh-Language-Grants-Issued Weekly Reporting'
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'
