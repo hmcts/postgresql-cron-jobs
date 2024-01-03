@@ -44,13 +44,13 @@ jobs:
           filePath: './scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-  - job: dtspo_16120_weekly_welshlanguagegrantsissued
-    timeoutInMinutes: 180
-    pool:
-      name: 'hmcts-ss-prod'
-    strategy:
-      maxParallel: 1
-      matrix:
+  # - job: dtspo_16120_weekly_welshlanguagegrantsissued
+  #   timeoutInMinutes: 180
+  #   pool:
+  #     name: 'hmcts-ss-prod'
+  #   strategy:
+  #     maxParallel: 1
+  #     matrix:
 #        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days:
 #          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days.sh
 #          TO_ADDRESS: 'Kate.Pearce@justice.gov.uk'
