@@ -11,7 +11,7 @@ DEFAULT_DATE=$(date +%Y%m%d)
 DAYSAGO=$(date -d "7 days ago" '+%Y%m%d 00:00:00')
 OUTPUT_DIR=/tmp
 FILESUB=$(echo ${SUBJECT} | cut -d' ' -f 1,2,3 | tr ' ' -)
-OUTPUT_FILE_NAME=${DEFAULT_DATE}_${AZURE_DB}_${FILESUB}.csv
+OUTPUT_FILE_NAME=${YESTERDAY}_${AZURE_DB}_${FILESUB}.csv
 ATTACHMENT=${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 
 function errorHandler() {
@@ -23,7 +23,7 @@ function errorHandler() {
 trap errorHandler ERR
 
 psql -t -U "${AZURE_DB_USERNAME}"  -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "$(eval "${QUERY}")"  > ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
-log "Finished dumping Report on ${DEFAULT_DATE}"
+log "Finished dumping Report on ${YESTERDAY}"
 log "Sending email with  Report results to: ${TO_ADDRESS} ${CC_ADDRESS}"
 
 
