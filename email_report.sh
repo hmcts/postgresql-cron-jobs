@@ -31,7 +31,8 @@ filesize=$(wc -c ${ATTACHMENT} | awk '{print $1}')
 echo "${ATTACHMENT} is $filesize bytes in size"
 if [[ $filesize -gt 9000000 ]]
 then
-  az login --identity
+  # Try logging in with workload identity, if exit code not successful then try managed identity.
+  az login --federated-token "$(cat $AZURE_FEDERATED_TOKEN_FILE)" --service-principal -u $AZURE_CLIENT_ID -t $AZURE_TENANT_ID || az login --identity
   az storage blob upload --account-name "miapintegrationprod"  --auth-mode login  --container-name "${CONTAINER_NAME}"  --name "${OUTPUT_FILE_NAME}" --file "${ATTACHMENT}"
   log "upload file to storage account"
 else
