@@ -16,34 +16,6 @@ variables:
 
 
 jobs:
-  - job: ccd_moj_dwp
-    timeoutInMinutes: 180
-    pool:
-      name: 'hmcts-ss-prod'
-    steps:
-      - task: AzureCLI@1
-        displayName: 'Get access token'
-        name: gettoken
-        inputs:
-          azureSubscription: $(serviceConnection)
-          scriptLocation: 'inlineScript'
-          inlineScript: |
-            #!/bin/bash
-            set -ex
-            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $output
-            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
-      - task: AzureKeyVault@1
-        inputs:
-          azureSubscription: $(serviceConnection)
-          KeyVaultName: 'sendgridprod'
-          SecretsFilter: 'hmcts-db-reporting-api-key'
-          RunAsPreJob: false
-      - task: Bash@3
-        inputs:
-          filePath: './scripts/weekly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh'
-        env:
-          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
   - job:
     timeoutInMinutes: 180
     pool:
