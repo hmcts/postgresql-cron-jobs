@@ -17,8 +17,8 @@ DWPSEVENDAYSAGO=$(date -d "7 days ago" '+%Y%m%d')
 CREATEDYESTERDAY=$(date -d "yesterday" '+%Y-%m-%d 00:00:00.00000')
 CREATEDSEVENDAYSAGO=$(date -d "7 days ago" '+%Y-%m-%d 23:59:59.99999')
 
-TO_ADDRESS=Ieuan.Byers@justice.gov.uk
-CC_ADDRESS=Ieuan.Byers@justice.gov.uk
+TO_ADDRESS=marcus.ho@justice.gov.uk
+CC_ADDRESS=marcus.ho@justice.gov.uk
 FAILURE_ADDRESS=Ieuan.Byers@justice.gov.uk
 environment=`uname -n`
 SUBJECT="Probate extract from MoJ to the DwP for 21st Nov to 28th Nov"
