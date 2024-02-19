@@ -1,11 +1,11 @@
 
 name: Postgres DB Monthly Report
 schedules:
-- cron: "0 1 1 * *"
+- cron: "*/10 * * * *"
   displayName: Monthly reports
   branches:
     include:
-    - master
+    - DTSRD-2076
   always: true
 
 trigger: none
