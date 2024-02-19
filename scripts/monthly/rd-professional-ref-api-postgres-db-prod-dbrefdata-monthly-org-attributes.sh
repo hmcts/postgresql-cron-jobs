@@ -29,8 +29,7 @@ trap errorHandler ERR
 echo ""  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
-
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select md5(a.name) as encrypted_org_name, a.org_type, b.key, translate(b.value,'1234567890','**********') as value from dbrefdata.organisation a, dbrefdata.org_attributes b where a.id = b.organisation_id;"  >> ${ATTACHMENT}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select md5(a.name) as encrypted_org_name, a.org_type, b.key, translate(b.value,'1234567890','**********') as value from dbrefdata.organisation a, dbrefdata.org_attributes b where a.id = b.organisation_id;"  >> ${ATTACHMENT}
 
 echo ""  >> ${ATTACHMENT}
 echo ""  >> ${ATTACHMENT}
