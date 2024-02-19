@@ -73,15 +73,15 @@ jobs:
             output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
             echo $output
             echo "##vso[task.setvariable variable=PGPASSWORD]$output"
-       - task: AzureKeyVault@2
-         inputs:
-           azureSubscription: $(serviceConnection)
-           KeyVaultName: 'sendgridprod'
-           SecretsFilter: 'hmcts-db-reporting-api-key'
-           RunAsPreJob: false
-       - task: Bash@3
-         inputs:
-           filePath: './scripts/monthly/rd-professional-ref-api-postgres-db-prod-dbrefdata-monthly-org-attributes.sh'
-         env:
-           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
+      - task: AzureKeyVault@2
+        inputs:
+          azureSubscription: $(serviceConnection)
+          KeyVaultName: 'sendgridprod'
+          SecretsFilter: 'hmcts-db-reporting-api-key'
+          RunAsPreJob: false
+      - task: Bash@3
+        inputs:
+          filePath: './scripts/monthly/rd-professional-ref-api-postgres-db-prod-dbrefdata-monthly-org-attributes.sh'
+        env:
+          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
 
