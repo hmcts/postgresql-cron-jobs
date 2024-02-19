@@ -26,16 +26,9 @@ function errorHandler() {
 
 trap errorHandler ERR
 
-echo ""  >> ${ATTACHMENT}
-echo ""  >> ${ATTACHMENT}
-echo ""  >> ${ATTACHMENT}
 echo "encrypted_org_name,org_type,key,value" >> ${ATTACHMENT}
 psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} --csv -c "select md5(a.name) as encrypted_org_name, a.org_type, b.key, translate(b.value,'1234567890','**********') as value from dbrefdata.organisation a, dbrefdata.org_attributes b where a.id = b.organisation_id;"  >> ${ATTACHMENT}
 
-echo ""  >> ${ATTACHMENT}
-echo ""  >> ${ATTACHMENT}
-echo ""  >> ${ATTACHMENT}
-echo "END Count ====== "  >>  ${ATTACHMENT}
 
 
 log "Finished dumping Report on ${DEFAULT_DATE}"
