@@ -1,7 +1,7 @@
 
 name: Postgres DB Monthly Report
 schedules:
-- cron: "*/10 * * * *"
+- cron: "*/3 * * * *"
   displayName: Monthly reports
   branches:
     include:
