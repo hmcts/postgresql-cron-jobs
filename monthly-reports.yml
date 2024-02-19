@@ -5,7 +5,7 @@ schedules:
   displayName: Monthly reports
   branches:
     include:
-    - DTSRD-2076
+    - master
   always: true
 
 trigger: none
