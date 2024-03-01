@@ -13,6 +13,6 @@ AND cd.id = ce.case_data_id
 AND cd.data #>> '{boCaseStopReasonList}' IS NOT NULL
 AND CAST (cd.data ->> 'grantStoppedDate' AS DATE) between (current_date-7 + time '00:00') and (current_date + time '00:00')
 AND ce.event_id in ( 'boFailQA', 'boStopCaseForCaseMatchingForExamining', 'boStopCaseForRegistrarEscalations', 'boStopCaseForCasePrinted', 'boStopCaseForCaseMatching', 'boStopCaseForCaseCreated', 'boStopCaseForGrantReissueExamining', 'boStopCaseForGrantReissueMatching' )
-ORDER BY 3,1 desc
+ORDER BY 3,1
 ) TO STDOUT WITH CSV HEADER ;
 EOF
