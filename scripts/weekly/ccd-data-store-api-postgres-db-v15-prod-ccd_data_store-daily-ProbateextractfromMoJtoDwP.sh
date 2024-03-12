@@ -22,7 +22,7 @@ CC_ADDRESS='ALAN.J.BARKER@DWP.GOV.UK'
 FAILURE_ADDRESS='alliu.balogun@hmcts.net'
 environment=`uname -n`
 SUBJECT="Probate extract from MoJ to the DwP"
-AZURE_DB_USERNAME='DTS Platform Operations SC@ccd-data-store-api-postgres-db-v11-prod'
+AZURE_DB_USERNAME='DTS Platform Operations SC@ccd-data-store-api-postgres-db-v15-prod'
 function errorHandler() {
   local dump_failed_error="DwP Weekly extract for ${DEFAULT_DATE}"
   log "${dump_failed_error}"
@@ -310,14 +310,14 @@ EOF
 
  # Connect to DB and pass QUERY above but use -t switch to disable tuples
 
-psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "${QUERY}" -P format=u > ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME}
+psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "${QUERY}" -P format=u > ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME}
 
 
 ## Append 2nd query Output into bottom of the 1st file
 
-psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "${QUERY2}" -P format=u >> ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME}
+psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "${QUERY2}" -P format=u >> ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME}
 
-psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "DROP TABLE IF EXISTS dwp_data;"
+psql -t -U "${AZURE_DB_USERNAME}"  -h ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com -p 5432 -d ccd_data_store -c "DROP TABLE IF EXISTS dwp_data;"
 # SED to clean out \N (NULLS) and replace "|" with "~" as per column separator requirement
 sed -e 's/\\N//' -e 's/|/~/g' ${OUTPUT_DIR}/${OUTPUT_SED_FILE_NAME} > ${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 

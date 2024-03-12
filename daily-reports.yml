@@ -138,37 +138,37 @@ jobs:
     strategy:
       maxParallel: 1
       matrix:
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
-          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
+        ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-grantsissuedyesterdayextract:
+          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-grantsissuedyesterdayextract.sh
           TO_ADDRESS: 'probatefeedback@justice.gov.uk'
           CC_ADDRESS: 'Probate.Docs@justice.gov.uk'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
           SUBJECT: 'Grants-Issued-Yesterday-Extract Daily Report'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants:
-          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-stopsappliedtogrants.sh
+        ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-stopsappliedtogrants:
+          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-stopsappliedtogrants.sh
           TO_ADDRESS: 'probatefeedback@justice.gov.uk'
           CC_ADDRESS: 'Probate.Docs@justice.gov.uk'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
           SUBJECT: 'Stops-applied-to-Grants Daily Report'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued:
-          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguagedivorceissued.sh
+        ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-Welshlanguagedivorceissued:
+          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-Welshlanguagedivorceissued.sh
           TO_ADDRESS: 'Kate.Pearce@justice.gov.uk'
           CC_ADDRESS: 'Isabel.syred@justice.gov.uk'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
           SUBJECT: 'Welsh-Language-Divorce-Issued Daily Report'
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued:
-          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-daily-Welshlanguageissued.sh
+        ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-Welshlanguageissued:
+          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-Welshlanguageissued.sh
           TO_ADDRESS: 'Kate.Pearce@justice.gov.uk'
           CC_ADDRESS: 'helen.smith6@justice.gov.uk'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
           SUBJECT: 'Welsh-Language-SSCS-Issued Daily Report'
     steps:
       - task: AzureCLI@2

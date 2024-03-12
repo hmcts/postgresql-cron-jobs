@@ -22,13 +22,13 @@ jobs:
     strategy:
       maxParallel: 1
       matrix:
-        ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-monthly-claimants:
-          QUERY: ./scripts/monthly/ccd-data-store-api-postgres-db-v11-prod-ccd_data_store-monthly-claimants.sh
+        ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-monthly-claimants:
+          QUERY: ./scripts/monthly/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-monthly-claimants.sh
           TO_ADDRESS: 'ocmcteamleader@justice.gov.uk'
           CC_ADDRESS: 'alliu.balogun@HMCTS.NET'
-          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v11-prod.postgres.database.azure.com'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v11-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
           SUBJECT: 'Monthly Claimants Report from CCD Data Store'
     steps:
       - task: AzureCLI@1
