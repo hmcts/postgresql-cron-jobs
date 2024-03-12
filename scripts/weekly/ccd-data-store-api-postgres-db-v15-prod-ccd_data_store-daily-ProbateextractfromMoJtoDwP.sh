@@ -22,7 +22,7 @@ CC_ADDRESS='ALAN.J.BARKER@DWP.GOV.UK'
 FAILURE_ADDRESS='alliu.balogun@hmcts.net'
 environment=`uname -n`
 SUBJECT="Probate extract from MoJ to the DwP"
-AZURE_DB_USERNAME='DTS Platform Operations SC@ccd-data-store-api-postgres-db-v15-prod'
+AZURE_DB_USERNAME='DTS Platform Operations SC'
 function errorHandler() {
   local dump_failed_error="DwP Weekly extract for ${DEFAULT_DATE}"
   log "${dump_failed_error}"

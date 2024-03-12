@@ -55,7 +55,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqprobateapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'Kate.Pearce@justice.gov.uk'
           CC_ADDRESS: 'khaled.siddat@justice.gov.uk'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'PCQ-Probate-Applications Weekly Reporting'
@@ -63,7 +63,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdcases-moved-to-decided-state.sh
           TO_ADDRESS: 'ImmigrationJurisdictionalSupportTeamInbox@Justice.gov.uk'
           CC_ADDRESS: 'ifeanyi.ezenwaka@hmcts.net'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'Immigration Asylum Weekly CCD Query'
@@ -79,7 +79,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqcmcapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'Kate.Pearce@justice.gov.uk'
           CC_ADDRESS: ''
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'PCQ-CMC-Applications Weekly Reporting'
@@ -87,7 +87,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqsscsapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'Kate.Pearce@justice.gov.uk'
           CC_ADDRESS: ''
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'PCQ-SSCS-Applications Weekly Reporting'
@@ -95,7 +95,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-pcqdivorceapplicationscreatedinlast7days.sh
           TO_ADDRESS: 'Kate.Pearce@justice.gov.uk'
           CC_ADDRESS: ''
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'PCQ-Divorce-Applications Weekly Reporting'
@@ -103,7 +103,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccddivorceweeklydatareporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-Divorce Weekly Reporting'
@@ -111,7 +111,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobategorreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-Probate-GOR Weekly Reporting'
@@ -119,7 +119,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobatewilldgmntweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-Probate-Willodgement Weekly Reporting'
@@ -127,7 +127,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobatestsearchreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-Probate-StSearch Weekly Reporting'
@@ -135,7 +135,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdetssingleweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-ETSingle Weekly Reporting'
@@ -143,7 +143,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdsscsweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-SSCS Weekly Reporting'
@@ -151,7 +151,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdfinremweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-FinRem Weekly Reporting'
@@ -159,7 +159,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdasylumweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-Asylum Weekly Reporting'
@@ -167,7 +167,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdetjurweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-ET-JUR Weekly Reporting'
@@ -175,7 +175,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdcmcweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-CMC Weekly Reporting'
@@ -183,7 +183,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdssdsexceptionrecordweeklyreportcomplete.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-SSCS_ExceptionRecord Weekly Reporting'
@@ -191,7 +191,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdfplweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-FPL Weekly Reporting'
@@ -199,7 +199,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdfinremcontestedweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-FinRemContested Weekly Reporting'
@@ -207,7 +207,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdfinremexceptionsweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-FinRemExceptions Weekly Reporting'
@@ -215,7 +215,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdethearingdateweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-ETHearingDate Weekly Reporting'
@@ -223,7 +223,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdmetadatareporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-Metadata Weekly Reporting'
@@ -231,7 +231,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdethearing.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-ETHearing Weekly Reporting'
@@ -239,7 +239,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobatecaveat.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-Probate-Caveat Weekly Reporting'
@@ -247,7 +247,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdcivilweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-CIVIL Weekly Reporting'
@@ -255,7 +255,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobateexceptionweeklyreporting.sh
           TO_ADDRESS: 'RORDataIngress.Test@HMCTS.NET'
           CC_ADDRESS: '' #to be replaced
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'CCD-PROBATE-Exceptions Weekly Reporting'
@@ -271,7 +271,7 @@ jobs:
           QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-welshlanguagegrantsissued.sh
           TO_ADDRESS: 'Kate.Pearce@justice.gov.uk'
           CC_ADDRESS: 'hywel.hughes@justice.gov.uk'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'Welsh-Language-Grants-Issued Weekly Reporting'

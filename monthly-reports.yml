@@ -28,7 +28,7 @@ jobs:
           CC_ADDRESS: 'alliu.balogun@HMCTS.NET'
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
-          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC@ccd-data-store-api-postgres-db-v15-prod"
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           SUBJECT: 'Monthly Claimants Report from CCD Data Store'
     steps:
       - task: AzureCLI@1
