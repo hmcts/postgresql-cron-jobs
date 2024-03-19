@@ -41,6 +41,6 @@ jobs:
           RunAsPreJob: false
       - task: Bash@3
         inputs:
-          filePath: './scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh'
+          filePath: './scripts/weekly/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
