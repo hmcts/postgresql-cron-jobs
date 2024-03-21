@@ -1,8 +1,8 @@
 
-name: Postgres DB Monthly Report
+name: Postgres DB AM Dashboard (SDT) report
 schedules:
 - cron: "*/15 * * * *"
-  displayName: Monthly reports
+  displayName: AM Dashboard (SDT) reports
   branches:
     include:
     - SDT-196
