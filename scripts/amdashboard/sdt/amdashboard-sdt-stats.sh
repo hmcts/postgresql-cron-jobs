@@ -1,12 +1,16 @@
 #!/bin/bash
-AZURE_DB="civil_sdt"
+
 CURRENT_DATE=$(date +%d"/"%m"/"%Y)
 CURRENT_TIME=$(date +%T)
+
+AZURE_DB="civil_sdt"
+
 OUTPUT_DIR="/tmp"
 OUTPUT_FILENAME="SDTCLOUD_stats.txt"
 OUTPUT_FILEPATH=${OUTPUT_DIR}/${OUTPUT_FILENAME}
 ID_FILENAME=bais_id
 ID_FILEPATH=${OUTPUT_DIR}/${ID_FILENAME}
+
 QUERY_RECENT_SUBMISSIONS="./queries/amdashboard-sdt-recent.sh"
 QUERY_DEAD_LETTER_QUEUE="./queries/amdashboard-sdt-dlq.sh"
 QUERY_FORWARDED_REQUESTS="./queries/amdashboard-sdt-forwarded.sh"
