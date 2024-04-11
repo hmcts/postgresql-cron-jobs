@@ -16,7 +16,7 @@ FROM case_event as ce, (SELECT distinct cd.id as caseID, reference
                                 ) as case_stopped_lastweek
 WHERE case_stopped_lastweek.caseID = ce.case_data_id
 AND ce.case_type_id = 'GrantOfRepresentation'
-AND ce.event_id in ('boStopCase', 'boFailQA', 'boStopCaseForCaseMatchingForExamining','boStopCaseForRegistrarEscalations', 'boStopCaseForCasePrinted','boStopCaseForCaseMatching', 'boStopCaseForCaseCreated','boStopCaseForGrantReissueExamining', 'boStopCaseForGrantReissueMatching')
+AND ce.event_id in ('boStopCase', 'boStopCaseForCaseMatchingForExamining','boStopCaseForRegistrarEscalations', 'boStopCaseForCasePrinted','boStopCaseForCaseMatching', 'boStopCaseForCaseCreated','boStopCaseForGrantReissueExamining', 'boStopCaseForGrantReissueMatching')
 AND ce.data #>> '{boCaseStopReasonList}' IS NOT NULL
 ORDER BY 3,CAST (ce.data ->> 'grantStoppedDate' AS DATE)
 ) TO STDOUT WITH CSV HEADER ;
