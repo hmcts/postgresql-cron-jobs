@@ -1,0 +1,32 @@
+name: Test AM Dashboard Daily Updates
+
+trigger: none
+pr: none
+variables:
+  serviceConnection: 'DCD-CFTAPPS-STG'
+
+jobs:
+  - job: SDT Stats
+    pool:
+      name: 'hmcts-ss-prod'
+    steps:
+      - task: AzureKeyVault@2
+        displayName: 'Get Secrets'
+        name: getSecrets
+        inputs:
+          azureSubscription: ${serviceConnection}
+          KeyVaultName: 'civil-sdt-aat'
+          SecretsFilter: 'civil-sdt-POSTGRES-HOST-V15,civil-sdt-POSTGRES-USER-V15,civil-sdt-POSTGRES-PASS-V15,bais-sftp-server,bais-sftp-server-port,bais-sftp-server-username,bais-sftp-server-ssh-key'
+      - task: Bash@3
+        displayName: 'Generate and send SDT Stats'
+        name: generateSendSdtStats
+        inputs:
+          filePath: './scripts/amdashboard/sdt/amdashboard-sdt-stats.sh'
+        env:
+          AZURE_DB_HOSTNAME: ${civil-sdt-POSTGRES-HOST-V15}
+          AZURE_DB_USERNAME: ${civil-sdt-POSTGRES-USER-V15}
+          PGPASSWORD: ${civil-sdt-POSTGRES-PASS-V15}
+          BAIS_SFTP_SERVER: ${bais-sftp-server}
+          BAIS_SFTP_SERVER_PORT: ${bais-sftp-server-port}
+          BAIS_SFTP_SERVER_USERNAME: ${bais-sftp-server-username}
+          BAIS_SFTP_SERVER_SSH_KEY: ${bais-sftp-server-ssh-key}
