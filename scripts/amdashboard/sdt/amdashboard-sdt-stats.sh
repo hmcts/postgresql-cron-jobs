@@ -32,6 +32,10 @@ function errHandler() {
 
 trap errHandler ERR
 
+log "Diagnostic: current directory and contents"
+pwd
+ls -l
+
 log "Count number of forwarded requests"
 STUCK_FORWARDED_COUNT=$(psql -h ${AZURE_DB_HOSTNAME} -d ${AZURE_DB} -U ${AZURE_DB_USERNAME} -c "$(eval ${QUERY_FORWARDED_REQUESTS})")
 if [ ${STUCK_FORWARDED_COUNT} == 0 ]
