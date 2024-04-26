@@ -21,7 +21,8 @@ jobs:
         displayName: 'Generate and send SDT Stats'
         name: generateSendSdtStats
         inputs:
-          filePath: './scripts/amdashboard/sdt/amdashboard-sdt-stats.sh'
+          filePath: '$(System.DefaultWorkingDirectory)/scripts/amdashboard/sdt/amdashboard-sdt-stats.sh'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/scripts/amdashboard/sdt'
         env:
           AZURE_DB_HOSTNAME: $(civil-sdt-POSTGRES-HOST-V15)
           AZURE_DB_USERNAME: $(civil-sdt-POSTGRES-USER-V15)
