@@ -275,6 +275,14 @@ jobs:
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           SUBJECT: 'Welsh-Language-Grants-Issued Weekly Reporting'
+        ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-weekly-stopsappliedtogrants:
+          QUERY: ./scripts/weekly/ccd-data-store-api-postgres-db-prod-ccd_data_store-weekly-ccdprobateweeklycasestopreporting.sh
+          TO_ADDRESS: 'probatefeedback@justice.gov.uk'
+          CC_ADDRESS: 'Probate.Docs@justice.gov.uk'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
+          SUBJECT: 'Stops-applied-to-Grants weekly Report'
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'
