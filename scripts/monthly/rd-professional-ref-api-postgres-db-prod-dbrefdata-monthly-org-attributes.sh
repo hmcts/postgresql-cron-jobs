@@ -6,8 +6,8 @@ function log() {
 }
 
 # Set VArs
-AZURE_DB_USERNAME='DTS Platform Operations SC@rd-professional-api-postgres-db-v11-prod'
-AZURE_HOSTNAME='rd-professional-api-postgres-db-v11-prod.postgres.database.azure.com'
+AZURE_DB_USERNAME='DTS JIT Access rd DB Reader SC'
+AZURE_HOSTNAME='rd-professional-api-postgres-db-v16-prod.postgres.database.azure.com'
 AZURE_DB='dbrefdata'
 SUBJECT='REF-DATA-ORG-ATTRIBUTES Monthly Report'
 TO_ADDRESS='dlrefdatasupport@hmcts.net'
