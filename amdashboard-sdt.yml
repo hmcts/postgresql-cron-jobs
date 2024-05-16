@@ -8,7 +8,7 @@ variables:
 jobs:
   - job: sdt_stats
     pool:
-      name: 'hmcts-ss-prod'
+      name: 'hmcts-sds-ptl'
     steps:
       - task: AzureKeyVault@2
         displayName: 'Get Secrets'
