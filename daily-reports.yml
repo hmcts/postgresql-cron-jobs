@@ -170,6 +170,13 @@ jobs:
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           SUBJECT: 'Welsh-Language-SSCS-Issued Daily Report'
+        ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-Privatelawcasestatus:
+          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-privatelawcasestatus.sh
+          TO_ADDRESS: ' katie.dean5@justice.gov.uk, Cheryl.chesters@justice.gov.uk, Jason.Llewelyn@Justice.gov.uk'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
+          SUBJECT: 'Private Law Case Status Daily Report'
     steps:
       - task: AzureCLI@2
         displayName: 'Get access token'
