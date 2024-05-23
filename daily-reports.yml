@@ -251,7 +251,7 @@ jobs:
         inputs:
           azureSubscription: $(serviceConnection)
           KeyVaultName: 'sendgridprod'
-          SecretsFilter: 'email-db-reporting-api-key'
+          SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
       - task: AzureKeyVault@2
         inputs:
@@ -263,5 +263,5 @@ jobs:
         inputs:
           filePath: 'email_report.sh'
         env:
-          SENDGRID_APIKEY: $(email-db-reporting-api-key)
+          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
           CONTAINER_NAME: 'daily'
