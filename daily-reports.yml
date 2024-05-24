@@ -7,8 +7,6 @@ schedules:
     include:
     - master
   always: true
-  variable:
-    scheduleType: 2am
 
 trigger: none
 pr: none
