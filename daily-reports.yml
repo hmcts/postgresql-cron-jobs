@@ -10,7 +10,7 @@ schedules:
   parameters:
     scheduleType: daily-2am
 
-- cron: "0 17 * * *"
+- cron: "0 11 * * *" #change to 11 for test, will change back
   displayName: Private Law Case Status at 5 PM
   branches:
     include:
