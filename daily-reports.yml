@@ -7,8 +7,8 @@ schedules:
     include:
     - master
   always: true
-  parameters:
-    scheduleType: daily-2am
+  variable:
+    scheduleType: 2am
 
 - cron: "0 11 * * *" #change to 11 for test, will change back
   displayName: Private Law Case Status at 5 PM
@@ -16,8 +16,8 @@ schedules:
     include:
       - master
   always: true
-  parameters:
-    scheduleType: daily-5pm
+  variable:
+    scheduleType: 5pm
 
 trigger: none
 pr: none
@@ -28,7 +28,7 @@ variables:
 
 jobs:
   - job: rd_judicial
-    condition: eq(parameters.scheduleType, 'daily-2am')
+    condition: eq(variables.scheduleTime, '2am')
     pool:
       name: 'hmcts-ss-prod'
     steps:
@@ -58,7 +58,7 @@ jobs:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
 
   - job: rd_elinks_judicial
-    condition: eq(parameters.scheduleType, 'daily-2am')
+    condition: eq(variables.scheduleTime, '2am')
     pool:
       name: 'hmcts-ss-prod'
     steps:
@@ -88,7 +88,7 @@ jobs:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
 
   - job: rd_locationgit
-    condition: eq(parameters.scheduleType, 'daily-2am')
+    condition: eq(variables.scheduleTime, '2am')
     pool:
       name: 'hmcts-ss-prod'
     steps:
@@ -118,7 +118,7 @@ jobs:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
 
   - job: rd_commondata
-    condition: eq(parameters.scheduleType, 'daily-2am')
+    condition: eq(variables.scheduleTime, '2am')
     pool:
       name: 'hmcts-ss-prod'
     steps:
@@ -148,7 +148,7 @@ jobs:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
 
   - job: ccd_daily
-    condition: eq(parameters.scheduleType, 'daily-2am')
+    condition: eq(variables.scheduleTime, '2am')
     pool:
       name: 'hmcts-ss-prod'
     strategy:
@@ -220,7 +220,7 @@ jobs:
           CONTAINER_NAME: 'daily'
   
   - job: ccd_privatelawcasestatus_5pm
-    condition: eq(parameters.scheduleType, 'daily-5pm')
+    condition: eq(variables.scheduleTime, '5pm')
     pool:
       name: 'hmcts-ss-prod'
     strategy:
