@@ -1,7 +1,7 @@
 
 name: Postgres DB Daily Reports
 schedules:
-- cron: "0 12 * * *" #change to 12 for test, will change back
+- cron: "0 17 * * *"
   displayName: Private Law Case Status at 5 PM
   branches:
     include:
