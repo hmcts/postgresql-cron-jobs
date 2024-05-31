@@ -216,10 +216,3 @@ jobs:
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
           CONTAINER_NAME: 'daily'
-
-  - job: et_submissions
-    pool:
-      name: 'hmcts-ss-prod'
-    strategy:
-      maxParallel: 1
-      matrix:
