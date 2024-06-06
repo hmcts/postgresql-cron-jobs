@@ -176,7 +176,7 @@ jobs:
           AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
-          SUBJECT: 'ET Online Submission Report'
+          SUBJECT: 'ET Online Claim Submission Report'
         ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-etApplicationSubmissions:
           QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-etApplicationSubmissions.sh
           TO_ADDRESS: 'Harpreet.Jhita@justice.gov.uk,daniel.thompson@justice.gov.uk'
