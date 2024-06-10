@@ -6,8 +6,8 @@ function log() {
 }
 
 # Set VArs
-AZURE_DB_USERNAME='DTS Platform Operations SC@rd-location-ref-api-postgres-db-prod'
-AZURE_HOSTNAME='rd-location-ref-api-postgres-db-prod.postgres.database.azure.com'
+AZURE_DB_USERNAME='pgadmin'
+AZURE_HOSTNAME='rd-location-ref-api-postgres-db-v16-prod.postgres.database.azure.com'
 AZURE_DB='dbrdlocationref'
 SUBJECT='LOCATION-REF-DATA-DB Daily Report'
 TO_ADDRESS='dlrefdatasupport@hmcts.net'
