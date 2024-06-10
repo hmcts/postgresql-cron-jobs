@@ -204,12 +204,6 @@ jobs:
           KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
-      - task: AzureKeyVault@2
-        inputs:
-          azureSubscription: $(serviceConnection)
-          KeyVaultName: 'ccd-prod'
-          SecretsFilter: 'timdaexedata-storageaccount'
-          RunAsPreJob: false
       - task: Bash@3
         inputs:
           filePath: 'email_report.sh'

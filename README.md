@@ -11,7 +11,7 @@ Service connections enable you to connect to Azure tenant(s) to execute tasks in
 ## Storage Account
 Some of the reports are very large and above the recommended size limit of Sendgrid (SMTP) attachment. As a work around, any reports greater than 9MB in size will be upload to Blob storage account. Access key for the storage account is stored in key vault. 
       
-       Storage account: timdaexedata
+       Storage account: miapintegrationprod
        Container: Weeklies       #For Weekly reports
        Container: Daily          #For Daily reports
        KeyVault: ccd-prod
