@@ -6,7 +6,7 @@ function log() {
 }
 
 # Set VArs
-AZURE_DB_USERNAME='DTS JIT Access rd DB Reader SC'
+AZURE_DB_USERNAME='DTS Platform Operations SC'
 AZURE_HOSTNAME='rd-commondata-api-postgres-db-v16-prod.postgres.database.azure.com'
 AZURE_DB='dbcommondata'
 SUBJECT='rd-commondata-Record-Count Daily Report'
