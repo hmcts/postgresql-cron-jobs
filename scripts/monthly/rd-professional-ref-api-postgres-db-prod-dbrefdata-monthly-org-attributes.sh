@@ -6,7 +6,7 @@ function log() {
 }
 
 # Set VArs
-AZURE_DB_USERNAME='pgadmin'
+AZURE_DB_USERNAME='DTS JIT Access rd DB Reader SC'
 AZURE_HOSTNAME='rd-professional-api-postgres-db-v16-prod.postgres.database.azure.com'
 AZURE_DB='dbrefdata'
 SUBJECT='REF-DATA-ORG-ATTRIBUTES Monthly Report'
