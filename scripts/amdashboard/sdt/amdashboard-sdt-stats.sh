@@ -33,7 +33,7 @@ function errHandler() {
 trap errHandler ERR
 
 log "Count number of forwarded requests"
-STUCK_FORWARDED_COUNT=$(psql -h ${AZURE_DB_HOSTNAME} -d ${AZURE_DB} -U ${AZURE_DB_USERNAME} -c "$(eval ${QUERY_FORWARDED_REQUESTS})")
+STUCK_FORWARDED_COUNT=$(psql -h ${AZURE_DB_HOSTNAME} -d ${AZURE_DB} -U "${AZURE_DB_USERNAME}" -c "$(eval ${QUERY_FORWARDED_REQUESTS})")
 if [ ${STUCK_FORWARDED_COUNT} == 0 ]
 then
   STUCK_FORWARDED_STATUS="ok"
@@ -42,7 +42,7 @@ else
 fi
 
 log "Count number of received requests"
-STUCK_RECEIVED_COUNT=$(psql -h ${AZURE_DB_HOSTNAME} -d ${AZURE_DB} -U ${AZURE_DB_USERNAME} -c "$(eval ${QUERY_RECEIVED_REQUESTS})")
+STUCK_RECEIVED_COUNT=$(psql -h ${AZURE_DB_HOSTNAME} -d ${AZURE_DB} -U "${AZURE_DB_USERNAME}" -c "$(eval ${QUERY_RECEIVED_REQUESTS})")
 if [ ${STUCK_RECEIVED_COUNT} == 0 ]
 then
   STUCK_RECEIVED_STATUS="ok"
@@ -55,7 +55,7 @@ log "Generating stats file"
 echo ${CURRENT_DATE} ${CURRENT_TIME}
 echo "[SDTRecent]"
 echo "CREATED,UPDATED,SDT_REQUEST_REFERENCE,REQUEST_STATUS,REQUEST_TYPE"
-psql -h ${AZURE_DB_HOSTNAME} -d ${AZURE_DB} -U ${AZURE_DB_USERNAME} -c "$(eval ${QUERY_RECENT_SUBMISSIONS})"
+psql -h ${AZURE_DB_HOSTNAME} -d ${AZURE_DB} -U "${AZURE_DB_USERNAME}" -c "$(eval ${QUERY_RECENT_SUBMISSIONS})"
 echo ""
 echo "[SDTStuck]"
 echo "NAME,TIME,DESCRIPTION,COUNT,RESULT"
@@ -64,7 +64,7 @@ echo "Received,${CURRENT_DATE} ${CURRENT_TIME},Request stuck in Received state,$
 echo ""
 echo "[SDTDLQ]"
 echo "CREATED,SDT_REQUEST_REFERENCE,REQUEST_STATUS,REQUEST_TYPE"
-psql -h ${AZURE_DB_HOSTNAME} -d ${AZURE_DB} -U ${AZURE_DB_USERNAME} -c "$(eval ${QUERY_DEAD_LETTER_QUEUE})"
+psql -h ${AZURE_DB_HOSTNAME} -d ${AZURE_DB} -U "${AZURE_DB_USERNAME}" -c "$(eval ${QUERY_DEAD_LETTER_QUEUE})"
 echo ""
 echo "[Additional Checks]"
 echo "NAME,TIME,DESCRIPTION,RESULT,STATUS"
