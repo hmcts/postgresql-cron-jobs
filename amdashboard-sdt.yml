@@ -1,4 +1,11 @@
-name: Test AM Dashboard Daily Updates
+name: SDT AM Dashboard Daily Updates
+schedules:
+  - cron: "0/10 * * * *"
+    displayName: SDT AM Dashboard Daily Updates
+    branches:
+      include:
+        - master
+    always: true
 
 trigger: none
 pr: none
