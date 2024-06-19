@@ -76,7 +76,7 @@ touch ${ID_FILEPATH}
 chmod 600 ${ID_FILEPATH}
 echo "${BAIS_SFTP_SERVER_SSH_KEY}" >> ${ID_FILEPATH}
 log "Sending stats file via sftp"
-sftp -v -v -v -P ${BAIS_SFTP_SERVER_PORT} -i ${ID_FILEPATH} -oStrictHostKeyChecking=accept-new -oHostKeyAlgorithms=+ssh-rsa ${BAIS_SFTP_SERVER_USERNAME}@${BAIS_SFTP_SERVER} <<EOF
+sftp -P ${BAIS_SFTP_SERVER_PORT} -i ${ID_FILEPATH} -oStrictHostKeyChecking=accept-new -oHostKeyAlgorithms=+ssh-rsa ${BAIS_SFTP_SERVER_USERNAME}@${BAIS_SFTP_SERVER} <<EOF
 put ${OUTPUT_FILEPATH}
 bye
 EOF
