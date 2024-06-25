@@ -308,3 +308,4 @@ jobs:
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
           CONTAINER_NAME: 'weeklies'
+        retryCountOnTaskFailure: '3'
