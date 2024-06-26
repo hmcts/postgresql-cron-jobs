@@ -132,6 +132,36 @@ jobs:
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
 
+  - job: rd_userprofile
+    pool:
+      name: 'hmcts-ss-prod'
+    steps:
+      - task: AzureCLI@2
+        displayName: 'Get access token'
+        name: gettoken
+        inputs:
+          azureSubscription: $(serviceConnection)
+          scriptType: bash
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            #!/bin/bash
+            set -ex
+            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
+            echo $output
+            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
+      - task: AzureKeyVault@2
+        inputs:
+          azureSubscription: $(serviceConnection)
+          KeyVaultName: 'sendgridprod'
+          SecretsFilter: 'hmcts-db-reporting-api-key'
+          RunAsPreJob: false
+      - task: Bash@3
+        inputs:
+          filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
+        env:
+          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
+          ALL_USERS_FLAG: true
+
   - job: ccd_daily
     pool:
       name: 'hmcts-ss-prod'
