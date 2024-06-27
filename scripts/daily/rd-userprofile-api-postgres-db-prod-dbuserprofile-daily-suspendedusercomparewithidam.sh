@@ -25,6 +25,10 @@ OAUTH2_CLIENT_ID="rd-professional-api"
 OAUTH2_CLIENT_SECRET="a20c3cf7-1fb4-4bcf-89ec-963c05a13f71"
 SCOPE="openid\ profile\ roles\ manage-user\ create-user\ search-user"
 
+FILESUB=$(echo ${SUBJECT} | cut -d' ' -f 1,2,3 | tr ' ' -)
+OUTPUT_FILE_NAME=${DEFAULT_DATE}_${AZURE_DB}_${FILESUB}.csv
+ATTACHMENT=${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
+
 function errorHandler() {
   local dump_failed_error="${AZURE_HOSTNAME} ${AZURE_DB} Dump extract for ${DEFAULT_DATE}"
   log "${dump_failed_error}"
@@ -39,21 +43,22 @@ SSH_CMD1="ssh -F /Users/sabinasharangdhar/.ssh/az_config bastion-nonprod.platfor
 
 if [ $ALL_USERS_FLAG -ne 0 ]
 then
-  psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.SERVICE_TO_CCD_CASE_TYPE_ASSOC;"  >> ${ATTACHMENT}
-PSQL_CMD1='psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select idam_id from user_profile where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS' LIMIT 5 ;"'
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS' LIMIT 5;"
  else
-PSQL_CMD1='psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u LIMIT 5;"'
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' LIMIT 5;" >> ${ATTACHMENT}
 fi
 CMD1="$SSH_CMD1 $PSQL_CMD1"
 echo "idams from user profile"
-${CMD1} | tail -n +3 | tee user_profile_idams.txt
+${CMD1} | tail -n +3 | tee  ${ATTACHMENT}
+echo >> ${ATTACHMENT}
 
 while read -r line; do
   tables+=("$line")
-done < user_profile_idams.txt
+done < ATTACHMENT
 
 HEADERS='-H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H Accept:*/* -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded'
-
+TOKEN_CMD=$ CURL -X -s POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='$idam-rd-system-user'&password='$idam-rd-system-user-password'&client_id='$OAUTH2-CLIENT-ID'&scope='$SCOPE'&client_secret='$OAUTH2-CLIENT-SECRET $HEADERS
+echo "TOKEN :"$TOKEN_CMD
 
 tables=()
 for table in ${tables[@]}; do
