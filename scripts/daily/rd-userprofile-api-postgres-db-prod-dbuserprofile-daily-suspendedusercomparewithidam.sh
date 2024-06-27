@@ -19,10 +19,11 @@ OUTPUT_DIR=/tmp
 OUTPUT_FILE_NAME=${DEFAULT_DATE}_${AZURE_DB}_${FILESUB}.csv
 USERPROFILEIDS=${OUTPUT_DIR}/"USERPROFILEIDS"
 
-USER="up.demo.cgi@hmcts.net"
-PASS="Password123"
-CLIENT="rd-professional-api"
-SECRET="a20c3cf7-1fb4-4bcf-89ec-963c05a13f71"
+idam_rd_system_user="up.demo.cgi@hmcts.net"
+idam_rd_system_user_password="Password123"
+OAUTH2_CLIENT_ID="rd-professional-api"
+OAUTH2_CLIENT_SECRET="a20c3cf7-1fb4-4bcf-89ec-963c05a13f71"
+SCOPE="openid\ profile\ roles\ manage-user\ create-user\ search-user"
 
 function errorHandler() {
   local dump_failed_error="${AZURE_HOSTNAME} ${AZURE_DB} Dump extract for ${DEFAULT_DATE}"
@@ -51,8 +52,8 @@ while read -r line; do
 done < user_profile_idams.txt
 
 HEADERS='-H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H Accept:*/* -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded'
-TOKEN_CMD=$ CURL -X  GET 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='$USER'&password='$PASS'&client_id='$CLIENT'&scope=openid/profile/roles/manage-user/create-user/search-user&client_secret='$SECRET $HEADERS
-echo "TOKEN :"$TOKEN_CMD
+TOKEN_CMD=$ CURL -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='$idam-rd-system-user'&password='$idam-rd-system-user-password'&client_id='$OAUTH2-CLIENT-ID'&scope='$SCOPE'&client_secret='$OAUTH2-CLIENT-SECRET $HEADERS
+echo "TOKEN :"$TOKEN_CMDSCOPE
 
 tables=()
 for table in ${tables[@]}; do
