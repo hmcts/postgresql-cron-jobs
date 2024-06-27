@@ -45,7 +45,7 @@ if [ $ALL_USERS_FLAG -ne 0 ]
 then
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS' LIMIT 5;"
  else
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' LIMIT 5;" >> ${ATTACHMENT}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' LIMIT 5;"
 fi
 CMD1="$SSH_CMD1 $PSQL_CMD1"
 echo "idams from user profile"
@@ -54,7 +54,7 @@ echo >> ${ATTACHMENT}
 
 while read -r line; do
   tables+=("$line")
-done < ATTACHMENT
+done < ${ATTACHMENT}
 
 HEADERS='-H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H Accept:*/* -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded'
 TOKEN_CMD=$ CURL -X -s POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='$idam-rd-system-user'&password='$idam-rd-system-user-password'&client_id='$OAUTH2-CLIENT-ID'&scope='$SCOPE'&client_secret='$OAUTH2-CLIENT-SECRET $HEADERS
