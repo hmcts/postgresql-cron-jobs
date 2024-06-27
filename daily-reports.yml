@@ -1,11 +1,11 @@
 
 name: Postgres DB Daily Reports
 schedules:
-- cron: "0 2 * * *"
+- cron: "10 40 * * *"
   displayName: Daily reports
   branches:
     include:
-    - master
+    - DTSRD-2954
   always: true
 
 trigger: none
@@ -160,7 +160,7 @@ jobs:
           filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-          ALL_USERS_FLAG: true
+          ALL_USERS_FLAG: 0
 
   - job: ccd_daily
     pool:
