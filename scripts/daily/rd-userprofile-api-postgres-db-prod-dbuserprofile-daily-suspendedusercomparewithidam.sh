@@ -27,7 +27,7 @@ SCOPE="openid\ profile\ roles\ manage-user\ create-user\ search-user"
 
 FILESUB=$(echo ${SUBJECT} | cut -d' ' -f 1,2,3 | tr ' ' -)
 OUTPUT_FILE_NAME=${DEFAULT_DATE}_${AZURE_DB}_${FILESUB}.csv
-ATTACHMENT=${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
+ATTACHMENT=y${OUTPUT_FILE_NAME}
 
 function errorHandler() {
   local dump_failed_error="${AZURE_HOSTNAME} ${AZURE_DB} Dump extract for ${DEFAULT_DATE}"
@@ -50,7 +50,7 @@ fi
 CMD1="$SSH_CMD1 $PSQL_CMD1"
 echo "idams from user profile"
 ${CMD1} | tail -n +3 | tee  ${ATTACHMENT}
-echo >> ${ATTACHMENT}
+
 
 while read -r line; do
   tables+=("$line")
