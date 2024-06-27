@@ -39,9 +39,10 @@ SSH_CMD1="ssh -F /Users/sabinasharangdhar/.ssh/az_config bastion-nonprod.platfor
 
 if [ $ALL_USERS_FLAG -ne 0 ]
 then
-PSQL_CMD1='psql "sslmode=require user='$USER1' password='$PASS1' host='$DB1_HOST' dbname='$DB1_NAME' port=5432" -c "select idam_id from user_profile where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS' LIMIT 5 ;"'
+  psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT COUNT(*) FROM locrefdata.SERVICE_TO_CCD_CASE_TYPE_ASSOC;"  >> ${ATTACHMENT}
+PSQL_CMD1='psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "select idam_id from user_profile where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS' LIMIT 5 ;"'
  else
-PSQL_CMD1='psql "sslmode=require user='$USER1' password='$PASS1' host='$DB1_HOST' dbname='$DB1_NAME' port=5432" -c "SELECT idam_id FROM dbuserprofile.user_profile u LIMIT 5;"'
+PSQL_CMD1='psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u LIMIT 5;"'
 fi
 CMD1="$SSH_CMD1 $PSQL_CMD1"
 echo "idams from user profile"
@@ -52,20 +53,19 @@ while read -r line; do
 done < user_profile_idams.txt
 
 HEADERS='-H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H Accept:*/* -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded'
-TOKEN_CMD=$ CURL -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='$idam-rd-system-user'&password='$idam-rd-system-user-password'&client_id='$OAUTH2-CLIENT-ID'&scope='$SCOPE'&client_secret='$OAUTH2-CLIENT-SECRET $HEADERS
-echo "TOKEN :"$TOKEN_CMDSCOPE
+
 
 tables=()
 for table in ${tables[@]}; do
- echo "helolo"
-  cmd1=$(curl -X GET 'https://idam-testing-support-api.aat.platform.hmcts.net/test/idam/users/' + $table  -H 'accept: */*' -H 'Authorization:Bearer '+$TOKEN)
-  idam_entry_count=$( ${cmd1} | tail -n +3 | tee idam_entries.txt)
+echo "helolo"
+cmd1=$(curl -X GET 'https://idam-testing-support-api.aat.platform.hmcts.net/test/idam/users/' + $table  -H 'accept: */*' -H 'Authorization:Bearer eyJ0eXAiOiJKV1QiLCJraWQiOiIxZXIwV1J3Z0lPVEFGb2pFNHJDL2ZiZUt1M0k9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1cC5kZW1vLmNnaUBobWN0cy5uZXQiLCJjdHMiOiJPQVVUSDJfU1RBVEVMRVNTX0dSQU5UIiwiYXV0aF9sZXZlbCI6MCwiYXVkaXRUcmFja2luZ0lkIjoiNTg0Y2IxYjUtMjExMi00Mjc3LWJiNTUtNWFhMzM3NmI0NjEzLTEyNjY0MzEiLCJzdWJuYW1lIjoidXAuZGVtby5jZ2lAaG1jdHMubmV0IiwiaXNzIjoiaHR0cHM6Ly9mb3JnZXJvY2stYW0uc2VydmljZS5jb3JlLWNvbXB1dGUtaWRhbS1hYXQyLmludGVybmFsOjg0NDMvb3BlbmFtL29hdXRoMi9yZWFsbXMvcm9vdC9yZWFsbXMvaG1jdHMiLCJ0b2tlbk5hbWUiOiJhY2Nlc3NfdG9rZW4iLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiYXV0aEdyYW50SWQiOiJqd0pKUlBXS0tEM2otbWdmaUJISmVYQUJTMUEiLCJhdWQiOiJyZC1wcm9mZXNzaW9uYWwtYXBpIiwibmJmIjoxNzE5NTA2MTczLCJncmFudF90eXBlIjoicGFzc3dvcmQiLCJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJjcmVhdGUtdXNlciIsIm1hbmFnZS11c2VyIiwic2VhcmNoLXVzZXIiXSwiYXV0aF90aW1lIjoxNzE5NTA2MTczLCJyZWFsbSI6Ii9obWN0cyIsImV4cCI6MTcxOTUzNDk3MywiaWF0IjoxNzE5NTA2MTczLCJleHBpcmVzX2luIjoyODgwMCwianRpIjoieVNvRHBZZW5EY0IwT0g2RkJxeElOUm9PZHFRIn0.sn2OeWfWpaXcT_nuMmri9a3Oj7zrSXP-YrxbdOPvKyMcQqoRzfpENYzT6_qjcyPzp8ds5P2hFe2JaNYs6Rj7R5Zq1Wiw5LdyITw0IhuLUjvpuabU3fYh4frttnXSddTEBBtOXLq7jHQAKJzwBuRgoJVJlKVLEw7XjwkZ3L4-sl7oNp0Q-TninQJGaRQO4lqLwLE7v7YkdnrMZUytJ-VNpv7ULhNJr1HYfh6OyNooXz5EbRFiWh-DHdTrh3lgB1KTabqpMNm2KU3ptxAwGdkjEZ3bV6wv2jdMw5fDWiqC_txbgl14tVEu-6xG-WGnv72HqLW-0bxqJMBPV-AiC8hs9Q')
+idam_entry_count=$( ${cmd1}  | tee idam_entries.txt)
 
-  if [ idam_entry_count -ne 0 ]
-    then
-      echo -e "${Col_Grn} Suspended user in User profile found on IDAM $table ${Col_Off}"
-      echo "idam_entry_count:  $db1_entry_count  and userprofile idam : $table"
-    else
-      echo -e "${Col_Red}Suspended user in User profile not found on IDAM $table ${Col_Off}"
-    fi
+if [ $idam_entry_count -ne 0 ]
+  then
+    echo -e "${Col_Grn} Suspended user in User profile found on IDAM $table ${Col_Off}"
+    echo "idam_entry_count:  $db1_entry_count  and userprofile idam : $table"
+  else
+    echo -e "${Col_Red}Suspended user in User profile not found on IDAM $table ${Col_Off}"
+  fi
 done
