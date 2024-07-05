@@ -183,7 +183,7 @@ jobs:
           filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-          ALL_USERS_FLAG: 0
+          ALL_USERS_FLAG: 1
 
   - job: ccd_daily
     pool:
