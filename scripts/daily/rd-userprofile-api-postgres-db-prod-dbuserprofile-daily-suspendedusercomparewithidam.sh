@@ -36,14 +36,13 @@ function errorHandler() {
 trap errorHandler ERR
 
 echo " =====  Call User Profile table and select suspended users ===== "
-# SSH commands to connect to the servers
 
 # pick suspended users from user profile in the last 2 weeks and write them to a file
 if [ $ALL_USERS_FLAG -ne 0 ]
 then
 psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS' LIMIT 5;" >> ${USERIDAMS}
  else
-psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' LIMIT 5;" >> ${USERIDAMS}
+psql -t sslmode=require -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} password="jyS-DDIhqfaBQj7kBWAQ" -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' LIMIT 5;" >> ${USERIDAMS}
 fi
 
 # iterate file of suspended users
