@@ -12,7 +12,7 @@ function log() {
 
 # Set VArs
 AZURE_DB_USERNAME='pgadmin'
-AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.com'
+AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-prod.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
 #idam_rd_system_user='admin.refdata@hmcts.net'
 #idam_rd_system_user='prd.demo.cgi4@hmcts.net'
@@ -53,7 +53,7 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELE
 fi
 
 # generating Bearer token to connect to idam
-TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='${idam_rd_system_user}'&password='${idam_rd_system_user_password}'&client_secret='${OAUTH2_CLIENT_SECRET}'&client_id='${OAUTH2_CLIENT_ID}'&scope=openid' -H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username='${idam_rd_system_user}'&password='${idam_rd_system_user_password}'&client_secret='${OAUTH2_CLIENT_SECRET}'&client_id='${OAUTH2_CLIENT_ID}'&scope=openid' -H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 # iterate file of suspended users
@@ -64,7 +64,7 @@ done < SUSPENDED_USERIDAMS.txt
 
 # for each suspended user from user profile make a call to idam to check if the user exists
 for table in ${tables[@]}; do
-cmd=$(curl -X GET 'https://idam-testing-support-api.aat.platform.hmcts.net/test/idam/users/'$table'' -H Authorization:'Bearer '${TOKEN}  -H 'accept: */*' )
+cmd=$(curl -X GET 'https://idam-api.platform.hmcts.net/api/v1/users/'$table'' -H Authorization:'Bearer '${TOKEN}  -H 'accept: */*' )
 
 # if user found on idam then print the user and the status on idam
 if [ -z $(echo ${cmd}) ];

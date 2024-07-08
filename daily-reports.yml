@@ -24,9 +24,8 @@ jobs:
         displayName: 'Get Secrets'
         name: getSecrets
         inputs:
-          serviceConnection: 'DCD-CNP-DEV'
-          azureSubscription: 'DCD-CNP-DEV'
-          KeyVaultName: 'rd-aat'
+          azureSubscription: $(serviceConnection)
+          KeyVaultName: 'rd-prod'
           SecretsFilter: 'OAUTH2-CLIENT-ID,OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password,user-profile-api-POSTGRES-USER,user-profile-api-POSTGRES-HOST,user-profile-api-POSTGRES-DATABASE,user-profile-api-POSTGRES-PASS'
       - task: Bash@3
         displayName: 'Generate and send Bearer token'
@@ -47,8 +46,7 @@ jobs:
         displayName: 'Get access token'
         name: gettoken
         inputs:
-          serviceConnection: 'DCD-CNP-DEV'
-          azureSubscription: 'DCD-CNP-DEV'
+          azureSubscription: $(serviceConnection)
           scriptType: bash
           scriptLocation: 'inlineScript'
           inlineScript: |
@@ -59,8 +57,7 @@ jobs:
             echo "##vso[task.setvariable variable=PGPASSWORD]$output"
       - task: AzureKeyVault@2
         inputs:
-          serviceConnection: 'DCD-CNP-DEV'
-          azureSubscription: 'DCD-CNP-DEV'
+          azureSubscription: $(serviceConnection)
           KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
