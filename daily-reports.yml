@@ -47,6 +47,7 @@ jobs:
         displayName: 'Get access token'
         name: gettoken
         inputs:
+          serviceConnection: 'DCD-CNP-DEV'
           azureSubscription: $(serviceConnection)
           scriptType: bash
           scriptLocation: 'inlineScript'
@@ -58,6 +59,7 @@ jobs:
             echo "##vso[task.setvariable variable=PGPASSWORD]$output"
       - task: AzureKeyVault@2
         inputs:
+          serviceConnection: 'DCD-CNP-DEV'
           azureSubscription: $(serviceConnection)
           KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
