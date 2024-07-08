@@ -25,7 +25,7 @@ jobs:
         name: getSecrets
         inputs:
           serviceConnection: 'DCD-CNP-DEV'
-          azureSubscription: '1c4f0704-a29e-403d-b719-b90c34ef14c9'
+          azureSubscription: 'DCD-CNP-DEV'
           KeyVaultName: 'rd-aat'
           SecretsFilter: 'OAUTH2_CLIENT_ID,OAUTH2_CLIENT_SECRET,idam-rd-system-user-username,idam-rd-system-user-password,user-profile-api-POSTGRES-USER,user-profile-api-POSTGRES-HOST,user-profile-api-POSTGRES-DATABASE,user-profile-api-POSTGRES-PASS'
       - task: Bash@3
@@ -48,7 +48,7 @@ jobs:
         name: gettoken
         inputs:
           serviceConnection: 'DCD-CNP-DEV'
-          azureSubscription: '1c4f0704-a29e-403d-b719-b90c34ef14c9'
+          azureSubscription: 'DCD-CNP-DEV'
           scriptType: bash
           scriptLocation: 'inlineScript'
           inlineScript: |
@@ -60,7 +60,7 @@ jobs:
       - task: AzureKeyVault@2
         inputs:
           serviceConnection: 'DCD-CNP-DEV'
-          azureSubscription: '1c4f0704-a29e-403d-b719-b90c34ef14c9'
+          azureSubscription: 'DCD-CNP-DEV'
           KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
