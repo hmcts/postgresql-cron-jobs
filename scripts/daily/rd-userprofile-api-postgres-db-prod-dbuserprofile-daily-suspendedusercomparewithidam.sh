@@ -14,8 +14,13 @@ function log() {
 AZURE_DB_USERNAME='pgadmin'
 AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
-idam_rd_system_user='admin.refdata@hmcts.net'
+#idam_rd_system_user='admin.refdata@hmcts.net'
+#idam_rd_system_user='prd.demo.cgi4@hmcts.net'
+#idam_rd_system_user_password='Password123'
+#idam_rd_system_user_password='y8jt2nZefX9G'
 OAUTH2_CLIENT_ID='rd-professional-api'
+#OAUTH2_CLIENT_SECRET='a20c3cf7-1fb4-4bcf-89ec-963c05a13f71'
+#PGPASSWORD='jyS-DDIhqfaBQj7kBWAQ'
 
 SUBJECT='USER_PROFILE_DATA-DB Daily Report'
 TO_ADDRESS='sabina.sharangdhar@hmcts.net'
@@ -25,8 +30,8 @@ FILESUB=$(echo ${SUBJECT} | cut -d' ' -f 1,2,3 | tr ' ' -)
 OUTPUT_DIR=/tmp
 OUTPUT_FILE_NAME=suspendedUsersNotFoundOnIdam.csv
 OUTPUT_FILE_NAME1=suspendedUsersFoundOnIdam.csv
-SUSPENDED_USERS_FOUND=${OUTPUT_DIR}/${OUTPUT_FILE_NAME1}
-SUSPENDED_USERS_NOT_FOUND=${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
+SUSPENDED_USERS_FOUND=${OUTPUT_FILE_NAME1}
+SUSPENDED_USERS_NOT_FOUND=${OUTPUT_FILE_NAME}
 USERIDAMS='SUSPENDED_USERIDAMS.txt'
 
 function errorHandler() {
@@ -64,7 +69,8 @@ cmd=$(curl -X GET 'https://idam-testing-support-api.aat.platform.hmcts.net/test/
 # if user found on idam then print the user and the status on idam
 if [ -z $(echo ${cmd}) ];
   then
-  user_count=$(echo ${CMD}  | tee ${SUSPENDED_USERS_NOT_FOUND})
+  $table >> ${SUSPENDED_USERS_NOT_FOUND}
+  user_count=$(echo ${cmd}  | tee ${SUSPENDED_USERS_NOT_FOUND})
   echo -e "${Col_Grn} Suspended user in User profile not found on IDAM $table ${user_count} ${Col_Off}"
 else
   user_count=$( ${CMD}  | tee ${SUSPENDED_USERS_FOUND})
