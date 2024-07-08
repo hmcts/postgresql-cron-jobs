@@ -18,7 +18,7 @@ AZURE_DB='dbuserprofile'
 #idam_rd_system_user='prd.demo.cgi4@hmcts.net'
 #idam_rd_system_user_password='Password123'
 #idam_rd_system_user_password='y8jt2nZefX9G'
-OAUTH2_CLIENT_ID='rd-professional-api'
+#OAUTH2_CLIENT_ID='rd-professional-api'
 #OAUTH2_CLIENT_SECRET='a20c3cf7-1fb4-4bcf-89ec-963c05a13f71'
 #PGPASSWORD='jyS-DDIhqfaBQj7kBWAQ'
 
