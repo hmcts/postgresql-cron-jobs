@@ -11,6 +11,7 @@ function log() {
 }
 
 # Set VArs
+AZURE_DB_USERNAME='DTS JIT Access rd DB Reader SC'
 AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-prod.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
 #idam_rd_system_user='admin.refdata@hmcts.net'
