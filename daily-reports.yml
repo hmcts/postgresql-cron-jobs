@@ -62,7 +62,7 @@ jobs:
           AZURE_HOSTNAME: $(user-profile-api-POSTGRES-HOST)
           AZURE_DB: $(user-profile-api-POSTGRES-DATABASE)
           AZURE_PASS: $(user-profile-api-POSTGRES-PASS)
-          idam-rd-system-user: $(idam-rd-system-user)
+          idam-rd-system-username: $(idam-rd-system-user-username)
           idam-rd-system-user-password: $(idam-rd-system-user-password)
           OAUTH2-CLIENT-ID: $(OAUTH2-CLIENT-ID)
           OAUTH2-CLIENT-SECRET: $(OAUTH2-CLIENT-SECRET)
