@@ -27,7 +27,7 @@ jobs:
           serviceConnection: 'DCD-CNP-DEV'
           azureSubscription: 'DCD-CNP-DEV'
           KeyVaultName: 'rd-aat'
-          SecretsFilter: 'OAUTH2_CLIENT_ID,OAUTH2_CLIENT_SECRET,idam-rd-system-user-username,idam-rd-system-user-password,user-profile-api-POSTGRES-USER,user-profile-api-POSTGRES-HOST,user-profile-api-POSTGRES-DATABASE,user-profile-api-POSTGRES-PASS'
+          SecretsFilter: 'OAUTH2-CLIENT-ID,OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password,user-profile-api-POSTGRES-USER,user-profile-api-POSTGRES-HOST,user-profile-api-POSTGRES-DATABASE,user-profile-api-POSTGRES-PASS'
       - task: Bash@3
         displayName: 'Generate and send Bearer token'
         name: generateSendBearer
@@ -40,8 +40,8 @@ jobs:
           AZURE_PASS: $(user-profile-api-POSTGRES-PASS)
           idam-rd-system-user: $(idam-rd-system-user)
           idam-rd-system-user-password: $(idam-rd-system-user-password)
-          OAUTH2_CLIENT_ID: $(OAUTH2_CLIENT_ID)
-          OAUTH2_CLIENT_SECRET: $(OAUTH2_CLIENT_SECRET)
+          OAUTH2_CLIENT_ID: $(OAUTH2-CLIENT-ID)
+          OAUTH2_CLIENT_SECRET: $(OAUTH2-CLIENT-SECRET)
           PGPASSWORD : $(user-profile-api-POSTGRES-PASS)
       - task: AzureCLI@2
         displayName: 'Get access token'
