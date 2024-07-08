@@ -53,7 +53,7 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELE
 fi
 
 # generating Bearer token to connect to idam
-TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username='${idam_rd_system_user}'&password='${idam_rd_system_user_password}'&client_secret='${OAUTH2_CLIENT_SECRET}'&client_id='${OAUTH2_CLIENT_ID}'&scope=openid' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username='${idam_rd_system_user}'&password='${idam_rd_system_user_password}'&client_secret='${OAUTH2_CLIENT_SECRET}'&client_id=rd-professional-api&scope=openid' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 # iterate file of suspended users
