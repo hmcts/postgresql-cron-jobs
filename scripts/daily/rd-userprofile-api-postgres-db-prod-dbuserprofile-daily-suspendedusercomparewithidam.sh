@@ -22,6 +22,10 @@ AZURE_DB='dbuserprofile'
 #OAUTH2_CLIENT_SECRET='a20c3cf7-1fb4-4bcf-89ec-963c05a13f71'
 #PGPASSWORD='jyS-DDIhqfaBQj7kBWAQ'
 
+OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
+idam_rd_system_user=${USERNAME}
+idam_rd_system_pass=${SYSPASS}
+
 SUBJECT='USER_PROFILE_DATA-DB Daily Report'
 TO_ADDRESS='sabina.sharangdhar@hmcts.net'
 CC_ADDRESS='sabina.sharangdhar@hmcts.net'
@@ -53,7 +57,7 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELE
 fi
 
 # generating Bearer token to connect to idam
-TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username='${idam-rd-system-username}'&password='${idam-rd-system-user-password}'&client_secret='${OAUTH2-CLIENT-SECRET}'&client_id=rd-professional-api&scope=openid' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username='${idam_rd_system_user}'&password='${idam_rd_system_pass}'&client_secret='${OAUTH2_CLIENT_SECRET}'&client_id=rd-professional-api&scope=openid' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 # iterate file of suspended users

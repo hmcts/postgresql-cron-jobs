@@ -34,18 +34,6 @@ jobs:
             echo $output
             echo "##vso[task.setvariable variable=PGPASSWORD]$output"
       - task: AzureKeyVault@2
-        inputs:
-          azureSubscription: $(serviceConnection)
-          KeyVaultName: 'sendgridprod'
-          SecretsFilter: 'hmcts-db-reporting-api-key'
-          RunAsPreJob: false
-      - task: Bash@3
-        inputs:
-          filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
-        env:
-          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-          ALL_USERS_FLAG: 1
-      - task: AzureKeyVault@2
         displayName: 'Get Secrets'
         name: getSecrets
         inputs:
@@ -58,8 +46,10 @@ jobs:
         inputs:
           filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
         env:
-          idam-rd-system-username: $(idam-rd-system-user-username)
-          idam-rd-system-user-password: $(idam-rd-system-user-password)
-          OAUTH2-CLIENT-SECRET: $(OAUTH2-CLIENT-SECRET)
+          OAUTH2_CLIENT_SECRET: $(OAUTH2-CLIENT-SECRET)
+          USERNAME: $(idam-rd-system-user-username)
+          SYSPASS: $(idam-rd-system-user-password)
+          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
+          ALL_USERS_FLAG: 1
 
 
