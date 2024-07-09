@@ -58,6 +58,7 @@ jobs:
         inputs:
           filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
         env:
+          AZURE_PASS: $(user-profile-api-POSTGRES-PASS)
           idam-rd-system-username: $(idam-rd-system-user-username)
           idam-rd-system-user-password: $(idam-rd-system-user-password)
           OAUTH2-CLIENT-SECRET: $(OAUTH2-CLIENT-SECRET)
