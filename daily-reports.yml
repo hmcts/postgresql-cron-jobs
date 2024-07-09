@@ -51,7 +51,7 @@ jobs:
         inputs:
           azureSubscription: 'DCD-CNP-Prod'
           KeyVaultName: 'rd-prod'
-          SecretsFilter: 'OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password,user-profile-api-POSTGRES-PASS'
+          SecretsFilter: 'OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password'
       - task: Bash@3
         displayName: 'Generate and send Bearer token'
         name: generateSendBearer
