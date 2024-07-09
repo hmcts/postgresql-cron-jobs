@@ -12,16 +12,8 @@ function log() {
 
 # Set VArs
 #AZURE_DB_USERNAME='DTS Platform Operations SC'
-AZURE_DB_USERNAME='pgadmin'
 AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
-#idam_rd_system_user='admin.refdata@hmcts.net'
-#idam_rd_system_user='prd.demo.cgi4@hmcts.net'
-#idam_rd_system_user_password='Password123'
-#idam_rd_system_user_password='y8jt2nZefX9G'
-#OAUTH2_CLIENT_ID='rd-professional-api'
-#OAUTH2_CLIENT_SECRET='a20c3cf7-1fb4-4bcf-89ec-963c05a13f71'
-#PGPASSWORD='jyS-DDIhqfaBQj7kBWAQ'
 
 OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
 idam_rd_system_user=${USERNAME}
