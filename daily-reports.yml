@@ -53,9 +53,6 @@ jobs:
           KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
-      - task: Bash@3
-        displayName: 'Email report'
-        inputs:
           filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
