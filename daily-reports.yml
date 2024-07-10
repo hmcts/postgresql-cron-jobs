@@ -21,6 +21,7 @@ jobs:
       name: 'hmcts-ss-prod'
     steps:
       - task: AzureKeyVault@2
+        displayName: 'Access reporting vault'
         inputs:
           azureSubscription: $(serviceConnection)
           eyVaultName: 'sendgridprod'
@@ -29,7 +30,7 @@ jobs:
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
       - task: AzureCLI@2
-        displayName: 'Get access token'
+        displayName: 'Generate Password token'
         name: gettoken
         inputs:
           azureSubscription: $(serviceConnection)
@@ -54,5 +55,3 @@ jobs:
           USERNAME: $(idam-rd-system-user-username)
           SYSPASS: $(idam-rd-system-user-password)
           ALL_USERS_FLAG: 1
-
-
