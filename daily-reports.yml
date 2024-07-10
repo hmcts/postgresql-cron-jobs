@@ -11,7 +11,7 @@ schedules:
 trigger: none
 pr: none
 variables:
-  serviceConnection: 'DCD-CNP-PROD'
+  serviceConnection: 'DCD-CNP-DEV'
   FROM_ADDRESS: 'db-reporting@mail-db-reporting-prod.platform.hmcts.net'
   FAILURE_ADDRESS: 'sabina.sharangdhar@hmcts.net' # to be verified
 
@@ -37,8 +37,8 @@ jobs:
         displayName: 'Get Secrets'
         name: getSecrets
         inputs:
-          azureSubscription: 'DCD-CNP-PROD'
-          KeyVaultName: 'rd-prod'
+          azureSubscription: 'DCD-CNP-DEV'
+          KeyVaultName: 'rd-aat'
           SecretsFilter: 'user-profile-api-POSTGRES-USER,OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password'
       - task: Bash@3
         displayName: 'Generate and send Bearer token'
