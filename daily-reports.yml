@@ -40,11 +40,6 @@ jobs:
           azureSubscription: 'DCD-CNP-DEV'
           KeyVaultName: 'rd-aat'
           SecretsFilter: 'user-profile-api-POSTGRES-USER,OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password'
-      - task: Bash@3
-        displayName: 'Generate and send Bearer token'
-        name: generateSendBearer
-        inputs:
-          filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
         env:
           AZURE_DB_USERNAME: $(user-profile-api-POSTGRES-USER)
           OAUTH2_CLIENT_SECRET: $(OAUTH2-CLIENT-SECRET)
