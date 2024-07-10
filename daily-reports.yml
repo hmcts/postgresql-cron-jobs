@@ -42,11 +42,6 @@ jobs:
           RunAsPreJob: false
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-      - task: Bash@3
-        inputs:
-          filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
-        env:
-          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
       - task: AzureKeyVault@2
         displayName: 'Get Secrets'
         name: getSecrets
