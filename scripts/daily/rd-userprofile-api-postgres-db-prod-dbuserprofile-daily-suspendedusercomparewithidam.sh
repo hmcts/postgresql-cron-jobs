@@ -18,6 +18,7 @@ AZURE_DB='dbuserprofile'
 OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
 idam_rd_system_user=${USERNAME}
 idam_rd_system_pass=${SYSPASS}
+ALL_USERS_FLAG=${ALL_USERS_FLAG}
 
 SUBJECT='USER_PROFILE_DATA-DB Daily Report'
 TO_ADDRESS='sabina.sharangdhar@hmcts.net'
