@@ -44,6 +44,7 @@ jobs:
           filePath: './scripts/weekly/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-daily-ProbateextractfromMoJtoDwP.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
+        retryCountOnTaskFailure: '3'
   - job:
     timeoutInMinutes: 180
     pool:
