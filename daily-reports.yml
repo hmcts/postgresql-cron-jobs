@@ -24,11 +24,9 @@ jobs:
         displayName: 'Access reporting vault'
         inputs:
           azureSubscription: 'Prod-DB-Reporting'
-          eyVaultName: 'sendgridprod'
+          KeyVaultName: 'sendgridprod'
           SecretsFilter: 'hmcts-db-reporting-api-key'
           RunAsPreJob: false
-        env:
-          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
       - task: Bash@3
         inputs:
           filePath: 'email_report.sh'
