@@ -24,7 +24,7 @@ jobs:
         displayName: 'Generate Password token'
         name: gettoken
         inputs:
-          azureSubscription: $(serviceConnection)
+          azureSubscription: 'Prod-DB-Reporting'
           scriptType: bash
           scriptLocation: 'inlineScript'
           inlineScript: |
@@ -56,8 +56,6 @@ jobs:
       - task: Bash@3
         displayName: 'Email report'
         inputs:
-          filePath: 'email_report.sh'
+          filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-          CONTAINER_NAME: 'daily'
-          retryCountOnTaskFailure: '3'
