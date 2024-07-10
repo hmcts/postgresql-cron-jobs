@@ -38,7 +38,7 @@ jobs:
         name: getSecrets
         inputs:
           azureSubscription: 'DCD-CNP-PROD'
-          KeyVaultName: 'rd-aat'
+          KeyVaultName: 'rd-prod'
           SecretsFilter: 'user-profile-api-POSTGRES-USER,OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password'
       - task: Bash@3
         displayName: 'Generate and send Bearer token'
