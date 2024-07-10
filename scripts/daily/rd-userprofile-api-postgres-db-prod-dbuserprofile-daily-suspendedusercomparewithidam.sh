@@ -11,7 +11,7 @@ function log() {
 }
 
 # Set VArs
-#AZURE_DB_USERNAME='DTS Platform Operations SC'
+AZURE_DB_USERNAME=${AZURE_DB_USERNAME}
 AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
 
@@ -49,29 +49,33 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELEC
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' LIMIT 4;" >> ${USERIDAMS}
 fi
 
+echo " =====  Generate Bearer token to call IDAM api ===== "
+
 # generating Bearer token to connect to idam
-TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='${idam_rd_system_user}'&password='${idam_rd_system_pass}'&client_secret='${OAUTH2_CLIENT_SECRET}'&client_id=rd-professional-api&scope=openid' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username='${idam_rd_system_user}'&password='${idam_rd_system_pass}'&client_secret='${OAUTH2_CLIENT_SECRET}'&client_id=rd-professional-api&scope=openid' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 # iterate file of suspended users
-tables=()
+users=()
 while read -r line; do
-  tables+=("$line")
+  users+=("$line")
 done < SUSPENDED_USERIDAMS.txt
 
+echo " =====  Call IDAM api to check if suspended users exist===== "
+
 # for each suspended user from user profile make a call to idam to check if the user exists
-for table in ${tables[@]}; do
-cmd=$(curl -X GET 'https://idam-testing-support-api.aat.platform.hmcts.net/test/idam/users'$table'' -H Authorization:'Bearer '${TOKEN}  -H 'accept: */*' )
+for user in ${users[@]}; do
+cmd=$(curl -X GET 'https://idam-api.platform.hmcts.net/api/v1/users/'$user'' -H Authorization:'Bearer '${TOKEN}  -H 'accept: */*' )
 
 # if user found on idam then print the user and the status on idam
 if [ -z $(echo ${cmd}) ];
   then
-  $table >> ${SUSPENDED_USERS_NOT_FOUND}
+  $user >> ${SUSPENDED_USERS_NOT_FOUND}
   user_count=$(echo ${cmd}  | tee ${SUSPENDED_USERS_NOT_FOUND})
-  echo -e "${Col_Grn} Suspended user in User profile not found on IDAM $table ${user_count} ${Col_Off}"
+  echo -e "${Col_Grn} Suspended user in User profile not found on IDAM $user ${user_count} ${Col_Off}"
 else
   user_count=$( ${CMD}  | tee ${SUSPENDED_USERS_FOUND})
-  echo -e "${Col_Red} IDAm IDs found on IDMA database and suspended in UserProfile $table  ${user_count} ${Col_Off}"
+  echo -e "${Col_Red} IDAm IDs found on IDMA database and suspended in UserProfile $user  ${user_count} ${Col_Off}"
 fi
 done
 
