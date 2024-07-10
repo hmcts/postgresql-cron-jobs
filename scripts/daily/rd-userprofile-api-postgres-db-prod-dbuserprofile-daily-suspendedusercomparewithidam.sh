@@ -43,12 +43,12 @@ trap errorHandler ERR
 echo " =====  Call User Profile table and select suspended users ===== "
 echo "ALL_USERS_FLAG $ALL_USERS_FLAG"
 # pick suspended users from user profile in the last 2 weeks and write them to a file
-if [ $ALL_USERS_FLAG -ne 0 ]
-then
+#if [ $ALL_USERS_FLAG -ne 0 ]
+#then
 #psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS' LIMIT 4;" >> ${USERIDAMS}
- else
+ #else
 #psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' LIMIT 4;" >> ${USERIDAMS}
-fi
+#fi
 
 echo " =====  Generate Bearer token to call IDAM api ===== "
 echo ${USERIDAMS}
