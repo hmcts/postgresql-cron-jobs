@@ -11,7 +11,7 @@ function log() {
 }
 
 # Set VArs
-AZURE_DB_USERNAME=${AZURE_DB_USERNAME}
+AZURE_DB_USERNAME='pgadmin'
 AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
 
