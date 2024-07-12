@@ -10,19 +10,16 @@ WHERE cd.id = ce.case_data_id
 AND cd.jurisdiction = 'PROBATE'
 AND cd.case_type_id = 'GrantOfRepresentation'
 AND ce.case_type_id = 'GrantOfRepresentation'
-AND ce.created_date >= '2024-05-13'::date - INTERVAL '180 day'
+AND cd.last_modified >= now() - INTERVAL '185 day'
+AND ce.created_date >= now() - INTERVAL '365 day'
 AND ce.event_id NOT IN ('boHistoryCorrection', 'boCorrection')
-AND cd.state IN ( 'BOCaseMatchingExamining' ,
+AND cd.state IN (
  'BOCaseMatchingIssueGrant' ,
  'BOCaseQA' ,
  'BOReadyToIssue' ,
  'BORegistrarEscalation' ,
  'BOCaseStopped' ,
- 'BOExamining' ,
- 'BOReadyForExamination' ,
  'CasePrinted' ,
- 'CasePaymentFailed' ,
- 'CaseCreated' ,
  'BOSotGenerated' ,
  'BORedecNotificationSent' ,
  'BOCaseStoppedAwaitRedec' ,
@@ -30,7 +27,6 @@ AND cd.state IN ( 'BOCaseMatchingExamining' ,
  'BOCaseMatchingReissue' ,
  'BOExaminingReissue' ,
  'BOCaseImported' ,
- 'applyforGrantPaperApplication' ,
  'BOCaveatPermenant' ,
  'BOCaseWorkerEscalation' ,
  'BOPostGrantIssued')
@@ -38,6 +34,6 @@ AND cd.data ->> 'applicationSubmittedDate' IS NOT NULL
 GROUP BY cd.reference, cd.state) temp
 JOIN case_event ce
 ON temp.last_event_id = ce.id
-where ce.created_date <= now() - INTERVAL '180 day'
-order by cd.reference asc) to stdout with csv header;
+WHERE ce.created_date <= now() - INTERVAL '180 day'
+ORDER BY 1) to stdout with csv header;
 EOF
