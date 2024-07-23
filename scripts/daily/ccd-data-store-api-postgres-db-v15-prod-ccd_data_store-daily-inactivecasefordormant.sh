@@ -34,6 +34,6 @@ AND cd.data ->> 'applicationSubmittedDate' IS NOT NULL
 GROUP BY cd.reference, cd.state) temp
 JOIN case_event ce
 ON temp.last_event_id = ce.id
-WHERE ce.created_date <= now() - INTERVAL '180 day'
+WHERE ce.created_date <= now() - INTERVAL '6 month'
 ORDER BY 1) to stdout with csv header;
 EOF
