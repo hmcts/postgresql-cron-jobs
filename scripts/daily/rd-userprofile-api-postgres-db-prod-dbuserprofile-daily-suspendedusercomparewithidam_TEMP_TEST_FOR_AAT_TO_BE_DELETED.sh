@@ -50,9 +50,6 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELEC
  else
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED';" >> ${USERIDAMS}
 fi
-# generating Bearer token to connect to idam
-TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='${IDAM_RD_SYSTEM_USER_USERNAME}'&password='${IDAM_RD_SYSTEM_USER_PASSWORD}'&client_secret='${OAUTH2_CLIENT_SECRET}'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id='${OAUTH2_CLIENT_ID}'' -H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
-TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 # iterate file of suspended users
 tables=()
@@ -63,6 +60,12 @@ done < SUSPENDED_USERS.txt
 # for each suspended user from user profile make a call to idam to check if the user exists
 echo -e "IDAM IDS                                                                               " "  :   " "STATUS ON IDAM" >> ${ATTACHMENT}
 echo -e "  " "      " "  " >> ${ATTACHMENT}
+
+# generating Bearer token to connect to idam
+TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='${IDAM_RD_SYSTEM_USER_USERNAME}'&password='${IDAM_RD_SYSTEM_USER_PASSWORD}'&client_secret='${OAUTH2_CLIENT_SECRET}'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id='${OAUTH2_CLIENT_ID}'' -H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
+
+
 for table in ${tables[@]}; do
 CMD=$(curl -X GET 'https://idam-api.aat.platform.hmcts.net/api/v1/users/'$table'' -H Authorization:'Bearer '${TOKEN}  -H 'accept: */*' )
 RESULT=$(echo ${CMD} | cut -d',' -f 5 | cut -d':' -f 2)
