@@ -16,8 +16,8 @@ AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.
 AZURE_DB='dbuserprofile'
 
 OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
-IDAM_RD_SYSTEM_USER_USERNAME=${idam-rd-system-user-username}
-IDAM_RD_SYSTEM_USER_PASSWORD=${idam-rd-system-user-password}
+IDAM_RD_SYSTEM_USER_USERNAME=${USERNAME}
+IDAM_RD_SYSTEM_USER_PASSWORD=${SYSPASS}
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
 OAUTH2_CLIENT_ID='rd-professional-api'
 
@@ -30,7 +30,6 @@ OUTPUT_DIR=/tmp
 OUTPUT_FILE_NAME=${DEFAULT_DATE}_${AZURE_DB}_${FILESUB}.csv
 ATTACHMENT=${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
 USERIDAMS='SUSPENDED_USERS.txt'
-
 
 function errorHandler() {
   local dump_failed_error="${AZURE_HOSTNAME} ${AZURE_DB} Dump extract for ${DEFAULT_DATE}"

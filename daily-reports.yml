@@ -40,8 +40,8 @@ jobs:
           user-profile-api-POSTGRES-USER: $(user-profile-api-POSTGRES-USER)
           AZURE_DB_USERNAME: $(user-profile-api-POSTGRES-DATABASE)
           OAUTH2_CLIENT_SECRET: $(OAUTH2-CLIENT-SECRET)
-          idam-rd-system-user-username: $(idam-rd-system-user-username)
-          idam-rd-system-user-password: $(idam-rd-system-user-password)
+          USERNAME: $(idam-rd-system-user-username)
+          SYSPASS: $(idam-rd-system-user-password)
           PGPASSWORD: $(user-profile-api-POSTGRES-PASS)
           ALL_USERS_FLAG: 1
       - task: Bash@3
@@ -53,7 +53,7 @@ jobs:
           user-profile-api-POSTGRES-USER: $(user-profile-api-POSTGRES-USER)
           AZURE_DB_USERNAME: $(user-profile-api-POSTGRES-PASS)
           OAUTH2_CLIENT_SECRET: $(OAUTH2-CLIENT-SECRET)
-          idam-rd-system-user-username: $(idam-rd-system-user-username)
-          idam-rd-system-user-password: $(idam-rd-system-user-password)
+          USERNAME: $(USERNAME)
+          SYSPASS: $(SYSPASS)
           PGPASSWORD: $(user-profile-api-POSTGRES-PASS)
           ALL_USERS_FLAG: 1
