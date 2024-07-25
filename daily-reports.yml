@@ -60,7 +60,7 @@ jobs:
         displayName: 'Generate and send SDT Stats'
         name: generateSendSdtStats
         inputs:
-          filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam.sh'
+          filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam_TEMP_TEST_FOR_AAT_TO_BE_DELETED.sh'
         env:
           PGPASSWORD: $(user-profile-api-POSTGRES-USER)
           AZURE_DB_USERNAME: $(user-profile-api-POSTGRES-PASS)
