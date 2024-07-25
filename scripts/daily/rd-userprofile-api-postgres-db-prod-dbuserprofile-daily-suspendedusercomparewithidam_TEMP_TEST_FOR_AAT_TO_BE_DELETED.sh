@@ -16,8 +16,8 @@ AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.
 AZURE_DB='dbuserprofile'
 
 OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
-IDAM_RD_SYSTEM_USER_USERNAME=${USERNAME}
-IDAM_RD_SYSTEM_USER_PASSWORD=${SYSPASS}
+USERNAME=${USERNAME}
+SYSPASS=${SYSPASS}
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
 OAUTH2_CLIENT_ID='rd-professional-api'
 
@@ -52,7 +52,7 @@ if [ $ALL_USERS_FLAG -ne 0 ]
 then
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS';" >> ${USERIDAMS}
  else
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED';" >> ${USERIDAMS}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' Limit 1;" >> ${USERIDAMS}
 fi
 
 
