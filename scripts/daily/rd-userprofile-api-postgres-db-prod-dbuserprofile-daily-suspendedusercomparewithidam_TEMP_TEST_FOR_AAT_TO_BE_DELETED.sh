@@ -16,8 +16,8 @@ AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.
 AZURE_DB='dbuserprofile'
 
 OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
-IDAM_RD_SYSTEM_USER_USERNAME=${USERNAME}
-IDAM_RD_SYSTEM_USER_PASSWORD=${SYSPASS}
+IDAM_RD_SYSTEM_USER_USERNAME=${idam-rd-system-user-username}
+IDAM_RD_SYSTEM_USER_PASSWORD=${idam-rd-system-user-password}
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
 OAUTH2_CLIENT_ID='rd-professional-api'
 
