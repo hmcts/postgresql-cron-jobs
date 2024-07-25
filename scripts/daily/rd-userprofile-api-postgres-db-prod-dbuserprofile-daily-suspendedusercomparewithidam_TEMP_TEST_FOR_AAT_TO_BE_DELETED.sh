@@ -51,7 +51,8 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELEC
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED';" >> ${USERIDAMS}
 fi
 
-
+rm ${USERIDAMS}
+rm ${ATTACHMENT}
 
 # iterate file of suspended users
 tables=()
