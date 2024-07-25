@@ -20,6 +20,7 @@ idam_rd_system_user=${USERNAME}
 idam_rd_system_pass=${SYSPASS}
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
 OAUTH2_CLIENT_ID='rd-professional-api'
+PGPASSWORD=${PGPASSWORD}
 
 
 SUBJECT='SuspendedUserStatus-Report'
