@@ -42,7 +42,10 @@ trap errorHandler ERR
 echo " =====  Call User Profile table and select suspended users ===== "
 
 echo "ALL_USERS_FLAG $ALL_USERS_FLAG"
-
+echo "user is ${USERNAME}"
+echo "user is $USERNAME"
+echo "user is $IDAM_RD_SYSTEM_USER_USERNAME"
+echo "user is ${IDAM_RD_SYSTEM_USER_USERNAME}"
 
 # pick suspended users from user profile in the last 2 weeks and write them to a file
 if [ $ALL_USERS_FLAG -ne 0 ]
