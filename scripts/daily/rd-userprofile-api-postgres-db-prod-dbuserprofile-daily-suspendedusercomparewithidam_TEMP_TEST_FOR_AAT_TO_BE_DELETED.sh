@@ -43,6 +43,9 @@ trap errorHandler ERR
 echo " =====  Call User Profile table and select suspended users ===== "
 
 echo "ALL_USERS_FLAG $ALL_USERS_FLAG"
+echo "OAUTH2_CLIENT_SECRET $OAUTH2_CLIENT_SECRET"
+echo "IDAM_RD_SYSTEM_USER_USERNAME $IDAM_RD_SYSTEM_USER_USERNAME"
+echo "IDAM_RD_SYSTEM_USER_PASSWORD $IDAM_RD_SYSTEM_USER_PASSWORD"
 # pick suspended users from user profile in the last 2 weeks and write them to a file
 if [ $ALL_USERS_FLAG -ne 0 ]
 then
@@ -50,6 +53,8 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELEC
  else
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED';" >> ${USERIDAMS}
 fi
+
+
 
 # iterate file of suspended users
 tables=()
