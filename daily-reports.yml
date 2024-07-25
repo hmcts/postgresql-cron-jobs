@@ -20,19 +20,6 @@ jobs:
     pool:
       name: 'hmcts-ss-prod'
     steps:
-      - task: AzureCLI@2
-        displayName: 'Generate Password token'
-        name: gettoken
-        inputs:
-          azureSubscription: 'Prod-DB-Reporting'
-          scriptType: bash
-          scriptLocation: 'inlineScript'
-          inlineScript: |
-            #!/bin/bash
-            set -ex
-            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $output
-            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
       - task: AzureKeyVault@2
         displayName: 'Access reporting vault'
         inputs:
