@@ -16,11 +16,10 @@ AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.
 AZURE_DB='dbuserprofile'
 
 OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
-idam_rd_system_user=${USERNAME}
-idam_rd_system_pass=${SYSPASS}
+idam-rd-system-user-username=${idam-rd-system-user-username}
+idam-rd-system-user-password=${idam-rd-system-user-password}
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
 OAUTH2_CLIENT_ID='rd-professional-api'
-
 
 SUBJECT='SuspendedUserStatus-Report'
 TO_ADDRESS='sabina.sharangdhar@hmcts.net'
@@ -52,7 +51,7 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELEC
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED';" >> ${USERIDAMS}
 fi
 # generating Bearer token to connect to idam
-TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='${idam_rd_system_user}'&password='${idam_rd_system_user_password}'&client_secret='${OAUTH2_CLIENT_SECRET}'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id='${OAUTH2_CLIENT_ID}'' -H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='${idam-rd-system-user-username}'&password='${idam-rd-system-user-password}'&client_secret='${OAUTH2_CLIENT_SECRET}'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id='${OAUTH2_CLIENT_ID}'' -H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 # iterate file of suspended users
