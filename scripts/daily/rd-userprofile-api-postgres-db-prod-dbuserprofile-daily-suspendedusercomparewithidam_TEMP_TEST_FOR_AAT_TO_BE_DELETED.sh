@@ -36,6 +36,8 @@ function errorHandler() {
   log "${dump_failed_error}"
   echo ""
 }
+rm ${USERIDAMS}
+rm ${ATTACHMENT}
 
 trap errorHandler ERR
 
