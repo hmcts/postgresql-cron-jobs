@@ -34,7 +34,7 @@ jobs:
         name: getSecrets
         inputs:
           azureSubscription: 'DCD-CNP-DEV'
-          KeyVaultName: 'rd-aat'
+          KeyVaultName: 'rd-demo'
           SecretsFilter: 'user-profile-api-POSTGRES-USER,user-profile-api-POSTGRES-DATABASE,OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password,user-profile-api-POSTGRES-PASS'
       - task: Bash@3
         displayName: 'Generate and send SDT Stats'

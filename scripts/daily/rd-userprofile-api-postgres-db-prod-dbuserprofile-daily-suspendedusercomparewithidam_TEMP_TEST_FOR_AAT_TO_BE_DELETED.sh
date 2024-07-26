@@ -12,7 +12,7 @@ function log() {
 
 # Set VArs
 AZURE_DB_USERNAME='pgadmin'
-AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.com'
+AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-demo.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
 
 #OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
@@ -65,12 +65,12 @@ echo -e "  " "      " "  " >> ${ATTACHMENT}
 
 # generating Bearer token to connect to idam
 
-TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='$USERNAME'&password='$SYSPASS'&client_secret='$OAUTH2_CLIENT_SECRET'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api' -H Content-Length:0 -H Host:idam-api.aat.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.demo.platform.hmcts.net/o/token?grant_type=password&username='$USERNAME'&password='$SYSPASS'&client_secret='$OAUTH2_CLIENT_SECRET'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api' -H Content-Length:0 -H Host:idam-api.demo.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 
 for table in ${tables[@]}; do
-CMD=$(curl -X GET 'https://idam-api.aat.platform.hmcts.net/api/v1/users/'$table'' -H Authorization:'Bearer '${TOKEN}  -H 'accept: */*' )
+CMD=$(curl -X GET 'https://idam-api.demo.platform.hmcts.net/api/v1/users/'$table'' -H Authorization:'Bearer '${TOKEN}  -H 'accept: */*' )
 RESULT=$(echo ${CMD} | cut -d',' -f 5 | cut -d':' -f 2)
 # if user found on idam then print the user and the status on idam
 TRUE="true"
