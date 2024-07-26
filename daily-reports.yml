@@ -21,24 +21,15 @@ jobs:
       name: 'hmcts-ss-prod'
     steps:
       - task: AzureKeyVault@2
-        displayName: 'Access reporting vault'
-        inputs:
-          azureSubscription: 'Prod-DB-Reporting'
-          KeyVaultName: 'sendgridprod'
-          SecretsFilter: 'hmcts-db-reporting-api-key'
-          RunAsPreJob: false
-        env:
-          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-      - task: AzureKeyVault@2
         displayName: 'Get Secrets'
         name: getSecrets
         inputs:
           azureSubscription: 'DCD-CNP-DEV'
-          KeyVaultName: 'rd-demo'
+          KeyVaultName: 'rd-aat'
           SecretsFilter: 'user-profile-api-POSTGRES-USER,user-profile-api-POSTGRES-DATABASE,OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password,user-profile-api-POSTGRES-PASS'
       - task: Bash@3
-        displayName: 'Generate and send SDT Stats'
-        name: generateSendSdtStats
+        displayName: 'Generate and send DB Report'
+        name: generateSendDBReport
         inputs:
           filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam_TEMP_TEST_FOR_AAT_TO_BE_DELETED.sh'
         env:
