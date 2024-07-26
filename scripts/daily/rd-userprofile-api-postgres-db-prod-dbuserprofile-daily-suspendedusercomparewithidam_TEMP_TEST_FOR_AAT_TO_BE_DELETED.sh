@@ -15,11 +15,11 @@ AZURE_DB_USERNAME='pgadmin'
 AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
 
-OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
-USERNAME=${USERNAME}
-SYSPASS=${SYSPASS}
+#OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
+#USERNAME=${USERNAME}
+#SYSPASS=${SYSPASS}
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
-OAUTH2_CLIENT_ID='rd-professional-api'
+#OAUTH2_CLIENT_ID='rd-professional-api'
 
 SUBJECT='SuspendedUserStatus-Report'
 TO_ADDRESS='sabina.sharangdhar@hmcts.net'
