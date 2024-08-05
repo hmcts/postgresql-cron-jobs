@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CURRENT_DATE=$(date +%d"/"%m"/"%Y)
-CURRENT_TIME=$(date +%T)
+CURRENT_DATE=$(TZ=Europe/London date +%d"/"%m"/"%Y)
+CURRENT_TIME=$(TZ=Europe/London date +%T)
 
 AZURE_DB="civil_sdt"
 
