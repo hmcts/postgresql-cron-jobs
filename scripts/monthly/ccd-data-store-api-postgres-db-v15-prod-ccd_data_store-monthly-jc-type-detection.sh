@@ -2,7 +2,7 @@
 set -fex
 
 function log() {
-  echo $(date --rfc-3339=seconds)" ${1}"
+  echo $(date)" ${1}"
 }
 
 # Set VArs
