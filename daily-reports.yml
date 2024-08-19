@@ -37,6 +37,6 @@ jobs:
           AZURE_DB_USERNAME: $(user-profile-api-POSTGRES-USER)
           OAUTH2_CLIENT_SECRET: $(OAUTH2-CLIENT-SECRET)
           USERNAME: $(idam-rd-system-user-username)
-          SYSPASS: $(idam-rd-system-user-password)
+          idam-rd-system-user-password: $(idam-rd-system-user-password)
           PGPASSWORD: $(user-profile-api-POSTGRES-PASS)
           ALL_USERS_FLAG: 1
