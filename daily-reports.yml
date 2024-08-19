@@ -34,7 +34,7 @@ jobs:
           filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam_TEMP_TEST_FOR_AAT_TO_BE_DELETED.sh'
         env:
           user-profile-api-POSTGRES-USER: $(user-profile-api-POSTGRES-USER)
-          AZURE_DB_USERNAME: $(user-profile-api-POSTGRES-PASS)
+          AZURE_DB_USERNAME: $(user-profile-api-POSTGRES-USER)
           OAUTH2_CLIENT_SECRET: $(OAUTH2-CLIENT-SECRET)
           USERNAME: $(idam-rd-system-user-username)
           SYSPASS: $(idam-rd-system-user-password)
