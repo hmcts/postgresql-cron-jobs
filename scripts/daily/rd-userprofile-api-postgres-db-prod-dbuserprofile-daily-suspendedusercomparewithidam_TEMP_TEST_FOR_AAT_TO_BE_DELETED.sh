@@ -64,6 +64,8 @@ done < SUSPENDED_USERS.txt
 
 echo  "HELLO"
 echo  $ATTACHMENT
+echo  $SYSPASS
+
 # for each suspended user from user profile make a call to idam to check if the user exists
 echo -e "IDAM IDS                                                                               " "  :   " "STATUS ON IDAM" >> ${ATTACHMENT}
 echo -e "  " "      " "  " >> ${ATTACHMENT}
