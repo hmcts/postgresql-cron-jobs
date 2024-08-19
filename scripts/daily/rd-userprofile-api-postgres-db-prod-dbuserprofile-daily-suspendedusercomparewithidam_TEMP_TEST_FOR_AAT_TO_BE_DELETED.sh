@@ -43,6 +43,8 @@ echo " =====  Call User Profile table and select suspended users ===== "
 
 echo "ALL_USERS_FLAG $ALL_USERS_FLAG"
 echo  $USERNAME
+echo  $PGPASSWORD
+
 
 
 # pick suspended users from user profile in the last 2 weeks and write them to a file
@@ -60,6 +62,8 @@ while read -r line; do
   tables+=("$line")
 done < SUSPENDED_USERS.txt
 
+echo  "HELLO"
+echo  $ATTACHMENT
 # for each suspended user from user profile make a call to idam to check if the user exists
 echo -e "IDAM IDS                                                                               " "  :   " "STATUS ON IDAM" >> ${ATTACHMENT}
 echo -e "  " "      " "  " >> ${ATTACHMENT}
