@@ -17,7 +17,7 @@ AZURE_DB='dbuserprofile'
 
 #OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
 #USERNAME=${USERNAME}
-#SYSPASS=${SYSPASS}
+SYSPASS=${SYSPASS}
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
 #OAUTH2_CLIENT_ID='rd-professional-api'
 
@@ -64,8 +64,7 @@ done < SUSPENDED_USERS.txt
 
 echo  "HELLO"
 echo  $ATTACHMENT
-echo  ${idam-rd-system-user-password}
-echo  ${idam-rd-system-user-password}
+echo  ${SYSPASS}
 # for each suspended user from user profile make a call to idam to check if the user exists
 echo -e "IDAM IDS                                                                               " "  :   " "STATUS ON IDAM" >> ${ATTACHMENT}
 echo -e "  " "      " "  " >> ${ATTACHMENT}
@@ -73,7 +72,7 @@ echo -e "  " "      " "  " >> ${ATTACHMENT}
 # generating Bearer token to connect to idam
 
 #TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='$USERNAME'&password='$SYSPASS'&client_secret='$OAUTH2_CLIENT_SECRET'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api'  -H 'accept: */*'  -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
-TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username=admin.refdata@hmcts.net&password='${idam-rd-system-user-password}'&client_secret=a20c3cf7-1fb4-4bcf-89ec-963c05a13f71&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api'  -H 'accept: */*'  -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username=admin.refdata@hmcts.net&password=${SYSPASS}&client_secret=a20c3cf7-1fb4-4bcf-89ec-963c05a13f71&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api'  -H 'accept: */*'  -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 
