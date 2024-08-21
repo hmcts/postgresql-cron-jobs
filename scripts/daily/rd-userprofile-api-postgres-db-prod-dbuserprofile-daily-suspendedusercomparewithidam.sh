@@ -15,9 +15,6 @@ AZURE_DB_USERNAME='DTS JIT Access rd DB Reader SC'
 AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-prod.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
 
-OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
-idam_rd_system_user=${USERNAME}
-idam_rd_system_pass=${SYSPASS}
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
 OAUTH2_CLIENT_ID='rd-professional-api'
 
@@ -52,7 +49,7 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELEC
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED';" >> ${USERIDAMS}
 fi
 # generating Bearer token to connect to idam
-TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username='${idam_rd_system_user}'&password='${idam_rd_system_user_password}'&client_secret='${OAUTH2_CLIENT_SECRET}'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id='${OAUTH2_CLIENT_ID}'' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username=admin.refdata@hmcts.net&password='${SYSPASS}'&client_secret='${OAUTH2_CLIENT_SECRET}'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 # iterate file of suspended users
@@ -62,8 +59,6 @@ while read -r line; do
 done < SUSPENDED_USERS.txt
 
 # for each suspended user from user profile make a call to idam to check if the user exists
-echo -e "IDAM IDS                                                                               " "  :   " "STATUS ON IDAM" >> ${ATTACHMENT}
-echo -e "  " "      " "  " >> ${ATTACHMENT}
 for table in ${tables[@]}; do
 CMD=$(curl -X GET 'https://idam-api.platform.hmcts.net/api/v1/users/'$table'' -H Authorization:'Bearer '${TOKEN}  -H 'accept: */*' )
 RESULT=$(echo ${CMD} | cut -d',' -f 5 | cut -d':' -f 2)
