@@ -14,10 +14,8 @@ function log() {
 AZURE_DB_USERNAME='DTS JIT Access rd DB Reader SC'
 AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-prod.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
-
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
 OAUTH2_CLIENT_ID='rd-professional-api'
-
 
 SUBJECT='SuspendedUserStatus-Report'
 TO_ADDRESS='sabina.sharangdhar@hmcts.net'
@@ -39,7 +37,6 @@ function errorHandler() {
 trap errorHandler ERR
 
 echo " =====  Call User Profile table and select suspended users ===== "
-
 echo "ALL_USERS_FLAG $ALL_USERS_FLAG"
 # pick suspended users from user profile in the last 2 weeks and write them to a file
 if [ $ALL_USERS_FLAG -ne 0 ]
