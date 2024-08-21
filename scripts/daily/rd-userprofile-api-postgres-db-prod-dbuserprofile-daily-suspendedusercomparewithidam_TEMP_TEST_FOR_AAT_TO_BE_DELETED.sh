@@ -17,8 +17,8 @@ AZURE_DB='dbuserprofile'
 
 #OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
 #USERNAME=${USERNAME}
-SYSPASS=${SYSPASS}
-ALL_USERS_FLAG=${ALL_USERS_FLAG}
+#SYSPASS=${SYSPASS}
+#ALL_USERS_FLAG=${ALL_USERS_FLAG}
 #OAUTH2_CLIENT_ID='rd-professional-api'
 
 SUBJECT='SuspendedUserStatus-Report'
@@ -42,10 +42,6 @@ trap errorHandler ERR
 echo " =====  Call User Profile table and select suspended users ===== "
 
 echo "ALL_USERS_FLAG $ALL_USERS_FLAG"
-echo  ${USERNAME}
-echo  $PGPASSWORD
-
-
 
 # pick suspended users from user profile in the last 2 weeks and write them to a file
 if [ $ALL_USERS_FLAG -ne 0 ]
@@ -62,9 +58,6 @@ while read -r line; do
   tables+=("$line")
 done < SUSPENDED_USERS.txt
 
-echo  "HELLO"
-echo  $ATTACHMENT
-echo  ${SYSPASS}
 # for each suspended user from user profile make a call to idam to check if the user exists
 echo -e "IDAM IDS                                                                               " "  :   " "STATUS ON IDAM" >> ${ATTACHMENT}
 echo -e "  " "      " "  " >> ${ATTACHMENT}
