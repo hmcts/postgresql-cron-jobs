@@ -11,7 +11,7 @@ function log() {
 }
 
 # Set VArs
-#AZURE_DB_USERNAME='pgadmin'
+AZURE_DB_USERNAME='pgadmin'
 AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-aat.postgres.database.azure.com'
 AZURE_DB='dbuserprofile'
 
@@ -42,11 +42,13 @@ trap errorHandler ERR
 echo " =====  Call User Profile table and select suspended users ===== "
 
 echo "ALL_USERS_FLAG $ALL_USERS_FLAG"
-
+echo "${USERNAME}"
+echo "${OAUTH2_CLIENT_SECRET}"
+echo "${SYSPASS}"
 # pick suspended users from user profile in the last 2 weeks and write them to a file
 if [ $ALL_USERS_FLAG -ne 0 ]
 then
-psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS' Limit 1;" >> ${USERIDAMS}
+psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' and last_updated >= NOW() - INTERVAL '14 DAYS' Limit 1;" >> SUSPENDED_USERS.txt
  else
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED' Limit 1;" >> ${USERIDAMS}
 fi
@@ -59,13 +61,13 @@ while read -r line; do
 done < SUSPENDED_USERS.txt
 
 # for each suspended user from user profile make a call to idam to check if the user exists
-echo -e "IDAM IDS                                                                               " "  :   " "STATUS ON IDAM" >> ${ATTACHMENT}
-echo -e "  " "      " "  " >> ${ATTACHMENT}
+echo -e "IDAM IDS                                                                               " "  :   " "STATUS ON IDAM" >> SUSPENDED_USERS.txt
+echo -e "  " "      " "  " >> SUSPENDED_USERS.txt
 
 # generating Bearer token to connect to idam
 
 #TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username='$USERNAME'&password='$SYSPASS'&client_secret='$OAUTH2_CLIENT_SECRET'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api'  -H 'accept: */*'  -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
-TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username=admin.refdata@hmcts.net&password='${SYSPASS}'&client_secret=a20c3cf7-1fb4-4bcf-89ec-963c05a13f71&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api'  -H 'accept: */*'  -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.aat.platform.hmcts.net/o/token?grant_type=password&username=admin.refdata@hmcts.net&password='"${SYSPASS}"'&client_secret=a20c3cf7-1fb4-4bcf-89ec-963c05a13f71&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api'  -H 'accept: */*'  -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 

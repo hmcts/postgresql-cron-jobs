@@ -26,15 +26,13 @@ jobs:
         inputs:
           azureSubscription: 'DCD-CNP-DEV'
           KeyVaultName: 'rd-aat'
-          SecretsFilter: 'user-profile-api-POSTGRES-USER,user-profile-api-POSTGRES-DATABASE,OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password,user-profile-api-POSTGRES-PASS'
+          SecretsFilter: 'OAUTH2-CLIENT-SECRET,idam-rd-system-user-username,idam-rd-system-user-password,user-profile-api-POSTGRES-PASS'
       - task: Bash@3
         displayName: 'Generate and send DB Report'
         name: generateSendDBReport
         inputs:
           filePath: './scripts/daily/rd-userprofile-api-postgres-db-prod-dbuserprofile-daily-suspendedusercomparewithidam_TEMP_TEST_FOR_AAT_TO_BE_DELETED.sh'
         env:
-          user-profile-api-POSTGRES-USER: $(user-profile-api-POSTGRES-USER)
-          AZURE_DB_USERNAME: $(user-profile-api-POSTGRES-USER)
           OAUTH2_CLIENT_SECRET: $(OAUTH2-CLIENT-SECRET)
           USERNAME: $(idam-rd-system-user-username)
           SYSPASS: $(idam-rd-system-user-password)
