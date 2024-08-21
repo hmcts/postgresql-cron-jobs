@@ -18,7 +18,7 @@ variables:
 jobs:
   - job: rd_userprofile
     pool:
-      name: 'hmcts-ss-prod'
+      name: 'hmcts-ss-aat'
     steps:
       - task: AzureKeyVault@2
         displayName: 'Get Secrets'
