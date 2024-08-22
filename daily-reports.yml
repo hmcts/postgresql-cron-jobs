@@ -1,7 +1,7 @@
 
 name: Postgres DB Daily Reports
 schedules:
-  - cron: "0 9 * * *"
+  - cron: "0 2 * * *"
     displayName: Daily reports
     branches:
       include:
