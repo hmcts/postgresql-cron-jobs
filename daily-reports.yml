@@ -34,12 +34,6 @@ jobs:
             echo $output
             echo "##vso[task.setvariable variable=PGPASSWORD]$output"
       - task: AzureKeyVault@2
-        inputs:
-          azureSubscription: $(serviceConnection)
-          KeyVaultName: 'sendgridprod'
-          SecretsFilter: 'hmcts-db-reporting-api-key'
-          RunAsPreJob: false
-      - task: AzureKeyVault@2
         displayName: 'Get Secrets'
         name: getSecrets
         inputs:
