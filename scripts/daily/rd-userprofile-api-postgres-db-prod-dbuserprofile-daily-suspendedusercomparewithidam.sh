@@ -63,6 +63,7 @@ TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 for table in ${tables[@]}; do
 CMD=$(curl -X GET 'https://idam-api.platform.hmcts.net/api/v1/users/'$table'' -H Authorization:'Bearer '${TOKEN}  -H 'accept: */*' )
 RESULT=$(echo ${CMD} | cut -d',' -f 5 | cut -d':' -f 2)
+
 # if user found on idam then print the user and the status on idam
 TRUE="true"
 if [[ -z "$(echo ${RESULT})" ]];
