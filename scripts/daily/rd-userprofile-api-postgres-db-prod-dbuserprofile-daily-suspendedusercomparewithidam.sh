@@ -16,6 +16,8 @@ AZURE_HOSTNAME='rd-user-profile-api-postgres-db-v16-prod.postgres.database.azure
 AZURE_DB='dbuserprofile'
 ALL_USERS_FLAG=${ALL_USERS_FLAG}
 OAUTH2_CLIENT_ID='rd-professional-api'
+SYSPASS=${SYSPASS}
+OAUTH2_CLIENT_SECRET=${OAUTH2_CLIENT_SECRET}
 
 SUBJECT='SuspendedUserStatus-Report'
 TO_ADDRESS='sabina.sharangdhar@hmcts.net'
@@ -37,7 +39,7 @@ function errorHandler() {
 trap errorHandler ERR
 
 echo " =====  Call User Profile table and select suspended users ===== "
-echo "ALL_USERS_FLAG $ALL_USERS_FLAG"
+echo "ALL_USERS_FLAG $ALL_USERS_FLAG $SENDGRID_APIKEY $SYSPASS $OAUTH2_CLIENT_SECRET"
 # pick suspended users from user profile in the last 2 weeks and write them to a file
 if [ $ALL_USERS_FLAG -ne 0 ]
 then
@@ -46,7 +48,7 @@ psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB} -c "SELEC
 psql -t -U "${AZURE_DB_USERNAME}" -h ${AZURE_HOSTNAME}  -d ${AZURE_DB}  -c "SELECT idam_id FROM dbuserprofile.user_profile u where idam_status ='SUSPENDED';" >> ${USERIDAMS}
 fi
 # generating Bearer token to connect to idam
-TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username=admin.refdata@hmcts.net&password='${SYSPASS}'&client_secret='${OAUTH2_CLIENT_SECRET}'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST 'https://idam-api.platform.hmcts.net/o/token?grant_type=password&username=admin.refdata@hmcts.net&password='$SYSPASS'&client_secret='$OAUTH2_CLIENT_SECRET'&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api' -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H 'accept: */*' -H Accept-Encoding:gzip,deflate,br -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 # iterate file of suspended users
