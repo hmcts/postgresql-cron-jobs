@@ -55,7 +55,7 @@ while read -r line; do
 done < SUSPENDED_USERS.txt
 
 # generating Bearer token to connect to idam
-TOKEN_CMD=$(curl -X POST https://idam-api.platform.hmcts.net/o/token?grant_type=password&username=admin.refdata@hmcts.net&password=$SYSPASS&client_secret=$OAUTH2_CLIENT_SECRET&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H accept: */* -H Accept-Encoding:gzip,deflate, -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
+TOKEN_CMD=$(curl -X POST https://idam-api.platform.hmcts.net/o/token?grant_type=password&username=admin.refdata@hmcts.net&password=$SYSPASS&client_secret=$OAUTH2_CLIENT_SECRET&scope=openid%20profile%20roles%20manage-user%20create-user%20search-user&client_id=rd-professional-api -H Content-Length:0 -H Host:idam-api.platform.hmcts.net -H accept: */* -H Accept-Encoding:gzip,deflate -H Connection:keep-alive -H Content-Type:application/x-www-form-urlencoded)
 TOKEN=$(echo ${TOKEN_CMD} | cut -d':' -f 2 | cut -d',' -f 1 | tr -d '"' )
 
 
