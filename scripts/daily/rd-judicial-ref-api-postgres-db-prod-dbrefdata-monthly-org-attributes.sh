@@ -8,7 +8,7 @@ function log() {
 # Set VArs
 AZURE_DB_USERNAME='DTS Platform Operations SC'
 AZURE_HOSTNAME='rd-judicial-ref-api-postgres-db-v16-prod.postgres.database.azure.com'
-AZURE_DB='postgres'
+AZURE_DB='dbjuddata'
 SUBJECT='REF-DATA-JUDICIAL-DATA Monthly Cron Job Report'
 TO_ADDRESS='aneesa.asghar@hmcts.net'
 CC_ADDRESS='sabina.sharangdhar@hmcts.net'
