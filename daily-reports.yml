@@ -41,6 +41,6 @@ jobs:
           RunAsPreJob: false
       - task: Bash@3
         inputs:
-          filePath: './scripts/monthly/rd-judicial-ref-api-postgres-db-prod-dbrefdata-daily-org-attributes.sh'
+          filePath: './scripts/daily/rd-judicial-ref-api-postgres-db-prod-dbrefdata-daily-org-attributes.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
