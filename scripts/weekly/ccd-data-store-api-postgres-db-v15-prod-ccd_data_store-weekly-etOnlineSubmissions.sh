@@ -16,7 +16,6 @@ count(*) filter (where created_date >= now() - interval '7 days')  as "0-7 days 
 count(*) filter (where created_date >= now() - interval '14 days' and created_date <= now() - interval '7 days')  as "7-14 days ago",
 count(*) filter (where created_date >= now() - interval '21 days' and created_date <= now() - interval '14 days') as "14-21 days ago",
 count(*) filter (where created_date >= now() - interval '28 days' and created_date <= now() - interval '21 days') as "21-28 days ago",
-count(*) filter (where created_date >= now() - interval '1 month') as "1 month ago"
 from case_event
 where event_id in ('submitEt1Draft', 'SUBMIT_CASE_DRAFT', 'submitEt3')
 and case_event.case_type_id in ('ET_EnglandWales', 'ET_Scotland')
