@@ -276,6 +276,13 @@ jobs:
           AZURE_DB: 'ccd_data_store'
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           SUBJECT: 'Stops-applied-to-Grants weekly Report'
+        ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-weekly-etOnlineSubmissions:
+          QUERY: ./scripts/daily/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-weekly-etOnlineSubmissions.sh
+          TO_ADDRESS: 'Harpreet.Jhita@justice.gov.uk,etreform@justice.gov.uk'
+          AZURE_HOSTNAME: 'ccd-data-store-api-postgres-db-v15-prod.postgres.database.azure.com'
+          AZURE_DB: 'ccd_data_store'
+          AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
+          SUBJECT: 'ET Online Claim Submission Weekly Report'
     steps:
       - task: AzureCLI@1
         displayName: 'Get access token'
