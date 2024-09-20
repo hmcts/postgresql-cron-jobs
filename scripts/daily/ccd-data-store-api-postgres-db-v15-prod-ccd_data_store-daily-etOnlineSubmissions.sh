@@ -1,7 +1,10 @@
 #!/bin/bash
 cat <<EOF
 COPY (
-select data->>'managingOffice' as managingOffice,
+select case
+when case_event.case_type_id = 'ET_EnglandWales' then data ->> 'managingOffice'
+else 'Scotland'
+end as managingOffice,
 case
 when case_event.event_id = 'SUBMIT_CASE_DRAFT' then 'ET1 Online'
 when case_event.event_id = 'submitEt1Draft' then 'MyHMCTS ET1'
