@@ -113,31 +113,3 @@ jobs:
           filePath: './scripts/monthly/ccd-data-store-api-postgres-db-v15-prod-ccd_data_store-monthly-jc-type-detection.sh'
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
-  - job: rd_judicial_data
-    pool:
-      name: 'hmcts-ss-prod'
-    steps:
-      - task: AzureCLI@2
-        displayName: 'Get access token'
-        name: gettoken
-        inputs:
-          azureSubscription: $(serviceConnection)
-          scriptType: bash
-          scriptLocation: 'inlineScript'
-          inlineScript: |
-            #!/bin/bash
-            set -ex
-            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $output
-            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
-      - task: AzureKeyVault@2
-        inputs:
-          azureSubscription: $(serviceConnection)
-          KeyVaultName: 'sendgridprod'
-          SecretsFilter: 'hmcts-db-reporting-api-key'
-          RunAsPreJob: false
-      - task: Bash@3
-        inputs:
-          filePath: './scripts/monthly/rd-judicial-ref-api-postgres-db-prod-dbrefdata-monthly-org-attributes.sh'
-        env:
-          SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
