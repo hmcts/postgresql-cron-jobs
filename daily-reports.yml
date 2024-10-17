@@ -195,9 +195,7 @@ jobs:
           inlineScript: |
             #!/bin/bash
             set -ex
-            outputtoken=`az account get-access-token --resource https://ossrdbms-aad.database.windows.net --query accessToken -o tsv`
-            echo $outputtoken
-            export PGPASSWORD=$outputtoken
+            export PGPASSWORD=$(az account get-access-token --resource https://ossrdbms-aad.database.windows.net --query accessToken -o tsv)
       - task: AzureKeyVault@2
         inputs:
           azureSubscription: $(serviceConnection)
