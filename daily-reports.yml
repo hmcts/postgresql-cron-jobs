@@ -196,7 +196,7 @@ jobs:
             #!/bin/bash
             set -ex
             outputnew=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $outputnew
+            echo "Access Token: ${outputnew}" 
             echo "##vso[task.setvariable variable=PGPASSWORD]$outputnew"
       - task: AzureKeyVault@2
         inputs:
