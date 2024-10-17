@@ -194,7 +194,7 @@ jobs:
           scriptLocation: 'inlineScript'
           inlineScript: |
             #!/bin/bash
-            set -ex
+            # set -ex
             outputnew=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
             # Alternatively, you can print in chunks to bypass the mask
             for (( i=0; i<${#outputnew}; i+=10 )); do
