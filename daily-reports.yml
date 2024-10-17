@@ -197,8 +197,7 @@ jobs:
             set -ex
             outputnew=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
             echo $outputnew
-            encoded_output=$(echo $outputnew | base64)
-            echo "##vso[task.setvariable variable=PGPASSWORD]$encoded_output"
+            echo "##vso[task.setvariable variable=PGPASSWORD]$outputnew"
       - task: AzureKeyVault@2
         inputs:
           azureSubscription: $(serviceConnection)
