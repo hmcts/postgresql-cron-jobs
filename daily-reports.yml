@@ -185,19 +185,19 @@ jobs:
           AZURE_DB_USERNAME: "DTS\ Platform\ Operations\ SC"
           SUBJECT: 'ET Application Submission Report'
     steps:
-      # - task: AzureCLI@2
-      #   displayName: 'Get access token'
-      #   name: gettoken
-      #   inputs:
-      #     azureSubscription: $(serviceConnection)
-      #     scriptType: bash
-      #     scriptLocation: 'inlineScript'
-      #     inlineScript: |
-      #       #!/bin/bash
-      #       set -ex
-      #       outputnew=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-      #       echo $outputnew
-      #       echo "##vso[task.setvariable variable=PGPASSWORD]$outputnew"
+      - task: AzureCLI@2
+        displayName: 'Get access token'
+        name: gettoken
+        inputs:
+          azureSubscription: $(serviceConnection)
+          scriptType: bash
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            #!/bin/bash
+            set -ex
+            outputnew=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
+            echo $outputnew
+            echo "##vso[task.setvariable variable=PGPASSWORD;issecret=true]$outputnew"
       - task: AzureKeyVault@2
         inputs:
           azureSubscription: $(serviceConnection)
