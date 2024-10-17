@@ -13,7 +13,7 @@ OUTPUT_DIR=/tmp
 FILESUB=$(echo ${SUBJECT} | cut -d' ' -f 1,2,3 | tr ' ' -)
 OUTPUT_FILE_NAME=${DEFAULT_DATE}_${AZURE_DB}_${FILESUB}.csv
 ATTACHMENT=${OUTPUT_DIR}/${OUTPUT_FILE_NAME}
-
+PGPASSWORD=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
 function errorHandler() {
   local dump_failed_error="${AZURE_HOSTNAME} ${AZURE_DB} Dump extract for ${DEFAULT_DATE}"
   log "${dump_failed_error}"
