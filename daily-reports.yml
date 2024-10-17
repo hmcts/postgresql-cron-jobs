@@ -195,7 +195,9 @@ jobs:
           inlineScript: |
             #!/bin/bash
             set -ex
-            export PGPASSWORD=$(az account get-access-token --resource https://ossrdbms-aad.database.windows.net --query accessToken -o tsv)
+            outputnew=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
+            echo $outputnew
+            echo "##vso[task.setvariable variable=PGPASSWORD]$outputnew"
       - task: AzureKeyVault@2
         inputs:
           azureSubscription: $(serviceConnection)
@@ -208,5 +210,4 @@ jobs:
         env:
           SENDGRID_APIKEY: $(hmcts-db-reporting-api-key)
           CONTAINER_NAME: 'daily'
-          PGPASSWORD: $(PGPASSWORD)
         retryCountOnTaskFailure: '3'
