@@ -195,9 +195,9 @@ jobs:
           inlineScript: |
             #!/bin/bash
             set -ex
-            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $output
-            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
+            outputtoken=`az account get-access-token --resource-type https://ossrdbms-aad.database.windows.net --query accessToken -o tsv`
+            echo $outputtoken
+            echo "##vso[task.setvariable variable=PGPASSWORD]\"$outputtoken\""
       - task: AzureKeyVault@2
         inputs:
           azureSubscription: $(serviceConnection)
