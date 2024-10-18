@@ -29,9 +29,10 @@ jobs:
           scriptLocation: 'inlineScript'
           inlineScript: |
             #!/bin/bash
-            set -ex
+            # set -ex
             output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
             echo $output
+            sleep 3
             echo "##vso[task.setvariable variable=PGPASSWORD]$output"
       - task: AzureKeyVault@2
         inputs:
@@ -58,9 +59,10 @@ jobs:
           scriptLocation: 'inlineScript'
           inlineScript: |
             #!/bin/bash
-            set -ex
+            # set -ex
             output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $output
+            
+            sleep 3
             echo "##vso[task.setvariable variable=PGPASSWORD]$output"
       - task: AzureKeyVault@2
         inputs:
@@ -87,9 +89,10 @@ jobs:
           scriptLocation: 'inlineScript'
           inlineScript: |
             #!/bin/bash
-            set -ex
+            # set -ex
             output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $output
+            
+            sleep 3
             echo "##vso[task.setvariable variable=PGPASSWORD]$output"
       - task: AzureKeyVault@2
         inputs:
@@ -116,9 +119,10 @@ jobs:
           scriptLocation: 'inlineScript'
           inlineScript: |
             #!/bin/bash
-            set -ex
+            # set -ex
             output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $output
+            
+            sleep 3
             echo "##vso[task.setvariable variable=PGPASSWORD]$output"
       - task: AzureKeyVault@2
         inputs:
@@ -194,10 +198,11 @@ jobs:
           scriptLocation: 'inlineScript'
           inlineScript: |
             #!/bin/bash
-            set -ex
-            output=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
-            echo $output
-            echo "##vso[task.setvariable variable=PGPASSWORD]$output"
+            # set -ex
+            outputnew=`az account get-access-token --resource-type oss-rdbms --query accessToken -o tsv`
+            
+            sleep 3
+            echo "##vso[task.setvariable variable=PGPASSWORD]$outputnew"
       - task: AzureKeyVault@2
         inputs:
           azureSubscription: $(serviceConnection)
